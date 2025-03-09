@@ -5,7 +5,6 @@ import '../../global/widget/enum.dart';
 import '../../global/widget/global_image_loader.dart';
 import '../../global/widget/images.dart';
 
-
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
@@ -13,8 +12,7 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(
-      //MaterialPageRoute(builder: (context) => const BanglaSongsLyricListScreen()),
-       MaterialPageRoute(builder: (context) => const CategoryHomeScreen()),
+        MaterialPageRoute(builder: (context) => const CategoryHomeScreen()),
       );
     });
 
@@ -22,9 +20,7 @@ class SplashScreen extends StatelessWidget {
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        decoration: const BoxDecoration(
-            color: ColorRes.backgroundColor
-        ),
+        decoration: const BoxDecoration(color: ColorRes.backgroundColor),
         child: const Center(
           child: GlobalImageLoader(
             imagePath: Images.appLogo,

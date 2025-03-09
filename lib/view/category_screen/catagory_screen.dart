@@ -6,8 +6,8 @@ import '../../global/widget/colors.dart';
 import '../../global/widget/global_app_bar.dart';
 import '../../custom_drawer_screen.dart';
 import '../../global/widget/global_container.dart';
-import 'general_screen/sub_category_screen/bangla_lyrics/bangla_song_list_screen.dart';
-import 'general_screen/sub_category_screen/english_lyrics/english_song_list_screen.dart';
+import 'bangla_lyrics/bangla_song_list_screen.dart';
+import 'english_lyrics/english_song_list_screen.dart';
 
 class CategoryHomeScreen extends StatefulWidget {
   const CategoryHomeScreen({super.key});
@@ -17,9 +17,9 @@ class CategoryHomeScreen extends StatefulWidget {
 }
 
 class _CategoryHomeScreenState extends State<CategoryHomeScreen> {
-
   int currentIndex = 0;
-  CarouselSliderController buttonCarouselController = CarouselSliderController();
+  CarouselSliderController buttonCarouselController =
+      CarouselSliderController();
 
   final List<String> sliderImage = [
     'assets/images/01.png',
@@ -46,18 +46,21 @@ class _CategoryHomeScreenState extends State<CategoryHomeScreen> {
                   items: sliderImage
                       .map(
                         (item) => GlobalContainer(
-                          borderCornerRadius: const BorderRadius.all(Radius.circular(10.0)),
+                          borderCornerRadius:
+                              const BorderRadius.all(Radius.circular(10.0)),
                           backgroundColor: ColorRes.backgroundColor,
-                      child: ClipRRect(
-                        borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-                        child: Image.asset(
-                          item,
-                          fit: BoxFit.cover,
-                          width: MediaQuery.of(context).size.width,
+                          child: ClipRRect(
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(10.0)),
+                            child: Image.asset(
+                              item,
+                              fit: BoxFit.cover,
+                              width: MediaQuery.of(context).size.width,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  ).toList(),
+                      )
+                      .toList(),
                   carouselController: buttonCarouselController,
                   options: CarouselOptions(
                     scrollPhysics: const BouncingScrollPhysics(),
@@ -97,8 +100,7 @@ class _CategoryHomeScreenState extends State<CategoryHomeScreen> {
                     child: CategoryCardWidget(
                       imagePath: 'assets/images/song.png',
                       title: 'বাংলা',
-                      onTap: () =>
-                          Get.to(() => const BanglaSongListScreen()),
+                      onTap: () => Get.to(() => const BanglaKobitaListScreen()),
                     ),
                   ),
                   const SizedBox(width: 5),
@@ -106,8 +108,7 @@ class _CategoryHomeScreenState extends State<CategoryHomeScreen> {
                     child: CategoryCardWidget(
                       imagePath: 'assets/images/song.png',
                       title: 'English',
-                      onTap: () => Get.to(
-                              () => const EnglishSongListScreen()),
+                      onTap: () => Get.to(() => const EnglishKobitaListScreen()),
                     ),
                   ),
                 ],

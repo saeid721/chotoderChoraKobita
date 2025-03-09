@@ -3,9 +3,9 @@ import '../../../../../data/genaral/bangla_songs_data.dart';
 import '../../../../../global/widget/global_app_bar.dart';
 import '../../../../../global/widget/songs_widget.dart';
 
-class BanglaSongFullLyricScreen extends StatelessWidget {
+class BanglaKobitaFullScreen extends StatelessWidget {
   final String id;
-  const BanglaSongFullLyricScreen({
+  const BanglaKobitaFullScreen({
     super.key,
     required this.id,
   });

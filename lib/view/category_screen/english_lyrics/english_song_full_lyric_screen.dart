@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import '../../../../../data/islamic/english_data.dart';
+import '../../../../../data/genaral/english_songs_data.dart';
 import '../../../../../global/widget/global_app_bar.dart';
 import '../../../../../global/widget/songs_widget.dart';
 
-class EnglishIslamicSongFullLyricScreen extends StatelessWidget {
+class EnglishKobitaFullScreen extends StatelessWidget {
   final String id;
-  const EnglishIslamicSongFullLyricScreen({
+  const EnglishKobitaFullScreen({
     super.key,
     required this.id,
   });
@@ -13,7 +13,7 @@ class EnglishIslamicSongFullLyricScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Find the song by its ID
-    final songLyric = englishData.firstWhere((song) => song.id == id);
+    final songLyric = englishSongsData.firstWhere((song) => song.id == id);
 
     return Scaffold(
       appBar: GlobalAppBar(
