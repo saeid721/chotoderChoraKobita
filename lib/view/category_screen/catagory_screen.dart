@@ -98,7 +98,7 @@ class _CategoryHomeScreenState extends State<CategoryHomeScreen> {
                 children: [
                   Expanded(
                     child: CategoryCardWidget(
-                      imagePath: 'assets/images/banlga.png',
+                      imagePath: 'assets/images/bangla.png',
                       title: 'বাংলা',
                       onTap: () => Get.to(() => const BanglaKobitaListScreen()),
                     ),
