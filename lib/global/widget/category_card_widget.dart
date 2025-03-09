@@ -6,13 +6,13 @@ const double imageWidth = 80.0;
 const double imageHeight = 80.0;
 
 class CategoryCardWidget extends StatelessWidget {
-  final String? imagePath; // Make imagePath optional
+  final String? imagePath;
   final String title;
   final VoidCallback onTap;
 
   const CategoryCardWidget({
     super.key,
-    this.imagePath, // imagePath can be null
+    this.imagePath,
     required this.title,
     required this.onTap,
   });
@@ -35,8 +35,8 @@ class CategoryCardWidget extends StatelessWidget {
             color: ColorRes.white,
             border: const Border(
               bottom: BorderSide(
-                color: ColorRes.borderColor, // Define the color of the bottom border
-                width: 1.0, // Set the thickness of the bottom border
+                color: ColorRes.borderColor,
+                width: 1.0,
               ),
             ),
           ),

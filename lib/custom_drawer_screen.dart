@@ -44,9 +44,9 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
                   ),
                   child:
                   const GlobalText(
-                    str: """Lyrics""",
+                    str: """ছোটদের মজার ছড়া ও কবিতা""",
                     fontWeight: FontWeight.w700,
-                    fontSize: 44,
+                    fontSize: 32,
                     color: ColorRes.primaryColor,
                   ),
                 ),

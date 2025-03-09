@@ -98,7 +98,7 @@ class _CategoryHomeScreenState extends State<CategoryHomeScreen> {
                 children: [
                   Expanded(
                     child: CategoryCardWidget(
-                      imagePath: 'assets/images/song.png',
+                      imagePath: 'assets/images/banlga.png',
                       title: 'বাংলা',
                       onTap: () => Get.to(() => const BanglaKobitaListScreen()),
                     ),
@@ -106,9 +106,10 @@ class _CategoryHomeScreenState extends State<CategoryHomeScreen> {
                   const SizedBox(width: 5),
                   Expanded(
                     child: CategoryCardWidget(
-                      imagePath: 'assets/images/song.png',
+                      imagePath: 'assets/images/english.png',
                       title: 'English',
-                      onTap: () => Get.to(() => const EnglishKobitaListScreen()),
+                      onTap: () =>
+                          Get.to(() => const EnglishKobitaListScreen()),
                     ),
                   ),
                 ],

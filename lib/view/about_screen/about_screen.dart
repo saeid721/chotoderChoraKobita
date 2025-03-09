@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../global/widget/colors.dart';
 import '../../../global/widget/global_text.dart';
 import '../../global/widget/global_image_loader.dart';
@@ -16,7 +15,7 @@ class AboutUsScreen extends StatelessWidget {
         shadowColor: ColorRes.borderColor,
         iconTheme: const IconThemeData(color: ColorRes.primaryColor),
         title: const Text(
-          'Lyrics Apps',
+          'ছোটদের মজার ছড়া ও কবিতা',
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w700,

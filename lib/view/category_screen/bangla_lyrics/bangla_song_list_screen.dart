@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../../../data/genaral/bangla_songs_data.dart';
 import '../../../../../global/widget/chapter_item_widget.dart';
 import '../../../../../global/widget/colors.dart';
