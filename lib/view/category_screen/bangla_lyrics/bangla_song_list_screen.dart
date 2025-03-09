@@ -19,7 +19,7 @@ class _BanglaKobitaListScreenState extends State<BanglaKobitaListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const GlobalAppBar(title: "Bengali Rhymes & Poems for Children"),
+      appBar: const GlobalAppBar(title: "ছোটদের বাংলা ছড়া ও কবিতা"),
       body: GlobalContainer(
         height: size(context).height,
         width: size(context).width,
