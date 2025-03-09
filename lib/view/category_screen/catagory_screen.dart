@@ -6,8 +6,8 @@ import '../../global/widget/colors.dart';
 import '../../global/widget/global_app_bar.dart';
 import '../../custom_drawer_screen.dart';
 import '../../global/widget/global_container.dart';
-import 'bangla_lyrics/bangla_song_list_screen.dart';
-import 'english_lyrics/english_song_list_screen.dart';
+import 'bangla_lyrics/bangla_kobita_list_screen.dart';
+import 'english_lyrics/english_kobita_list_screen.dart';
 
 class CategoryHomeScreen extends StatefulWidget {
   const CategoryHomeScreen({super.key});

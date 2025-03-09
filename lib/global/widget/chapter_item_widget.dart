@@ -50,7 +50,7 @@ class ChapterItem extends StatelessWidget {
               Text(
                 title,
                 style: const TextStyle(
-                  fontSize: 15,
+                  fontSize: 18,
                   fontWeight: FontWeight.w600,
                   color: ColorRes.primaryColor,
                 ),

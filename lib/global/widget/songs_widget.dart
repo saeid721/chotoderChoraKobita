@@ -6,11 +6,11 @@ import 'global_container.dart';
 import 'global_text.dart';
 
 class SongsWidget extends StatelessWidget {
-  final String fullLyric;
+  final String fullKobita;
 
   const SongsWidget({
     super.key,
-    required this.fullLyric,
+    required this.fullKobita,
   });
 
   @override
@@ -32,7 +32,9 @@ class SongsWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 GlobalText(
-                  str: fullLyric,
+                  str: fullKobita,
+                  fontSize: 24,
+                  fontWeight: FontWeight.w600,
                 ),
               ],
             ),

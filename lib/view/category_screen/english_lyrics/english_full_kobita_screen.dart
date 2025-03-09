@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import '../../../../../data/genaral/bangla_songs_data.dart';
+import '../../../../../data/genaral/english_songs_data.dart';
 import '../../../../../global/widget/global_app_bar.dart';
 import '../../../../../global/widget/songs_widget.dart';
 
-class BanglaKobitaFullScreen extends StatelessWidget {
+class EnglishFullKobitaScreen extends StatelessWidget {
   final String id;
-  const BanglaKobitaFullScreen({
+  const EnglishFullKobitaScreen({
     super.key,
     required this.id,
   });
@@ -13,7 +13,7 @@ class BanglaKobitaFullScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Find the song by its ID
-    final songLyric = banglaSongsData.firstWhere((song) => song.id == id);
+    final songLyric = englishSongsData.firstWhere((song) => song.id == id);
 
     return Scaffold(
       appBar: GlobalAppBar(
@@ -23,7 +23,7 @@ class BanglaKobitaFullScreen extends StatelessWidget {
         child: Column(
           children: [
             SongsWidget(
-              fullLyric: songLyric.fullLyric,
+              fullKobita: songLyric.fullLyric,
             ),
             const SizedBox(height: 10),
           ],

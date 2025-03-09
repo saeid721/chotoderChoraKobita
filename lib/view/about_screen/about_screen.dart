@@ -37,7 +37,7 @@ class AboutUsScreen extends StatelessWidget {
             ),
             SizedBox(height: 15),
             GlobalText(
-              str: "Welcome to Lyrics",
+              str: "Welcome to ছোটদের মজার ছড়া ও কবিতা",
               fontSize: 22,
               fontWeight: FontWeight.w700,
               textAlign: TextAlign.left,
@@ -54,9 +54,9 @@ class AboutUsScreen extends StatelessWidget {
                 children: [
                   GlobalText(
                     str:
-                        """Welcome to Lyrics Apps, where you'll discover a rich collection that inspires and helps you enjoy the beauty of your favorite song lyrics! Whether you're passionate about singing, a karaoke lover, or someone who appreciates meaningful words, our platform is crafted to bring you closer to the songs that speak to your soul.
-We offer an extensive selection of song lyrics from various genres, cultures, and languages, with a special emphasis on Islamic songs. Our aim is to provide an easy, seamless experience for anyone seeking to connect with meaningful and inspirational lyrics.
-At Lyrics Apps, we believe that lyrics hold the power to evoke emotions, share stories, and spread positivity. That’s why we are dedicated to curating a broad range of lyrics, from timeless treasures to contemporary favorites, all available on a user-friendly platform.
+                        """Welcome to ছোটদের মজার ছড়া ও কবিতা Apps, where you'll discover a rich collection that inspires and helps you enjoy the beauty of your favorite ছোটদের মজার ছড়া ও কবিতা! Whether you're passionate about singing, a karaoke lover, or someone who appreciates meaningful words, our platform is crafted to bring you closer to the ছোটদের মজার ছড়া ও কবিতা that speak to your soul.
+We offer an extensive selection of song ছোটদের মজার ছড়া ও কবিতা from various genres, cultures, and languages, with a special emphasis on ছোটদের মজার ছড়া ও কবিতা. Our aim is to provide an easy, seamless experience for anyone seeking to connect with meaningful and inspirational ছোটদের মজার ছড়া ও কবিতা.
+At ছোটদের মজার ছড়া ও কবিতা Apps, we believe that ছোটদের মজার ছড়া ও কবিতা hold the power to evoke emotions, share stories, and spread positivity. That’s why we are dedicated to curating a broad range of ছোটদের মজার ছড়া ও কবিতা, from timeless treasures to contemporary favorites, all available on a user-friendly platform.
 Join us in exploring the beauty of words through song, and let this journey inspire you!
                         """,
                     fontSize: 15,

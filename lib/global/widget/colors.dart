@@ -6,15 +6,12 @@ class ColorRes {
 
   static const Color dark = Color(0xFF252525);
   static const Color darkGaro = Color(0xff2d2d2d);
-  static const Color backgroundColor = Color(0xFFF7EFE5);
-  static const Color borderColor = Color(0xFFC8A1E0);
-  static const Color titleColor = Color(0xFFFFC107);
-
-  static const Color textColor = Color(0xFF674188);
-
-  static const Color primaryColor = Color(0xFF674188);
-
-  static const Color secondaryColor = Color(0xFF9384D1);
+  static const Color backgroundColor = Color(0xFFF9CB43);
+  static const Color borderColor = Color(0xFFFBA518);
+  static const Color titleColor = Color(0xFFFBA518);
+  static const Color textColor = Color(0xFFE52020);
+  static const Color primaryColor = Color(0xFFE52020);
+  static const Color secondaryColor = Color(0xFFA89C29);
 
   static const Color black = Color(0xFF000000);
   static const Color red = Color(0xFFF44336);

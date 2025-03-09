@@ -12,9 +12,9 @@ class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
     super.key,
     required this.title,
     this.elevation = 1,
-    this.backgroundColor = Colors.white,
-    this.titleColor = ColorRes.primaryColor,
-    this.iconColor = ColorRes.primaryColor,
+    this.backgroundColor = ColorRes.backgroundColor,
+    this.titleColor = ColorRes.white,
+    this.iconColor = ColorRes.white,
   });
 
   @override
@@ -22,7 +22,7 @@ class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       elevation: elevation,
       shadowColor: ColorRes.borderColor,
-      backgroundColor: backgroundColor,
+      backgroundColor: ColorRes.primaryColor,
       iconTheme: IconThemeData(color: iconColor),
       title: Text(
         title,
