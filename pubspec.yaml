@@ -1,0 +1,47 @@
+name: chotoder_chora_kobita
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.1
+
+environment:
+  sdk: '>=3.3.4 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.6
+  get: ^4.6.6 # State Management!
+  get_it: ^8.0.2
+  sqflite: ^2.4.1
+  path: ^1.9.0
+  intl: ^0.20.0
+  image: ^4.3.0
+  carousel_slider: ^5.0.0
+  dart_code_linter: ^1.2.1
+  equatable: ^2.0.5
+  uuid: ^4.5.1
+  share_plus: ^10.1.4
+
+dev_dependencies:
+  flutter_lints: ^4.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/db/lyrics_database.sql
+
+
+  fonts:
+    - family: Schyler
+      fonts:
+        - asset: fonts/NotoSerifBengali-Regular.ttf
+        - asset: fonts/NotoSerifBengali-Bold.ttf
+        - asset: fonts/NotoSerifBengali-ExtraBold.ttf
+          weight: 700

@@ -1,0 +1,26 @@
+{
+    "status": 200,
+    "message": "Bangla",
+    "data": {
+        "beginner_spoken_english_list": [
+            {
+                "id": 1,
+                "title": "Level-0 Beginner Spoken English 'Am' 'is' 'are' sentence",
+                "description": "In this video, I have given several examples from our day to day life practical conversation in different kinds of situations. You will see that a lot of conversations are similar to your life, but if you really want to improve your spoken English skills then after watching the video try to make at least five sentences from your practical life conversation without getting worried about English grammar.",
+                "status": "Active"
+            },
+            {
+                "id": 2,
+                "title": "Level-0 Beginner Spoken English 'Am' 'is' 'are' sentence",
+                "description": "In this video, I have given several examples from our day to day life practical conversation in different kinds of situations. You will see that a lot of conversations are similar to your life, but if you really want to improve your spoken English skills then after watching the video try to make at least five sentences from your practical life conversation without getting worried about English grammar.",
+                "status": "Active"
+            },
+            {
+                "id": 3,
+                "title": "Level-0 Beginner Spoken English 'Am' 'is' 'are' sentence",
+                "description": "In this video, I have given several examples from our day to day life practical conversation in different kinds of situations. You will see that a lot of conversations are similar to your life, but if you really want to improve your spoken English skills then after watching the video try to make at least five sentences from your practical life conversation without getting worried about English grammar.",
+                "status": "Active"
+            }
+        ]
+    }
+}
