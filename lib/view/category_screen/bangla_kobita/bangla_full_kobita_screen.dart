@@ -13,7 +13,7 @@ class BanglaFullKobitaScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Find the song by its ID
-    final songLyric = banglaSongsData.firstWhere((song) => song.id == id);
+    final songLyric = banglaKobitaData.firstWhere((song) => song.id == id);
 
     return Scaffold(
       appBar: GlobalAppBar(
@@ -21,6 +21,7 @@ class BanglaFullKobitaScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             KobitaWidget(
               fullKobita: songLyric.fullLyric,

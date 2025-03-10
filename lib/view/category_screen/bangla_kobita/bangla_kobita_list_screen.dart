@@ -31,11 +31,11 @@ class _BanglaKobitaListScreenState extends State<BanglaKobitaListScreen> {
               children: [
                 const SizedBox(height: 10),
                 ListView.builder(
-                  itemCount: banglaSongsData.length,
+                  itemCount: banglaKobitaData.length,
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (ctx, index) {
-                    final songLyric = banglaSongsData[index];
+                    final songLyric = banglaKobitaData[index];
                     return Column(
                       children: [
                         ChapterItem(
