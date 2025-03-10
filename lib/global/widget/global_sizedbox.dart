@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-sizeBoxH(double? h){
+sizedBoxH(double? h){
   return SizedBox(height: h);
 }
 
-sizeBoxW(double? w){
+sizedBoxW(double? w){
   return SizedBox(width: w);
 }
 

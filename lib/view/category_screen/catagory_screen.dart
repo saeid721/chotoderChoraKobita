@@ -34,7 +34,7 @@ class _CategoryHomeScreenState extends State<CategoryHomeScreen> {
       appBar: const GlobalAppBar(
         title: "ছোটদের মজার ছড়া ও কবিতা",
       ),
-      drawer: const CustomDrawerWidget(),
+      drawer: const CustomDrawerScreen(),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(10.0),

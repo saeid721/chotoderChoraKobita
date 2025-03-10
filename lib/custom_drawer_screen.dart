@@ -1,25 +1,37 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
-import 'view/about_screen/about_screen.dart';
-import 'view/contact_screen/contact_screen.dart';
+import 'global/model/model.dart';
 import 'global/widget/colors.dart';
+import 'global/widget/enum.dart';
+import 'global/widget/global_image_loader.dart';
 import 'global/widget/global_text.dart';
+import 'global/widget/images.dart';
+import 'view/category_screen/catagory_screen.dart';
+import 'view/contact_screen/contact_screen.dart';
+import 'view/privacy_policy_screen/privacy_policy_screen.dart';
 
-class CustomDrawerWidget extends StatefulWidget {
-  const CustomDrawerWidget({
-    super.key,
-  });
+class CustomDrawerScreen extends StatefulWidget {
+  const CustomDrawerScreen({super.key});
 
   @override
-  State<CustomDrawerWidget> createState() => _CustomDrawerWidgetState();
+  State<CustomDrawerScreen> createState() => _CustomDrawerScreenState();
 }
 
-class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
+class _CustomDrawerScreenState extends State<CustomDrawerScreen> {
+  int isClick = 0;
+  final List<GlobalMenuModel> menuItem = [
+    GlobalMenuModel(img: Images.homeInc, text: 'Home'),
+    GlobalMenuModel(img: Images.contactInc, text: 'Contact Us'),
+    GlobalMenuModel(img: Images.shareInc, text: 'Share Your Friends'),
+    GlobalMenuModel(img: Images.ratingInc, text: 'Rate Our App'),
+    GlobalMenuModel(img: Images.policyInc, text: 'Privacy & Policy'),
+  ];
 
   // Function to handle app sharing
   void _shareApp() {
-    const String message = "Check out this amazing app!";
+    const String message = "Check out this amazing app! [Your App Link Here]";
     Share.share(message);
   }
 
@@ -36,97 +48,92 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
               children: [
                 Container(
                   width: Get.width,
+                  height: 160,
                   padding: const EdgeInsets.only(
                       left: 20, right: 10, top: 50, bottom: 10),
-                  decoration: BoxDecoration(
-                    color: ColorRes.backgroundColor,
-                    border: Border.all(color: ColorRes.primaryColor, width: 0.3),
-                  ),
-                  child:
-                  const GlobalText(
-                    str: """ছোটদের মজার ছড়া ও কবিতা""",
-                    fontWeight: FontWeight.w700,
-                    fontSize: 32,
-                    color: ColorRes.primaryColor,
-                  ),
-                ),
 
-                ListTile(
-                  title: const Text('About App'),
-                  leading: const Icon(Icons.person_outline_outlined,
-                      color: ColorRes.primaryColor),
-                  onTap: () {
-                    Get.to(() => const AboutUsScreen());
-                  },
-                ),
-                ListTile(
-                  title: const Text('Rate Our App'),
-                  leading: const Icon(Icons.star_rate_outlined,
-                      color: ColorRes.primaryColor),
-                  onTap: () {
-                    //Get.to(() => const RateOurApp());
-                  },
-                ),
-                ListTile(
-                  title: const Text('Send Feedback'),
-                  leading: const Icon(Icons.comment_bank_outlined,
-                      color: ColorRes.primaryColor),
-                  onTap: () {
-                    //Get.to(() => SendFeedback());
-                  },
-                ),
-                ListTile(
-                  title: const Text('Share Your Friends'),
-                  leading:
-                  const Icon(Icons.share_outlined, color: ColorRes.primaryColor),
-                  onTap: () {
-                    _shareApp(); // Trigger share app function
-                  },
-                ),
-                ListTile(
-                  title: const Text('Contact Us'),
-                  leading: const Icon(Icons.location_history_outlined,
-                      color: ColorRes.primaryColor),
-                  onTap: () {
-                    Get.to(() => const ContactUsScreen());
-                  },
-                ),
-                const SizedBox(height: 5),
-                Container(
-                  decoration: const BoxDecoration(
-                    border: Border(top: BorderSide(color: Colors.grey, width: 1)),
+                  decoration:  BoxDecoration(
+                    border:
+                    Border.all(color: ColorRes.primaryColor, width: 0.3),
+                    gradient: const LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Color(0xFFFFE6F0), // Light pink
+                        Color(0xFFB3E5FC), // Light blue
+                      ],
+                    ),
                   ),
-                  padding: const EdgeInsets.only(top: 5),
-                  child: const Column(
-                    children: [
-                      Text(
-                        'Developed by',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: ColorRes.secondaryColor,
+                  child: const ClipRRect(
+                    child: GlobalImageLoader(
+                      imagePath: 'assets/images/splash_screen.png',
+                      width: 250,
+                      imageFor: ImageFor.asset,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: menuItem.length,
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 20, horizontal: 20),
+                    itemBuilder: (ctx, index) {
+                      return GestureDetector(
+                        onTap: () async {
+                          setState(() {
+                            isClick = index;
+                          });
+                          log('Index: $index');
+                          switch (index) {
+                            case 0:
+                              Get.to(() => const CategoryHomeScreen());
+                              break;
+                            case 1:
+                              Get.to(() => const ContactScreen());
+                              break;
+                            case 2:
+                              _shareApp(); // Trigger share app function
+                              break;
+                            case 3:
+                            // Add any action for Rating here
+                              break;
+                            case 4:
+                              Get.to(() => const AppPrivacyPolicyScreen());
+                              break;
+                          }
+                        },
+                        child: Container(
+                          width: Get.width,
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 8),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: isClick == index
+                                ? ColorRes.primaryColor
+                                : Colors.white,
+                          ),
+                          margin: const EdgeInsets.only(bottom: 5),
+                          child: Row(
+                            children: [
+                              GlobalImageLoader(
+                                imagePath: menuItem[index].img,
+                                height: 20,
+                                width: 20,
+                                fit: BoxFit.fill,
+                              ),
+                              const SizedBox(width: 10),
+                              GlobalText(
+                                str: menuItem[index].text,
+                                color: isClick == index
+                                    ? ColorRes.white
+                                    : ColorRes.black,
+                                fontSize: 16,
+                              ),
+                            ],
+                          ),
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                      Text(
-                        'Flutter Bangla',
-                        style: TextStyle(
-                          fontSize: 17,
-                          color: ColorRes.primaryColor,
-                          fontWeight: FontWeight.w600,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      Text(
-                        'Fb.com/FlutterBangla',
-                        style: TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w400,
-                          color: ColorRes.secondaryColor,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
+                      );
+                    },
                   ),
                 ),
               ],
@@ -135,8 +142,7 @@ class _CustomDrawerWidgetState extends State<CustomDrawerWidget> {
             const Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: 32.0, vertical: 50.0),
+                padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 50.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [

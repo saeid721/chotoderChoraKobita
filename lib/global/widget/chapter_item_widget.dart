@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'colors.dart';
 
 class ChapterItem extends StatelessWidget {
@@ -11,8 +10,8 @@ class ChapterItem extends StatelessWidget {
   const ChapterItem({
     required this.title,
     required this.onTap,
-    this.icon = Icons.arrow_forward_ios, // Default icon
-    this.backgroundColor = Colors.white, // Default background color
+    this.icon = Icons.arrow_forward_ios,
+    this.backgroundColor = Colors.white,
     super.key,
   });
 
@@ -21,28 +20,27 @@ class ChapterItem extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Material(
-        color: Colors.transparent, // Use transparent color in Material
-        elevation: 2.0, // Add elevation to create a shadow effect
-        shadowColor: Colors.black
-            .withOpacity(0.25), // Optional: Adjust shadow color and opacity
+        color: Colors.transparent,
+        elevation: 2.0,
+        shadowColor: Colors.black.withOpacity(0.25),
         borderRadius: const BorderRadius.only(
           topRight: Radius.circular(15.0),
           bottomLeft: Radius.circular(15.0),
-        ), // Apply the same border radius to the shadow
+        ),
         child: Container(
-          padding: const EdgeInsets.all(8.0), // Add padding around the content
+          padding: const EdgeInsets.all(8.0),
           decoration: BoxDecoration(
-            color: backgroundColor, // Set the background color here
+            color: backgroundColor,
             borderRadius: const BorderRadius.only(
               topRight: Radius.circular(10.0),
               bottomLeft: Radius.circular(10.0),
-            ), // Add top-right and bottom-left border radius
+            ),
             border: const Border(
               bottom: BorderSide(
-                color: ColorRes.borderColor, // Set the bottom border color
-                width: 1.0, // Set the border width
+                color: ColorRes.borderColor,
+                width: 1.0,
               ),
-            ), // Add bottom border with primary color
+            ),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
