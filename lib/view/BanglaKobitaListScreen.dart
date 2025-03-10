@@ -1,6 +1,6 @@
 // import 'package:flutter/material.dart';
 // import 'package:get/get.dart';
-// import '../controller/lyric_controller.dart';
+// import '../controller/kobita_controller.dart';
 // import '../global/widget/chapter_item_widget.dart';
 // import '../global/widget/global_app_bar.dart';
 // import 'BanglaKobitaFullScreen.dart';
