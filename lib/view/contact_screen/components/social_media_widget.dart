@@ -51,6 +51,7 @@ class SocialMediaWidget extends StatelessWidget {
           GlobalText(
             str: text,
             fontSize: 18,
+            color: ColorRes.dark,
             fontWeight: FontWeight.w500,
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,

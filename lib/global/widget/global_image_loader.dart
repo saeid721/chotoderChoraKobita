@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'enum.dart';
 
@@ -11,48 +10,63 @@ class GlobalImageLoader extends StatelessWidget {
     this.width,
     this.fit,
     this.color,
-    this.errorBuilder
+    this.opacity = 1.0, // Added opacity parameter with default value of 1.0 (fully opaque)
+    this.errorBuilder,
   });
+
   final String imagePath;
   final double? height;
   final double? width;
   final BoxFit? fit;
   final Color? color;
+  final double opacity; // New opacity field
   final ImageErrorWidgetBuilder? errorBuilder;
   final ImageFor imageFor;
 
   @override
   Widget build(BuildContext context) {
+    Widget imageWidget;
+
     if (imageFor == ImageFor.network) {
-      return Image.network(
+      imageWidget = Image.network(
         imagePath,
         height: height,
         width: width,
         fit: fit,
         color: color,
-        errorBuilder: errorBuilder ?? (context, exception, stackTrace) => Center(
-            child: Image.asset("assets/images/place_holder_img.jpg",
+        errorBuilder: errorBuilder ??
+                (context, exception, stackTrace) => Center(
+              child: Image.asset(
+                "assets/images/place_holder_img.jpg",
                 height: height,
                 width: width,
                 fit: BoxFit.fill,
-            )
-          )
+              ),
+            ),
       );
     } else {
-      return Image.asset(
+      imageWidget = Image.asset(
         imagePath,
         height: height,
         width: width,
         fit: fit,
         color: color,
-        errorBuilder: errorBuilder ?? (context, exception, stackTrace) => Center(
-            child: Image.asset("assets/images/place_holder_img.jpg",
+        errorBuilder: errorBuilder ??
+                (context, exception, stackTrace) => Center(
+              child: Image.asset(
+                "assets/images/place_holder_img.jpg",
                 height: height,
                 width: width,
-                fit: BoxFit.fill
-            )
-        ),
+                fit: BoxFit.fill,
+              ),
+            ),
       );
     }
+
+    // Apply opacity to the image
+    return Opacity(
+      opacity: opacity.clamp(0.0, 1.0), // Ensure opacity is between 0 and 1
+      child: imageWidget,
+    );
   }
 }

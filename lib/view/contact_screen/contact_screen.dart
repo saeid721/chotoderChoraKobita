@@ -39,6 +39,7 @@ class _ContactScreenState extends State<ContactScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorRes.white,
       appBar: AppBar(
         elevation: 1,
         shadowColor: ColorRes.white200,
@@ -74,16 +75,16 @@ class _ContactScreenState extends State<ContactScreen> {
             """,
                   fontWeight: FontWeight.w400,
                   textAlign: TextAlign.justify,
+                  color: ColorRes.dark,
                 ),
-                const SizedBox(height: 5),
+                const SizedBox(height: 2),
                 const GlobalText(
-                  str: "Don’t Miss Out – Follow Us for Updates",
+                  str: "Follow Us",
                   color: ColorRes.primaryColor,
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 5),
                 GridView.builder(
                     itemCount: menuItem.length,
                     shrinkWrap: true,
@@ -93,7 +94,7 @@ class _ContactScreenState extends State<ContactScreen> {
                             crossAxisCount: 2,
                             mainAxisSpacing: 8,
                             crossAxisSpacing: 8,
-                            mainAxisExtent: 55),
+                            mainAxisExtent: 45),
                     //padding: const EdgeInsets.symmetric(horizontal: 20),
                     itemBuilder: (ctx, index) {
                       return GestureDetector(

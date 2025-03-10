@@ -4,6 +4,7 @@ class Images {
   //::::::::::::::::::::::::: Splash Img
   static const String appLogo = 'assets/images/bangla.png';
   static const String splashScreen = 'assets/images/splash_screen.png';
+  static const String kobitaBg = 'assets/images/kobita_bg.jpg';
 
   static const String homeInc = 'assets/icons/home-security.png';
   static const String contactInc = 'assets/icons/contact-information.png';

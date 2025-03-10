@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../../data/genaral/bangla_songs_data.dart';
 import '../../../../../global/widget/global_app_bar.dart';
-import '../../../../../global/widget/songs_widget.dart';
+import '../../../../../global/widget/kobita_widget.dart';
 
 class BanglaFullKobitaScreen extends StatelessWidget {
   final String id;
@@ -22,7 +22,7 @@ class BanglaFullKobitaScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SongsWidget(
+            KobitaWidget(
               fullKobita: songLyric.fullLyric,
             ),
             const SizedBox(height: 10),

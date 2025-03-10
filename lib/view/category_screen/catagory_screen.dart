@@ -1,13 +1,17 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../controller/splash_controller.dart';
 import '../../global/widget/category_card_widget.dart';
 import '../../global/widget/colors.dart';
+import '../../global/widget/enum.dart';
 import '../../global/widget/global_app_bar.dart';
 import '../../custom_drawer_screen.dart';
 import '../../global/widget/global_container.dart';
-import 'bangla_lyrics/bangla_kobita_list_screen.dart';
-import 'english_lyrics/english_kobita_list_screen.dart';
+import '../../global/widget/global_image_loader.dart';
+import '../../global/widget/images.dart';
+import 'bangla_kobita/bangla_kobita_list_screen.dart';
+import 'english_kobita/english_kobita_list_screen.dart';
 
 class CategoryHomeScreen extends StatefulWidget {
   const CategoryHomeScreen({super.key});
@@ -17,9 +21,9 @@ class CategoryHomeScreen extends StatefulWidget {
 }
 
 class _CategoryHomeScreenState extends State<CategoryHomeScreen> {
+
   int currentIndex = 0;
-  CarouselSliderController buttonCarouselController =
-      CarouselSliderController();
+  CarouselSliderController buttonCarouselController = CarouselSliderController();
 
   final List<String> sliderImage = [
     'assets/images/01.png',
@@ -35,7 +39,19 @@ class _CategoryHomeScreenState extends State<CategoryHomeScreen> {
         title: "ছোটদের মজার ছড়া ও কবিতা",
       ),
       drawer: const CustomDrawerScreen(),
-      body: SafeArea(
+      body: Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color(0xFFFFE6F0), // Light pink
+              Color(0xFFB3E5FC), // Light blue
+            ],
+          ),
+        ),
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Column(
@@ -46,20 +62,18 @@ class _CategoryHomeScreenState extends State<CategoryHomeScreen> {
                   items: sliderImage
                       .map(
                         (item) => GlobalContainer(
-                          borderCornerRadius:
-                              const BorderRadius.all(Radius.circular(10.0)),
-                          backgroundColor: ColorRes.backgroundColor,
-                          child: ClipRRect(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10.0)),
-                            child: Image.asset(
-                              item,
-                              fit: BoxFit.cover,
-                              width: MediaQuery.of(context).size.width,
-                            ),
-                          ),
+                      borderCornerRadius: const BorderRadius.all(Radius.circular(10.0)),
+                      backgroundColor: ColorRes.backgroundColor,
+                      child: ClipRRect(
+                        borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                        child: Image.asset(
+                          item,
+                          fit: BoxFit.cover,
+                          width: MediaQuery.of(context).size.width,
                         ),
-                      )
+                      ),
+                    ),
+                  )
                       .toList(),
                   carouselController: buttonCarouselController,
                   options: CarouselOptions(
@@ -108,11 +122,20 @@ class _CategoryHomeScreenState extends State<CategoryHomeScreen> {
                     child: CategoryCardWidget(
                       imagePath: 'assets/images/english.png',
                       title: 'English',
-                      onTap: () =>
-                          Get.to(() => const EnglishKobitaListScreen()),
+                      onTap: () => Get.to(() => const EnglishKobitaListScreen()),
                     ),
                   ),
                 ],
+              ),
+              const Spacer(), // Pushes the image to the bottom
+              Padding(
+                padding: const EdgeInsets.only(bottom: 10.0),
+                child: GlobalImageLoader(
+                  imagePath: Images.splashScreen,
+                  width: Get.width * 0.8,
+                  fit: BoxFit.contain,
+                  imageFor: ImageFor.asset,
+                ),
               ),
             ],
           ),
