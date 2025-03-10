@@ -40,7 +40,7 @@ class KobitaWidget extends StatelessWidget {
                 str: fullKobita,
                 fontSize: 24,
                 fontWeight: FontWeight.w600,
-                color: ColorRes.primaryColor,
+                color: ColorRes.textColor,
                 textAlign: TextAlign.center,
               ),
             ),
