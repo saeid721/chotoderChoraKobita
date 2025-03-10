@@ -8,11 +8,12 @@ class Images {
 
   static const String homeInc = 'assets/icons/home-security.png';
   static const String contactInc = 'assets/icons/contact-information.png';
-  static const String faqInc = 'assets/icons/faq.png';
-  static const String notificationInc = 'assets/icons/notification.png';
   static const String shareInc = 'assets/icons/share.png';
   static const String ratingInc = 'assets/icons/rating.png';
   static const String policyInc = 'assets/icons/policy.png';
+
+  static const String faqInc = 'assets/icons/faq.png';
+  static const String notificationInc = 'assets/icons/notification.png';
   static const String userInc = 'assets/icons/user.png';
   static const String userPlaceholderIc = 'assets/images/user_placeholder.jpg';
 
