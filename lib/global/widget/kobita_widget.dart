@@ -40,7 +40,7 @@ class KobitaWidget extends StatelessWidget {
                 padding: const EdgeInsets.all(10),
                 child: GlobalText(
                   str: fullKobita,
-                  fontSize: 24,
+                  fontSize: 18,
                   fontWeight: FontWeight.w600,
                   color: ColorRes.textColor,
                   textAlign: TextAlign.center,
