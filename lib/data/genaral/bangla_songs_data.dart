@@ -521,47 +521,47 @@ final List<BanglaKobitaData> banglaKobitaData = [
 - নবকৃষ্ণ ভট্টাচার্য
 """,
   ),
-  BanglaKobitaData(
-    id: '25',
-    title: 'আমার',
-    fullLyric: """আমার
-""",
-  ),
-  BanglaKobitaData(
-    id: '26',
-    title: 'আমার',
-    fullLyric: """আমার
-""",
-  ),
-  BanglaKobitaData(
-    id: '27',
-    title: 'আমার',
-    fullLyric: """আমার
-""",
-  ),
-  BanglaKobitaData(
-    id: '28',
-    title: 'আমার',
-    fullLyric: """আমার
-""",
-  ),
-  BanglaKobitaData(
-    id: '29',
-    title: 'আমার',
-    fullLyric: """আমার
-""",
-  ),
-  BanglaKobitaData(
-    id: '30',
-    title: 'আমার',
-    fullLyric: """আমার
-""",
-  ),
-  BanglaKobitaData(
-    id: '15',
-    title: 'আমার',
-    fullLyric: """আমার
-""",
-  ),
+//   BanglaKobitaData(
+//     id: '25',
+//     title: 'আমার',
+//     fullLyric: """আমার
+// """,
+//   ),
+//   BanglaKobitaData(
+//     id: '26',
+//     title: 'আমার',
+//     fullLyric: """আমার
+// """,
+//   ),
+//   BanglaKobitaData(
+//     id: '27',
+//     title: 'আমার',
+//     fullLyric: """আমার
+// """,
+//   ),
+//   BanglaKobitaData(
+//     id: '28',
+//     title: 'আমার',
+//     fullLyric: """আমার
+// """,
+//   ),
+//   BanglaKobitaData(
+//     id: '29',
+//     title: 'আমার',
+//     fullLyric: """আমার
+// """,
+//   ),
+//   BanglaKobitaData(
+//     id: '30',
+//     title: 'আমার',
+//     fullLyric: """আমার
+// """,
+//   ),
+//   BanglaKobitaData(
+//     id: '15',
+//     title: 'আমার',
+//     fullLyric: """আমার
+// """,
+//   ),
 
 ];
