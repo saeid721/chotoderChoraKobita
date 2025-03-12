@@ -70,7 +70,7 @@ class ChapterItem extends StatelessWidget {
                   const SizedBox(width: 8),
                   Icon(
                     icon,
-                    color: ColorRes.borderColor,
+                    color: ColorRes.primaryColor,
                     size: 16,
                   ),
                 ],
