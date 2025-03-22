@@ -5,6 +5,7 @@ class Images {
   static const String appLogo = 'assets/images/bangla.png';
   static const String splashScreen = 'assets/images/splash_screen.png';
   static const String kobitaBg = 'assets/images/kobita_bg.jpg';
+  static const String penInc = 'assets/icons/pen.png';
 
   static const String homeInc = 'assets/icons/home-security.png';
   static const String aboutInc = 'assets/icons/information.png';

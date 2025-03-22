@@ -29,19 +29,19 @@ class AboutUsScreen extends StatelessWidget {
       body: const SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 50),
+            SizedBox(height: 15),
             GlobalImageLoader(
               imagePath: Images.appLogo,
-              height: 220,
-              width: 220,
+              height: 140,
+              width: 140,
               fit: BoxFit.fill,
             ),
-            SizedBox(height: 15),
+            SizedBox(height: 10),
             GlobalText(
-              str: "📖 আমাদের সম্পর্কে - ছোটদের মজার ছড়া ও কবিতা",
+              str: "📖 আমাদের সম্পর্কে",
               fontSize: 22,
               fontWeight: FontWeight.w700,
-              textAlign: TextAlign.left,
+              textAlign: TextAlign.center,
               fontFamily: 'Rubik',
               color: ColorRes.primaryColor,
               isSelectable: false,

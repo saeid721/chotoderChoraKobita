@@ -10,7 +10,7 @@ class GlobalImageLoader extends StatelessWidget {
     this.width,
     this.fit,
     this.color,
-    this.opacity = 1.0, // Added opacity parameter with default value of 1.0 (fully opaque)
+    this.opacity = 1.0,
     this.errorBuilder,
   });
 
@@ -19,7 +19,7 @@ class GlobalImageLoader extends StatelessWidget {
   final double? width;
   final BoxFit? fit;
   final Color? color;
-  final double opacity; // New opacity field
+  final double opacity;
   final ImageErrorWidgetBuilder? errorBuilder;
   final ImageFor imageFor;
 
@@ -35,14 +35,14 @@ class GlobalImageLoader extends StatelessWidget {
         fit: fit,
         color: color,
         errorBuilder: errorBuilder ??
-                (context, exception, stackTrace) => Center(
-              child: Image.asset(
-                "assets/images/place_holder_img.jpg",
-                height: height,
-                width: width,
-                fit: BoxFit.fill,
-              ),
-            ),
+            (context, exception, stackTrace) => Center(
+                  child: Image.asset(
+                    "assets/images/place_holder_img.jpg",
+                    height: height,
+                    width: width,
+                    fit: BoxFit.fill,
+                  ),
+                ),
       );
     } else {
       imageWidget = Image.asset(
@@ -52,20 +52,20 @@ class GlobalImageLoader extends StatelessWidget {
         fit: fit,
         color: color,
         errorBuilder: errorBuilder ??
-                (context, exception, stackTrace) => Center(
-              child: Image.asset(
-                "assets/images/place_holder_img.jpg",
-                height: height,
-                width: width,
-                fit: BoxFit.fill,
-              ),
-            ),
+            (context, exception, stackTrace) => Center(
+                  child: Image.asset(
+                    "assets/images/place_holder_img.jpg",
+                    height: height,
+                    width: width,
+                    fit: BoxFit.fill,
+                  ),
+                ),
       );
     }
 
     // Apply opacity to the image
     return Opacity(
-      opacity: opacity.clamp(0.0, 1.0), // Ensure opacity is between 0 and 1
+      opacity: opacity.clamp(0.0, 1.0),
       child: imageWidget,
     );
   }

@@ -1,10 +1,11 @@
 class BanglaKobitaData {
-  final String id, title, fullLyric;
+  final String id, title, fullKobita, writer;
 
   BanglaKobitaData({
     required this.id,
     required this.title,
-    required this.fullLyric,
+    required this.fullKobita,
+    required this.writer,
   });
 }
 
@@ -12,7 +13,8 @@ final List<BanglaKobitaData> banglaKobitaData = [
   BanglaKobitaData(
     id: '01',
     title: 'প্রভাতী',
-    fullLyric: """ভোর হলো দোর খোল 
+    writer: 'কাজী নজরুল ইসলাম ',
+    fullKobita: """ভোর হলো দোর খোল 
 খুকুমনি ওঠে রে, 
 ঐ ডাকে জুঁই-শাখে
 ফুল-খুকি ছোট রে।
@@ -24,14 +26,13 @@ final List<BanglaKobitaData> banglaKobitaData = [
 ওঠে রোজ সকালে, 
 রোজ তাই চাঁদা ভাই 
 টিপ দেয় কপালে।
-
-- কাজী নজরুল ইসলাম 
 """,
   ),
   BanglaKobitaData(
     id: '02',
     title: 'আয়রে আয় টিয়ে',
-    fullLyric: """আয়রে আয় টিয়ে
+    writer: ' ',
+    fullKobita: """আয়রে আয় টিয়ে
 নায়ে ভরা দিয়ে
 না’ নিয়ে গেল বোয়াল মাছে
 তাই না দেখে ভোঁদড় নাচে
@@ -42,7 +43,8 @@ final List<BanglaKobitaData> banglaKobitaData = [
   BanglaKobitaData(
     id: '03',
     title: 'কানা বগীর ছা',
-    fullLyric: """ঐ দেখা যায় তাল গাছ
+    writer: 'খান মুহাম্মদ মইনুদ্দীন',
+    fullKobita: """ঐ দেখা যায় তাল গাছ
 ঐ আমাদের গাঁ।
 ঐ খানেতে বাস করে
 কানা বগীর ছা।
@@ -52,25 +54,23 @@ final List<BanglaKobitaData> banglaKobitaData = [
 পুঁটি মাছ পাই না
 একটা যদি পাই
 অমনি ধরে গাপুস গুপুস খাই।
-
-- খান মুহাম্মদ মইনুদ্দীন
 """,
   ),
   BanglaKobitaData(
     id: '04',
     title: 'খোকন খোকন ডাক পাড়ি',
-    fullLyric: """খোকন খোকন ডাক পাড়ি,
+    writer: 'রোকনুজ্জামান খান',
+    fullKobita: """খোকন খোকন ডাক পাড়ি,
 খোকন মোদের কার বাড়ি?
 আয়রে খোকন ঘরে আয়,
 দুধমাখা ভাত কাকে খায়।
-
-- রোকনুজ্জামান খান
 """,
   ),
   BanglaKobitaData(
     id: '05',
     title: 'নোটন নোটন পায়রাগুলি',
-    fullLyric: """নোটন নোটন পায়রাগুলি
+    writer: ' ',
+    fullKobita: """নোটন নোটন পায়রাগুলি
 ঝোটন বেঁধেছে,
 ওপারেতে ছেলেমেয়ে
 নাইতে নেমেছে।
@@ -86,18 +86,18 @@ final List<BanglaKobitaData> banglaKobitaData = [
   BanglaKobitaData(
     id: '06',
     title: 'আতা গাছে তোতা পাখি',
-    fullLyric: """আতা গাছে তোতা পাখি
+    writer: 'যোগীন্দ্রনাথ সরকার',
+    fullKobita: """আতা গাছে তোতা পাখি
 ডালিম গাছে মৌ, 
 এত ডাকি তবু কথা
 কও না কেন বউ।
-
-- যোগীন্দ্রনাথ সরকার
 """,
   ),
   BanglaKobitaData(
     id: '07',
     title: 'আম পাতা জোড়া-জোড়া',
-    fullLyric: """আম পাতা জোড়া-জোড়া
+    writer: ' ',
+    fullKobita: """আম পাতা জোড়া-জোড়া
 আম পাতা জোড়া-জোড়া,
 মারবো চাবুক চড়বো ঘোড়া।
 ওরে বুবু সরে দাঁড়া,
@@ -109,7 +109,8 @@ final List<BanglaKobitaData> banglaKobitaData = [
   BanglaKobitaData(
     id: '08',
     title: 'আয় আয় চাঁদ মামা',
-    fullLyric: """আয় আয় চাঁদ মামা
+    writer: ' ',
+    fullKobita: """আয় আয় চাঁদ মামা
 টিপ দিয়ে যা
 চাঁদের কপালে চাঁদ
 টিপ দিয়ে যা।
@@ -125,7 +126,8 @@ final List<BanglaKobitaData> banglaKobitaData = [
   BanglaKobitaData(
     id: '09',
     title: 'খোকন খোকন করে মায়',
-    fullLyric: """খোকন খোকন করে মায়
+    writer: ' ',
+    fullKobita: """খোকন খোকন করে মায়
 খোকন গেছে কাদের নায়?
 সাতটা কাকে দাঁড় বায়
 খোকন রে তুই ঘরে আয়।
@@ -134,7 +136,8 @@ final List<BanglaKobitaData> banglaKobitaData = [
   BanglaKobitaData(
     id: '10',
     title: 'ওরে বাবা',
-    fullLyric: """ওখানে কে রে?
+    writer: 'যোগীন্দ্রনাথ সরকার',
+    fullKobita: """ওখানে কে রে?
 আমি খোকা।
 মাথায় কি রে?
 আমের ঝাঁকা।
@@ -142,14 +145,13 @@ final List<BanglaKobitaData> banglaKobitaData = [
 দাঁতে পোকা।
 বিলুস্ নে কেন রে?
 ওরে বাবা!
-
-- যোগীন্দ্রনাথ সরকার
 """,
   ),
   BanglaKobitaData(
     id: '11',
     title: 'তাই তাই তাই',
-    fullLyric: """তাই তাই তাই
+    writer: ' ',
+    fullKobita: """তাই তাই তাই
 মামার বাড়ি যাই,
 মামার বাড়ি ভারি মজা
 কিল চড় নাই।
@@ -158,7 +160,8 @@ final List<BanglaKobitaData> banglaKobitaData = [
   BanglaKobitaData(
     id: '12',
     title: 'আমাদের ছোট নদী',
-    fullLyric: """আমাদের ছোটো নদী চলে বাঁকে বাঁকে
+    writer: 'রবীন্দ্রনাথ ঠাকুর',
+    fullKobita: """আমাদের ছোটো নদী চলে বাঁকে বাঁকে
 বৈশাখ মাসে তার হাঁটু জল থাকে।
 পার হয়ে যায় গোরু, পার হয় গাড়ি,
 দুই ধার উঁচু তার, ঢালু তার পাড়ি।
@@ -167,14 +170,13 @@ final List<BanglaKobitaData> banglaKobitaData = [
 একধারে কাশবন ফুলে ফুলে সাদা।
 কিচিমিচি করে সেথা শালিকের ঝাঁক,
 রাতে ওঠে থেকে থেকে শেয়ালের হাঁক।
-
-– রবীন্দ্রনাথ ঠাকুর
 """,
   ),
   BanglaKobitaData(
     id: '13',
     title: 'আমি হব',
-    fullLyric: """আমি হব সকাল বেলার পাখি
+    writer: 'কাজী নজরুল ইসলাম',
+    fullKobita: """আমি হব সকাল বেলার পাখি
 সবার আগে কুসম-বাগে
 উঠব আমি ডাকি!
 সুয্যি মামা জাগার আগে
@@ -189,14 +191,13 @@ final List<BanglaKobitaData> banglaKobitaData = [
 কেমনে সকাল হবে?
 তোমার ছেলে উঠলে গো মা
 রাত পোহাবে তবে৷
-
-- কাজী নজরুল ইসলাম
 """,
   ),
   BanglaKobitaData(
     id: '14',
     title: 'বাক বাক্‌ কুম পায়রা',
-    fullLyric: """বাক্ বাক্ কুম পায়রা
+    writer: 'রোকনুজ্জামান খান',
+    fullKobita: """বাক্ বাক্ কুম পায়রা
 মাথায় দিয়ে টায়রা
 বউ সাজবে কালকি?
 চড়বে সোনার পালকি?
@@ -205,15 +206,14 @@ final List<BanglaKobitaData> banglaKobitaData = [
 ছয় বেহারার তিন পা।
 পায়রা ডাকে বাকুম বাক্
 তিন বেহারার মাথায় টাক।
-
-- রোকনুজ্জামান খান
 """,
   ),
 
   BanglaKobitaData(
     id: '15',
     title: 'আমার পণ',
-    fullLyric: """সকালে উঠিয়া আমি মনে মনে বলি,
+    writer: 'মদনমোহন তর্কালঙ্কার',
+    fullKobita: """সকালে উঠিয়া আমি মনে মনে বলি,
 সারা দিন আমি যেন ভালো হয়ে চলি।
 আদেশ করেন যাহা মোর গুরুজনে,
 আমি যেন সেই কাজ করি ভালো মনে।
@@ -227,14 +227,13 @@ final List<BanglaKobitaData> banglaKobitaData = [
 কিছুতে কাহারে যেন নাহি দেই ফাঁকি।
 ঝগড়া না করি যেন কভু কারো সনে,
 সকালে উঠিয়া এই বলি মনে মনে।
-
-- মদনমোহন তর্কালঙ্কার
 """,
   ),
   BanglaKobitaData(
     id: '16',
     title: 'চাদ উঠেছে ফুল ফুটেছে',
-    fullLyric: """চাদ উঠেছে ফুল ফুটেছে
+    writer: ' ',
+    fullKobita: """চাদ উঠেছে ফুল ফুটেছে
 কদম তলায় কে ?
 হাতি নাচছে ঘোড়া নাচছে,
 সোনা মনির বে।
@@ -243,7 +242,8 @@ final List<BanglaKobitaData> banglaKobitaData = [
   BanglaKobitaData(
     id: '17',
     title: 'আয়রে আয় মিনি',
-    fullLyric: """আয়রে আয় মিনি
+    writer: ' ',
+    fullKobita: """আয়রে আয় মিনি
 খোকার দুধে চিনি
 দুধ খাবেনা
 রাগ করেছে
@@ -253,7 +253,8 @@ final List<BanglaKobitaData> banglaKobitaData = [
   BanglaKobitaData(
     id: '18',
     title: 'আয় বৃষ্টি ঝেঁপে',
-    fullLyric: """আয় বৃষ্টি ঝেঁপে
+    writer: ' ',
+    fullKobita: """আয় বৃষ্টি ঝেঁপে
 ধান দেব মেপে
 লেবুর পাতা, করমচা
 যা বৃষ্টি চলে যা।
@@ -262,7 +263,8 @@ final List<BanglaKobitaData> banglaKobitaData = [
   BanglaKobitaData(
     id: '19',
     title: 'ঘুম পাড়ানী মাসি পিসি',
-    fullLyric: """ঘঘুম পাড়ানী মাসি পিসি
+    writer: ' ',
+    fullKobita: """ঘঘুম পাড়ানী মাসি পিসি
 মোদের বাড়ি এসো,
 খাট নাই পালং নাই
 খোকার চোখে বসো।
@@ -275,7 +277,8 @@ final List<BanglaKobitaData> banglaKobitaData = [
   BanglaKobitaData(
     id: '20',
     title: 'আমাদের গ্রাম',
-    fullLyric: """আমাদের ছোটো গাঁয়ে ছোটো ছোটো ঘর
+    writer: 'বন্দে আলী মিঞা',
+    fullKobita: """আমাদের ছোটো গাঁয়ে ছোটো ছোটো ঘর
 থাকি সেথা সবে মিলে কেহ নাহি পর।
 পাড়ার সকল ছেলে মোরা ভাই ভাই
 একসাথে খেলি আর পাঠশালে যাই।
@@ -284,14 +287,13 @@ final List<BanglaKobitaData> banglaKobitaData = [
 পিতা-মাতা গুরুজনে সদা মোরা ডরি।
 আমাদের ছোটো গ্রামে মায়ের সমান,
 আলো দিয়ে বায়ু দিয়ে বাঁচাইছে প্রাণ।
-
-- বন্দে আলী মিঞা
 """,
   ),
   BanglaKobitaData(
     id: '21',
     title: 'দোল দোল দুলুনি',
-    fullLyric: """দোল দোল দুলুনি,
+    writer: ' ',
+    fullKobita: """দোল দোল দুলুনি,
 রাঙ্গা মাথায় চিরুনি 
 বর আসবে যখনি 
 নিয়ে যাবে তখনি।
@@ -305,7 +307,8 @@ final List<BanglaKobitaData> banglaKobitaData = [
   BanglaKobitaData(
     id: '22',
     title: 'সিংহ মামা',
-    fullLyric: """সিংহ মামা সিংহ মামা
+    writer: 'খান মুহাম্মদ হেলুয়ার',
+    fullKobita: """সিংহ মামা সিংহ মামা
 করছো তুমি কী?
 এই দেখো না তোমায় নিয়ে
 ছড়া বুনেছি।
@@ -313,14 +316,13 @@ final List<BanglaKobitaData> banglaKobitaData = [
 গর্জে যখন ওঠো তুমি
 কাঁপে তখন পাহাড় ভূমি;
 সবুজ পাতা বন।
-
-- - খান মুহাম্মদ হেলুয়ার
 """,
   ),
   BanglaKobitaData(
     id: '23',
     title: 'খোকার সাধ',
-    fullLyric: """আমি হব সকাল বেলার পাখি
+    writer: 'কাজী নজরুল ইসলাম',
+    fullKobita: """আমি হব সকাল বেলার পাখি
 সবার আগে কুসুম-বাগে উঠব আমি ডাকি।
 সূয্যিমামা জাগার আগে উঠব আমি জেগে,
 'হয়নি সকাল, ঘুমো এখন'- মা বলবেন রেগে।
@@ -328,14 +330,13 @@ final List<BanglaKobitaData> banglaKobitaData = [
 হয়নি সকাল- তাই বলে কি সকাল হবে না কা!
 আমরা যদি না জাগি মা কেমনে সকাল হবে?
 তোমার ছেলে উঠলে গো মা রাত পোহাবে তবে!'
-
-- কাজী নজরুল ইসলাম
 """,
   ),
   BanglaKobitaData(
     id: '24',
     title: 'সংকল্প',
-    fullLyric: """থাকব না'ক বদ্ধ ঘরে
+    writer: 'কাজী নজরুল ইসলাম',
+    fullKobita: """থাকব না'ক বদ্ধ ঘরে
 দেখব এবার জগৎটাকে
 কেমন করে ঘুরছে মানুষ
 যুগান্তরের ঘূর্ণিপাকে।
@@ -345,14 +346,13 @@ final List<BanglaKobitaData> banglaKobitaData = [
 মরছে যে বীর লাখে লাখে।
 কিসের আশায় করছে তারা
 বরণ মরণ যন্ত্রণাকে।
-
-- কাজী নজরুল ইসলাম
 """,
   ),
   BanglaKobitaData(
     id: '25',
     title: 'পারিব না',
-    fullLyric: """পারিব না এ কথাটি বলিও না আর
+    writer: 'কালী প্রসন্ন ঘোষ',
+    fullKobita: """পারিব না এ কথাটি বলিও না আর
 কেন পারিবে না তাহা ভাব এক বার,
 পাঁচজনে পারে যাহা,
 তুমিও পারিবে তাহা,
@@ -365,14 +365,13 @@ final List<BanglaKobitaData> banglaKobitaData = [
 কিছুই পারে না তারা,
 তোমায় তো দেখি নাক তাদের আকার
 তবে কেন পারিব না বল বার বার?
-
-- কালী প্রসন্ন ঘোষ
 """,
   ),
   BanglaKobitaData(
     id: '26',
     title: 'ইচ্ছা',
-    fullLyric: """মনারে মনা কোথায় যাস?
+    writer: 'আহসান হাবীব',
+    fullKobita: """মনারে মনা কোথায় যাস?
 বিলের ধারে কাটব ঘাস।
 
 ঘাস কি হবে?
@@ -389,14 +388,13 @@ final List<BanglaKobitaData> banglaKobitaData = [
 
 বোনকে দেব পাটের শাড়ি,
 মাকে দেব রঙ্গিন হাঁড়ি।
-
-– আহসান হাবীব
 """,
   ),
   BanglaKobitaData(
     id: '27',
     title: 'ষোল আনাই মিছে',
-    fullLyric: """বিদ্যে বোঝাই বাবুমশাই চড়ি সখের বোটে, 
+    writer: 'সুকুমার রায়',
+    fullKobita: """বিদ্যে বোঝাই বাবুমশাই চড়ি সখের বোটে, 
 মাঝিরে কন, ''বলতে পারিস সূর্যি কেন ওঠে? 
 চাঁদটা কেন বাড়ে কমে? জোয়ার কেন আসে?'' 
 বৃদ্ধ মাঝি অবাক হয়ে ফ্যালফ্যালিয়ে হাসে। 
@@ -425,14 +423,13 @@ final List<BanglaKobitaData> banglaKobitaData = [
 মূর্খ মাঝি বলে, ''মশাই, এখন কেন কাবু? 
 বাঁচলে শেষে আমার কথা হিসেব করো পিছে, 
 তোমার দেখি জীবন খানা ষোল আনাই মিছে!''
-
-- সুকুমার রায়
 """,
   ),
   BanglaKobitaData(
     id: '28',
     title: 'বীর পুরুষ',
-    fullLyric: """মনে করো, যেন বিদেশ ঘুরে
+    writer: 'রবীন্দ্রনাথ ঠাকুর',
+    fullKobita: """মনে করো, যেন বিদেশ ঘুরে
 মাকে নিয়ে যাচ্ছি অনেক দূরে।
 তুমি যাচ্ছ পালকিতে, মা, চ'ড়ে
 দরজা দুটো একটুকু ফাঁক করে,
@@ -440,14 +437,13 @@ final List<BanglaKobitaData> banglaKobitaData = [
 টগবগিয়ে তোমার পাশে পাশে।
 রাস্তা থেকে ঘোড়ার খুরে খুরে
 রাঙা ধুলোয় মেঘ উড়িয়ে আসে।।
-
-- রবীন্দ্রনাথ ঠাকুর
 """,
   ),
   BanglaKobitaData(
     id: '29',
     title: 'হাসি',
-    fullLyric: """হাসতে নাকি জানেনা কেউ
+    writer: 'রোকনুজ্জামান খান',
+    fullKobita: """হাসতে নাকি জানেনা কেউ
 কে বলেছে ভাই?
 এই শোন না কত হাসির
 খবর বলে যাই।
@@ -466,15 +462,14 @@ final List<BanglaKobitaData> banglaKobitaData = [
 হাসতে সবাই চায়
 বোয়াল মাছের দেখলে হাসি
 পিলে চমকে যায়।
-
-- রোকনুজ্জামান খান
 """,
   ),
 
   BanglaKobitaData(
     id: '30',
     title: 'কাজের লোক',
-    fullLyric: """মৌমাছি, মৌমাছি 
+    writer: 'নবকৃষ্ণ ভট্টাচার্য',
+    fullKobita: """মৌমাছি, মৌমাছি 
 কোথা যাও নাচি নাচি
 দাঁড়াও না একবার ভাই।
 
@@ -497,49 +492,54 @@ final List<BanglaKobitaData> banglaKobitaData = [
 শীতের সঞ্চয় চাই
 খাদ্য খুঁজিতেছি তাই
 ছয় পায়ে পিলপিল চলি।
-
-- নবকৃষ্ণ ভট্টাচার্য
 """,
   ),
 //   BanglaKobitaData(
 //     id: '25',
 //     title: 'আমার',
+//     writer: ' ',
 //     fullLyric: """আমার
 // """,
 //   ),
 //   BanglaKobitaData(
 //     id: '26',
 //     title: 'আমার',
+//     writer: ' ',
 //     fullLyric: """আমার
 // """,
 //   ),
 //   BanglaKobitaData(
 //     id: '27',
 //     title: 'আমার',
+//     writer: ' ',
 //     fullLyric: """আমার
 // """,
 //   ),
 //   BanglaKobitaData(
 //     id: '28',
 //     title: 'আমার',
+//     writer: ' ',
 //     fullLyric: """আমার
 // """,
 //   ),
 //   BanglaKobitaData(
 //     id: '29',
 //     title: 'আমার',
+//     writer: ' ',
 //     fullLyric: """আমার
 // """,
 //   ),
 //   BanglaKobitaData(
 //     id: '30',
 //     title: 'আমার',
+//     writer: ' ',
 //     fullLyric: """আমার
 // """,
 //   ),
 //   BanglaKobitaData(
 //     id: '15',
 //     title: 'আমার',
+//     writer: ' ',
 //     fullLyric: """আমার
 // """,
 //   ),

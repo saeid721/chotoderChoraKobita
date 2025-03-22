@@ -9,16 +9,19 @@ import 'images.dart';
 
 class KobitaWidget extends StatelessWidget {
   final String fullKobita;
+  final String? writer;
 
   const KobitaWidget({
     super.key,
     required this.fullKobita,
+    this.writer,
   });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         GlobalContainer(
           backgroundColor: ColorRes.backgroundColor,
@@ -33,17 +36,44 @@ class KobitaWidget extends StatelessWidget {
                 height: Get.height,
                 fit: BoxFit.cover,
                 imageFor: ImageFor.asset,
-                opacity: 0.5, // Set custom opacity (e.g., 0.5 for 50% opacity)
+                opacity: 0.5,
               ),
-              // Text overlay
-              Padding(
-                padding: const EdgeInsets.all(10),
-                child: GlobalText(
-                  str: fullKobita,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                  color: ColorRes.textColor,
-                  textAlign: TextAlign.center,
+              Align(
+                alignment: Alignment.topCenter,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: Column(
+                    children: [
+                      GlobalText(
+                        str: fullKobita,
+                        fontSize: 22,
+                        fontWeight: FontWeight.w600,
+                        color: ColorRes.textColor,
+                        textAlign: TextAlign.center,
+                      ),
+                      if (writer != null && writer!.isNotEmpty)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const GlobalImageLoader(
+                                imagePath: Images.penInc,
+                                height: 25,
+                                width: 25,
+                                fit: BoxFit.fill,
+                                color: ColorRes.primaryColor,
+                              ),
+                              GlobalText(
+                                str: writer!,
+                                fontSize: 14,
+                                color: ColorRes.black,
+                              ),
+                            ],
+                          ),
+                        ),
+                    ],
+                  ),
                 ),
               ),
             ],

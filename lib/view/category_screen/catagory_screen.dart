@@ -95,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: sliderImage.asMap().entries.map((entry) {
                   return AnimatedContainer(
                     duration: const Duration(milliseconds: 300),
-                    height: 7,
+                    height: 3,
                     width: currentIndex == entry.key ? 15 : 7,
                     margin: const EdgeInsets.symmetric(horizontal: 3),
                     decoration: BoxDecoration(

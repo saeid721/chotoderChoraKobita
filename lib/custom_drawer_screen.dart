@@ -125,6 +125,7 @@ class _CustomDrawerScreenState extends State<CustomDrawerScreen> {
                                 height: 20,
                                 width: 20,
                                 fit: BoxFit.fill,
+                                imageFor: ImageFor.asset,
                               ),
                               const SizedBox(width: 10),
                               GlobalText(
