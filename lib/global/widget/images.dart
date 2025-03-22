@@ -7,6 +7,7 @@ class Images {
   static const String kobitaBg = 'assets/images/kobita_bg.jpg';
 
   static const String homeInc = 'assets/icons/home-security.png';
+  static const String aboutInc = 'assets/icons/information.png';
   static const String contactInc = 'assets/icons/contact-information.png';
   static const String shareInc = 'assets/icons/share.png';
   static const String ratingInc = 'assets/icons/rating.png';

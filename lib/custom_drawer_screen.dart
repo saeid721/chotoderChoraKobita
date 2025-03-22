@@ -8,6 +8,7 @@ import 'global/widget/enum.dart';
 import 'global/widget/global_image_loader.dart';
 import 'global/widget/global_text.dart';
 import 'global/widget/images.dart';
+import 'view/about_screen/about_screen.dart';
 import 'view/category_screen/catagory_screen.dart';
 import 'view/contact_screen/contact_screen.dart';
 import 'view/privacy_policy_screen/privacy_policy_screen.dart';
@@ -23,6 +24,7 @@ class _CustomDrawerScreenState extends State<CustomDrawerScreen> {
   int isClick = 0;
   final List<GlobalMenuModel> menuItem = [
     GlobalMenuModel(img: Images.homeInc, text: 'Home'),
+    GlobalMenuModel(img: Images.aboutInc, text: 'About Us'),
     GlobalMenuModel(img: Images.contactInc, text: 'Contact Us'),
     GlobalMenuModel(img: Images.shareInc, text: 'Share Your Friends'),
     GlobalMenuModel(img: Images.ratingInc, text: 'Rate Our App'),
@@ -86,18 +88,21 @@ class _CustomDrawerScreenState extends State<CustomDrawerScreen> {
                           log('Index: $index');
                           switch (index) {
                             case 0:
-                              Get.to(() => const CategoryHomeScreen());
+                              Get.to(() => const HomeScreen());
                               break;
                             case 1:
-                              Get.to(() => const ContactScreen());
+                              Get.to(() => const AboutUsScreen());
                               break;
                             case 2:
-                              _shareApp(); // Trigger share app function
+                              Get.to(() => const ContactScreen());
                               break;
                             case 3:
-                            // Add any action for Rating here
+                              _shareApp(); // Trigger share app function
                               break;
                             case 4:
+                            // Add any action for Rating here
+                              break;
+                            case 5:
                               Get.to(() => const AppPrivacyPolicyScreen());
                               break;
                           }

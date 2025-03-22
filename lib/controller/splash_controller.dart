@@ -18,7 +18,7 @@ class SplashController {
     Future.delayed(const Duration(seconds: 3), () {
       if (context.mounted) {
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const CategoryHomeScreen()),
+          MaterialPageRoute(builder: (context) => const HomeScreen()),
         );
       }
     });

@@ -13,14 +13,14 @@ import '../../global/widget/images.dart';
 import 'bangla_kobita/bangla_kobita_list_screen.dart';
 import 'english_kobita/english_kobita_list_screen.dart';
 
-class CategoryHomeScreen extends StatefulWidget {
-  const CategoryHomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<CategoryHomeScreen> createState() => _CategoryHomeScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _CategoryHomeScreenState extends State<CategoryHomeScreen> {
+class _HomeScreenState extends State<HomeScreen> {
 
   int currentIndex = 0;
   CarouselSliderController buttonCarouselController = CarouselSliderController();
