@@ -12,7 +12,6 @@ class BanglaFullKobitaScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Find the song by its ID
     final bangalKobita = banglaKobitaData.firstWhere((song) => song.id == id);
 
     return Scaffold(

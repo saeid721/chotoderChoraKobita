@@ -5,7 +5,6 @@ import '../../../../../global/widget/manu_item_widget.dart';
 import '../../../../../global/widget/colors.dart';
 import '../../../../../global/widget/global_app_bar.dart';
 import '../../../../../global/widget/global_container.dart';
-import '../../../../../global/widget/global_sizedbox.dart';
 import 'bangla_full_kobita_screen.dart';
 
 class BanglaKobitaListScreen extends StatefulWidget {
@@ -21,8 +20,8 @@ class _BanglaKobitaListScreenState extends State<BanglaKobitaListScreen> {
     return Scaffold(
       appBar: const GlobalAppBar(title: "ছোটদের বাংলা ছড়া-কবিতা"),
       body: GlobalContainer(
-        height: size(context).height,
-        width: size(context).width,
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
         backgroundColor: ColorRes.backgroundColor,
         child: SingleChildScrollView(
           child: Padding(
