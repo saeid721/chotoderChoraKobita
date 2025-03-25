@@ -5,7 +5,7 @@ import '../../global/widget/global_text.dart';
 import '../../global/widget/enum.dart';
 import '../../global/widget/global_image_loader.dart';
 import '../../global/widget/images.dart';
-import '../../controller/splash_controller.dart';
+import 'components/splash_controller.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

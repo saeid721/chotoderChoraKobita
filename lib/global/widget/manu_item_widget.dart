@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'colors.dart';
 
-class BanglaChapterItem extends StatelessWidget {
+class ManuItem extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
   final IconData icon;
   final Color backgroundColor;
 
-  const BanglaChapterItem({
+  const ManuItem({
     required this.title,
     required this.onTap,
     this.icon = Icons.arrow_forward_ios,

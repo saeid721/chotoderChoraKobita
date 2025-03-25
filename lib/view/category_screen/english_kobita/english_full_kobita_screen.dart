@@ -14,7 +14,6 @@ class EnglishFullPoemScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Find the poem by its ID
     final englishPoem = englishPoemsClassOneData.firstWhere((poem) => poem.id == id);
 
     return Scaffold(
@@ -23,7 +22,7 @@ class EnglishFullPoemScreen extends StatelessWidget {
       ),
       body: GlobalContainer(
         width: Get.width,
-        height: Get.height, // Full height including app bar space
+        height: Get.height,
         child: EnglishPoemsWidget(
           poemImage: englishPoem.fullPoemImage,
         ),

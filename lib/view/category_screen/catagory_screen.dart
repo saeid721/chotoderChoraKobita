@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../controller/splash_controller.dart';
+import '../splash_screen/components/splash_controller.dart';
 import '../../global/widget/category_card_widget.dart';
 import '../../global/widget/colors.dart';
 import '../../global/widget/enum.dart';
@@ -11,7 +11,7 @@ import '../../global/widget/global_container.dart';
 import '../../global/widget/global_image_loader.dart';
 import '../../global/widget/images.dart';
 import 'bangla_kobita/bangla_kobita_list_screen.dart';
-import 'english_kobita/english_kobita_list_screen.dart';
+import 'english_kobita/english_poems_list_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
