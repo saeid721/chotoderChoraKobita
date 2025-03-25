@@ -1,63 +1,63 @@
-class EnglishPoemsData {
+class EnglishPoemsClassOneData {
   final String id, title, fullPoemImage;
 
-  EnglishPoemsData({
+  EnglishPoemsClassOneData({
     required this.id,
     required this.title,
     required this.fullPoemImage,
   });
 }
 
-final List<EnglishPoemsData> englishPoemsData = [
-  EnglishPoemsData(
+final List<EnglishPoemsClassOneData> englishPoemsClassOneData = [
+  EnglishPoemsClassOneData(
     id: '01',
     title: 'Title 1',
-    fullPoemImage: "assets/images/english/01.png",
+    fullPoemImage: "assets/images/english/class_1/01.png",
   ),
-  EnglishPoemsData(
+  EnglishPoemsClassOneData(
     id: '02',
     title: 'Title 2',
-    fullPoemImage: "assets/images/english/02.png",
+    fullPoemImage: "assets/images/english/class_1/02.png",
   ),
-  EnglishPoemsData(
+  EnglishPoemsClassOneData(
     id: '03',
     title: 'Title 3',
-    fullPoemImage: "assets/images/english/03.png",
+    fullPoemImage: "assets/images/english/class_1/03.png",
   ),
-  EnglishPoemsData(
+  EnglishPoemsClassOneData(
     id: '04',
     title: 'Title 4',
-    fullPoemImage: "assets/images/english/04.png",
+    fullPoemImage: "assets/images/english/class_1/04.png",
   ),
-  EnglishPoemsData(
+  EnglishPoemsClassOneData(
     id: '05',
     title: 'Title 5',
-    fullPoemImage: "assets/images/english/05.png",
+    fullPoemImage: "assets/images/english/class_1/05.png",
   ),
-  EnglishPoemsData(
+  EnglishPoemsClassOneData(
     id: '06',
     title: 'Title 6',
-    fullPoemImage: "assets/images/english/06.png",
+    fullPoemImage: "assets/images/english/class_1/06.png",
   ),
-  EnglishPoemsData(
+  EnglishPoemsClassOneData(
     id: '07',
     title: 'Title 7',
-    fullPoemImage: "assets/images/english/07.png",
+    fullPoemImage: "assets/images/english/class_1/07.png",
   ),
-  EnglishPoemsData(
+  EnglishPoemsClassOneData(
     id: '08',
     title: 'Title 8',
-    fullPoemImage: "assets/images/english/08.png",
+    fullPoemImage: "assets/images/english/class_1/08.png",
   ),
-  EnglishPoemsData(
+  EnglishPoemsClassOneData(
     id: '09',
     title: 'Title 9',
-    fullPoemImage: "assets/images/english/09.png",
+    fullPoemImage: "assets/images/english/class_1/09.png",
   ),
-  EnglishPoemsData(
+  EnglishPoemsClassOneData(
     id: '10',
     title: 'Title 10',
-    fullPoemImage: "assets/images/english/10.png",
+    fullPoemImage: "assets/images/english/class_1/10.png",
   ),
 
 ];

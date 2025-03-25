@@ -15,7 +15,7 @@ class EnglishFullPoemScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Find the poem by its ID
-    final englishPoem = englishPoemsData.firstWhere((poem) => poem.id == id);
+    final englishPoem = englishPoemsClassOneData.firstWhere((poem) => poem.id == id);
 
     return Scaffold(
       appBar: GlobalAppBar(

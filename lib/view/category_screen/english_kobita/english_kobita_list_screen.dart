@@ -30,11 +30,11 @@ class _EnglishPoemsListScreenState extends State<EnglishPoemsListScreen> {
               children: [
                 const SizedBox(height: 10),
                 ListView.builder(
-                  itemCount: englishPoemsData.length,
+                  itemCount: englishPoemsClassOneData.length,
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (ctx, index) {
-                    final englishPoem = englishPoemsData[index];
+                    final englishPoem = englishPoemsClassOneData[index];
                     return Column(
                       children: [
                         ChapterItem(

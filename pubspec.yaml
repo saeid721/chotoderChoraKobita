@@ -37,10 +37,10 @@ flutter:
 
   assets:
     - assets/images/
-    - assets/images/english/
+    - assets/images/english/class_1
+    - assets/images/english/class_2
+    - assets/images/english/class_3
     - assets/icons/
-    - assets/json/
-    - assets/db/lyrics_database.sql
 
 
   fonts:
