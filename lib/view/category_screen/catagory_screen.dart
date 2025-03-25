@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const GlobalAppBar(
-        title: "ছোটদের মজার ছড়া ও কবিতা",
+        title: "ছোটদের ছড়া-কবিতা",
       ),
       drawer: const CustomDrawerScreen(),
       body: Container(

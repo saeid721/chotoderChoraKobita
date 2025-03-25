@@ -18,7 +18,7 @@ class _EnglishPoemsListScreenState extends State<EnglishPoemsListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const GlobalAppBar(title: "English Rhymes & Poems for Children"),
+      appBar: const GlobalAppBar(title: "English Rhymes-Poems for Children"),
       body: GlobalContainer(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
