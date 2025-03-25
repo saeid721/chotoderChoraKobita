@@ -38,7 +38,7 @@ class _BanglaKobitaListScreenState extends State<BanglaKobitaListScreen> {
                     final songLyric = banglaKobitaData[index];
                     return Column(
                       children: [
-                        ChapterItem(
+                        BanglaChapterItem(
                           title: songLyric.title,
                           onTap: () {
                             Get.to(() => BanglaFullKobitaScreen(id: songLyric.id));

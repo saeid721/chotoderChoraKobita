@@ -122,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: CategoryCardWidget(
                       imagePath: 'assets/images/english.png',
                       title: 'English',
-                      onTap: () => Get.to(() => const EnglishKobitaListScreen()),
+                      onTap: () => Get.to(() => const EnglishPoemsListScreen()),
                     ),
                   ),
                 ],

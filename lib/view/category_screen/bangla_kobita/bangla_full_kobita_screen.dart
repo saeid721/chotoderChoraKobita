@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../../data/genaral/bangla_songs_data.dart';
 import '../../../../../global/widget/global_app_bar.dart';
-import '../../../../../global/widget/kobita_widget.dart';
+import '../../../../../global/widget/bangla_kobita_widget.dart';
 
 class BanglaFullKobitaScreen extends StatelessWidget {
   final String id;

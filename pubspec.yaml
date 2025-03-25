@@ -37,6 +37,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/images/english/
     - assets/icons/
     - assets/json/
     - assets/db/lyrics_database.sql

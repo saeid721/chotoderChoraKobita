@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
+
 import 'colors.dart';
 
-class BanglaChapterItem extends StatelessWidget {
+class ChapterItem extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
   final IconData icon;
   final Color backgroundColor;
 
-  const BanglaChapterItem({
+  const ChapterItem({
     required this.title,
     required this.onTap,
     this.icon = Icons.arrow_forward_ios,
     this.backgroundColor = Colors.white,
     super.key,
   });
+
 
   @override
   Widget build(BuildContext context) {

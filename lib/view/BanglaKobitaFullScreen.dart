@@ -1,7 +1,7 @@
 // import 'package:flutter/material.dart';
 // import '../model/lyric_model.dart';
 // import '../global/widget/global_app_bar.dart';
-// import '../global/widget/kobita_widget.dart';
+// import '../global/widget/bangla_kobita_widget.dart';
 //
 // class BanglaKobitaFullScreen extends StatelessWidget {
 //   final Lyric lyric;
