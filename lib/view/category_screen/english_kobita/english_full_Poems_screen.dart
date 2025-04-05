@@ -5,9 +5,9 @@ import '../../../../../global/widget/global_app_bar.dart';
 import 'components/english_poems_widget.dart';
 import '../../../global/widget/global_container.dart';
 
-class EnglishFullPoemScreen extends StatelessWidget {
+class EnglishFullPoemsScreen extends StatelessWidget {
   final String id;
-  const EnglishFullPoemScreen({
+  const EnglishFullPoemsScreen({
     super.key,
     required this.id,
   });
