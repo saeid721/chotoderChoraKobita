@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../../data/genaral/english_poems_data.dart';
 import '../../../../../global/widget/global_app_bar.dart';
-import '../../../global/widget/english_poems_widget.dart';
+import 'components/english_poems_widget.dart';
 import '../../../global/widget/global_container.dart';
 
 class EnglishFullPoemScreen extends StatelessWidget {

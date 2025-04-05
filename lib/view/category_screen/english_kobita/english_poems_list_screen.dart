@@ -20,31 +20,29 @@ class _EnglishPoemsListScreenState extends State<EnglishPoemsListScreen> {
     return Scaffold(
       appBar: const GlobalAppBar(title: "English Rhymes-Poems for Children"),
       body: GlobalContainer(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
+        height: Get.height,
+        width: Get.width,
         backgroundColor: ColorRes.backgroundColor,
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.only(left: 15, right: 15),
+            padding: EdgeInsets.symmetric(horizontal: Get.width * 0.04),
             child: Column(
               children: [
-                const SizedBox(height: 10),
+                SizedBox(height: Get.height * 0.015),
                 ListView.builder(
                   itemCount: englishPoemsClassOneData.length,
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (ctx, index) {
                     final englishPoem = englishPoemsClassOneData[index];
-                    return Column(
-                      children: [
-                        ManuItem(
-                          title: englishPoem.title,
-                          onTap: () {
-                            Get.to(() => EnglishFullPoemScreen(id: englishPoem.id));
-                          },
-                        ),
-                        const SizedBox(height: 5),
-                      ],
+                    return Padding(
+                      padding: EdgeInsets.only(bottom: Get.height * 0.01),
+                      child: ManuItem(
+                        title: englishPoem.title,
+                        onTap: () {
+                          Get.to(() => EnglishFullPoemScreen(id: englishPoem.id));
+                        },
+                      ),
                     );
                   },
                 ),
