@@ -1,55 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../../data/genaral/bangla_songs_data.dart';
+import '../../../../../data/genaral/bangla_kobita_data.dart';
 import '../../../../../global/widget/manu_item_widget.dart';
 import '../../../../../global/widget/colors.dart';
 import '../../../../../global/widget/global_app_bar.dart';
 import '../../../../../global/widget/global_container.dart';
 import 'bangla_full_kobita_screen.dart';
 
-class BanglaKobitaListScreen extends StatefulWidget {
+class BanglaKobitaListScreen extends StatelessWidget {
   const BanglaKobitaListScreen({super.key});
 
   @override
-  State<BanglaKobitaListScreen> createState() => _BanglaKobitaListScreenState();
-}
-
-class _BanglaKobitaListScreenState extends State<BanglaKobitaListScreen> {
-  @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: const GlobalAppBar(title: "ছোটদের বাংলা ছড়া-কবিতা"),
       body: GlobalContainer(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
         backgroundColor: ColorRes.backgroundColor,
+        width: size.width,
         child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 15, right: 15),
-            child: Column(
-              children: [
-                const SizedBox(height: 10),
-                ListView.builder(
-                  itemCount: banglaKobitaData.length,
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (ctx, index) {
-                    final songLyric = banglaKobitaData[index];
-                    return Column(
-                      children: [
-                        ManuItem(
-                          title: songLyric.title,
-                          onTap: () {
-                            Get.to(() => BanglaFullKobitaScreen(id: songLyric.id));
-                          },
-                        ),
-                        const SizedBox(height: 5),
-                      ],
-                    );
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          child: Column(
+            children: List.generate(banglaKobitaData.length, (index) {
+              final kobita = banglaKobitaData[index];
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: ManuItem(
+                  title: kobita.title,
+                  onTap: () {
+                    Get.to(() => BanglaFullKobitaScreen(id: kobita.id));
                   },
                 ),
-              ],
-            ),
+              );
+            }),
           ),
         ),
       ),

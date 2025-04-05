@@ -1,36 +1,28 @@
 import 'package:flutter/material.dart';
-import '../../../../../data/genaral/bangla_songs_data.dart';
+import '../../../../../data/genaral/bangla_kobita_data.dart';
 import '../../../../../global/widget/global_app_bar.dart';
 import '../../../../../global/widget/bangla_kobita_widget.dart';
 
 class BanglaFullKobitaScreen extends StatelessWidget {
   final String id;
-  const BanglaFullKobitaScreen({
-    super.key,
-    required this.id,
-  });
+  const BanglaFullKobitaScreen({super.key, required this.id});
 
   @override
   Widget build(BuildContext context) {
-    final bangalKobita = banglaKobitaData.firstWhere((song) => song.id == id);
+    final kobita = banglaKobitaData.firstWhere((item) => item.id == id);
 
     return Scaffold(
-      appBar: GlobalAppBar(
-        title: bangalKobita.title,
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            KobitaWidget(
-              fullKobita: bangalKobita.fullKobita,
-              writer: bangalKobita.writer,
-            ),
-            const SizedBox(height: 10),
-          ],
+      appBar: GlobalAppBar(title: kobita.title),
+      body: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 600),
+          child: KobitaWidget(
+            fullKobita: kobita.fullKobita,
+            writer: kobita.writer,
+          ),
         ),
       ),
     );
   }
 }
+
