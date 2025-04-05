@@ -35,6 +35,7 @@ class EnglishPoemWidget extends StatelessWidget {
 
           // Poem Content
           Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
                 padding: const EdgeInsets.all(10),

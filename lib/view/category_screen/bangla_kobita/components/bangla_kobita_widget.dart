@@ -37,6 +37,7 @@ class KobitaWidget extends StatelessWidget {
 
           // Poem Content
           Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(height: 10),
               GlobalText(
@@ -46,20 +47,19 @@ class KobitaWidget extends StatelessWidget {
                 color: ColorRes.textColor,
                 textAlign: TextAlign.center,
               ),
-              if (writer != null && writer!.trim().isNotEmpty)
+              if (writer != null && writer!.isNotEmpty)
                 Padding(
-                  padding: EdgeInsets.only(top: Get.height * 0.02),
+                  padding: const EdgeInsets.only(top: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const GlobalImageLoader(
                         imagePath: Images.penInc,
-                        height: 22,
-                        width: 22,
+                        height: 25,
+                        width: 25,
                         fit: BoxFit.fill,
                         color: ColorRes.primaryColor,
                       ),
-                      const SizedBox(width: 6),
                       GlobalText(
                         str: writer!,
                         fontSize: 14,

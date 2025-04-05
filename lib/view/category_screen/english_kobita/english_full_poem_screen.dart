@@ -13,19 +13,13 @@ class EnglishFullPoemScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: GlobalAppBar(title: poem.title),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 600),
-              child: EnglishPoemWidget(
-                fullPoem: poem.fullPoem,
-              ),
-            ),
+      body: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 600),
+          child: EnglishPoemWidget(
+            fullPoem: poem.fullPoem,
           ),
-        ],
+        ),
       ),
     );
   }
