@@ -9,7 +9,7 @@ import 'global/widget/global_image_loader.dart';
 import 'global/widget/global_text.dart';
 import 'global/widget/images.dart';
 import 'view/about_screen/about_screen.dart';
-import 'view/category_screen/catagory_screen.dart';
+import 'view/category_screen/home_screen.dart';
 import 'view/contact_screen/contact_screen.dart';
 import 'view/privacy_policy_screen/privacy_policy_screen.dart';
 

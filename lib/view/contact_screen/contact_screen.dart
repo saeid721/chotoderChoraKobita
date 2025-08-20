@@ -138,7 +138,7 @@ class _ContactScreenState extends State<ContactScreen> {
                 Container(
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    color: ColorRes.primaryColor.withOpacity(0.1),
+                    color: ColorRes.primaryColor.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(color: ColorRes.primaryColor, width: .3),
                   ),

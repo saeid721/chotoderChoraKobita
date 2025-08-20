@@ -22,7 +22,7 @@ class ManuItem extends StatelessWidget {
       child: Material(
         color: Colors.transparent,
         elevation: 2.0,
-        shadowColor: Colors.black.withOpacity(0.25),
+        shadowColor: Colors.black.withValues(alpha: 0.25),
         child: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(

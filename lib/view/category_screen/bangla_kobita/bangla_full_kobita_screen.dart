@@ -17,6 +17,7 @@ class BanglaFullKobitaScreen extends StatelessWidget {
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 600),
           child: KobitaWidget(
+            title: kobita.title,
             fullKobita: kobita.fullKobita,
             writer: kobita.writer,
           ),

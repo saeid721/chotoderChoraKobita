@@ -32,7 +32,7 @@ class GlobalContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       elevation: elevation,
-      shadowColor: Colors.black.withOpacity(0.3),
+      shadowColor: Colors.black.withValues(alpha: 0.3),
       borderRadius: borderCornerRadius ?? BorderRadius.circular(borderRadius),
       child: Container(
         height: height,
