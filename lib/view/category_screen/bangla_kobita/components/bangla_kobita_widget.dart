@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../global/widget/enum.dart';
 import '../../../../global/widget/global_image_loader.dart';
+import '../../../../global/widget/global_sizedbox.dart';
+import '../../../../global/widget/global_text.dart';
 import '../../../../global/widget/images.dart';
 
 class KobitaWidget extends StatefulWidget {
@@ -165,9 +167,11 @@ class _KobitaWidgetState extends State<KobitaWidget>
                         _sparkleController.stop();
                       }
                     },
-                    icon: Icon(_isPlaying ? Icons.pause_circle : Icons.play_circle),
+                    icon: Icon(
+                      _isPlaying ? Icons.pause_circle : Icons.play_circle,
+                      color: Colors.purple,
+                    ),
                     tooltip: _isPlaying ? 'থামান' : 'শুরু করুন',
-                    color: Colors.purple,
                   ),
                 ],
               ),
@@ -178,7 +182,7 @@ class _KobitaWidgetState extends State<KobitaWidget>
           Center(
             child: Container(
               constraints: const BoxConstraints(maxWidth: 600),
-              margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 40),
+              margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
               child: SingleChildScrollView(
                 child: AnimatedBuilder(
                   animation: _textController,
@@ -245,12 +249,10 @@ class _KobitaWidgetState extends State<KobitaWidget>
                 angle: _sparkleController.value * 2 * 3.14159,
                 child: Opacity(
                   opacity: 0.4 + (0.4 * _floatingController.value),
-                  child: Text(
-                    decorations[index],
-                    style: TextStyle(
-                      fontSize: 20 + (5 * _floatingController.value),
-                      color: colors[index],
-                    ),
+                  child: GlobalText(
+                    str: decorations[index],
+                    fontSize: 20 + (5 * _floatingController.value),
+                    color: colors[index],
                   ),
                 ),
               );
@@ -301,23 +303,21 @@ class _KobitaWidgetState extends State<KobitaWidget>
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Text('📖', style: TextStyle(fontSize: 20)),
-                const SizedBox(width: 8),
-                Text(
-                  widget.title,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
-                  ),
+                GlobalText(str: '📖', fontSize: 20),
+                sizedBoxW(8),
+                GlobalText(
+                  str: widget.title,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
                 ),
-                const SizedBox(width: 8),
-                const Text('📖', style: TextStyle(fontSize: 20)),
+                sizedBoxW(8),
+                GlobalText(str: '📖', fontSize: 20),
               ],
             ),
           ),
 
-          const SizedBox(height: 25),
+          sizedBoxH(10),
 
           // Poem text
           AnimatedDefaultTextStyle(
@@ -327,13 +327,14 @@ class _KobitaWidgetState extends State<KobitaWidget>
               fontWeight: FontWeight.w600,
               color: const Color(0xFF2D3748),
             ),
-            child: Text(
-              widget.fullKobita,
+            child: GlobalText(
+              str: widget.fullKobita,
               textAlign: TextAlign.center,
+              fontSize: _textSize,
+              fontWeight: FontWeight.w600,
+              color: const Color(0xFF2D3748),
             ),
           ),
-
-          const SizedBox(height: 5),
 
           // Writer (only if valid)
           if (hasWriter)
@@ -369,25 +370,21 @@ class _KobitaWidgetState extends State<KobitaWidget>
                       color: Colors.purple,
                     ),
                   ),
-                  const SizedBox(width: 10),
+                  sizedBoxW(10),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'লেখক',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey[600],
-                          fontWeight: FontWeight.w500,
-                        ),
+                      GlobalText(
+                        str: 'লেখক',
+                        fontSize: 12,
+                        color: Colors.grey[600],
+                        fontWeight: FontWeight.w500,
                       ),
-                      Text(
-                        writer,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          color: Color(0xFF2D3748),
-                          fontWeight: FontWeight.w700,
-                        ),
+                      GlobalText(
+                        str: writer,
+                        fontSize: 14,
+                        color: const Color(0xFF2D3748),
+                        fontWeight: FontWeight.w700,
                       ),
                     ],
                   ),
