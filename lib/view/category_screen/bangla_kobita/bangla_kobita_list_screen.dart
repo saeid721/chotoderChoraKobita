@@ -47,6 +47,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../../data/genaral/bangla_kobita_data.dart';
 import '../../../../../global/widget/global_app_bar.dart';
+import '../../../global/widget/global_sizedbox.dart';
+import '../../../global/widget/global_text.dart';
 import 'bangla_full_kobita_screen.dart';
 
 class BanglaKobitaListScreen extends StatefulWidget {
@@ -155,11 +157,11 @@ class _BanglaKobitaListScreenState extends State<BanglaKobitaListScreen> with Ti
                               ),
                             ],
                           ),
-                          child: const Row(
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text('📖', style: TextStyle(fontSize: 24)),
-                              SizedBox(width: 10),
+                              sizedBoxW(10),
                               Text(
                                 'তোমার পছন্দের কবিতা খুঁজে নাও!',
                                 style: TextStyle(
@@ -168,7 +170,7 @@ class _BanglaKobitaListScreenState extends State<BanglaKobitaListScreen> with Ti
                                   color: Colors.white,
                                 ),
                               ),
-                              SizedBox(width: 10),
+                              sizedBoxW(10),
                               Text('🎭', style: TextStyle(fontSize: 24)),
                             ],
                           ),
@@ -177,7 +179,7 @@ class _BanglaKobitaListScreenState extends State<BanglaKobitaListScreen> with Ti
                     },
                   ),
 
-                  const SizedBox(height: 20),
+                  sizedBoxH(20),
 
                   // Search bar with fun design
                   Container(
@@ -394,7 +396,7 @@ class _BanglaKobitaListScreenState extends State<BanglaKobitaListScreen> with Ti
                       ),
                     ),
 
-                    const SizedBox(width: 10),
+                    sizedBoxW(10),
 
                     // Poem title and number
                     Expanded(
@@ -478,22 +480,18 @@ class _BanglaKobitaListScreenState extends State<BanglaKobitaListScreen> with Ti
               );
             },
           ),
-          const SizedBox(height: 20),
-          const Text(
-            'কোন কবিতা খুঁজে পাওয়া যায়নি!',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-              color: Color(0xFF2D3748),
-            ),
+          sizedBoxH(20),
+          GlobalText(
+            str: 'কোন কবিতা খুঁজে পাওয়া যায়নি!',
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+            color: Color(0xFF2D3748),
           ),
-          const SizedBox(height: 10),
-          Text(
-            'অন্য নাম দিয়ে খুঁজে দেখুন',
-            style: TextStyle(
-              fontSize: 14,
-              color: Colors.grey[600],
-            ),
+          sizedBoxH(10),
+          GlobalText(
+            str: 'অন্য নাম দিয়ে খুঁজে দেখুন',
+            fontSize: 14,
+            color: Colors.grey[600],
           ),
         ],
       ),
