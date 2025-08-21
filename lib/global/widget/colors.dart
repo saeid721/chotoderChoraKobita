@@ -4,12 +4,12 @@ class ColorRes {
   BuildContext context;
   ColorRes(this.context);
 
-  static const Color primaryColor = Color(0xFFF99D07);
+  static const Color primaryColor = Color(0xFF4D2D8C);
   static const Color secondaryColor = Color(0xFFF9E104);
   static const Color backgroundColor = Color(0xFFFFFFFF);
   static const Color borderColor = Color(0xFF35D461);
   static const Color titleColor = Color(0xFF37B6F6);
-  static const Color textColor = Color(0xFF882FF6);
+  static const Color textColor = Color(0xFFC71E64);
 
   static const Color dark = Color(0xff252525);
   static const Color black = Color(0xFF000000);

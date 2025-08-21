@@ -36,11 +36,12 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/icons/
     - assets/images/
+    - assets/images/english/class/
     - assets/images/english/class_1/
     - assets/images/english/class_2/
     - assets/images/english/class_3/
-    - assets/icons/
 
 
   fonts:

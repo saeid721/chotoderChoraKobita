@@ -1,12 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../global/widget/category_card_widget.dart';
-import '../../global/widget/colors.dart';
 import '../../global/widget/enum.dart';
 import '../../global/widget/global_app_bar.dart';
 import '../../custom_drawer_screen.dart';
-import '../../global/widget/global_container.dart';
 import '../../global/widget/global_image_loader.dart';
 import '../../global/widget/images.dart';
 import 'bangla_kobita/bangla_kobita_list_screen.dart';
@@ -101,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             borderRadius: BorderRadius.circular(25),
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.pink.withOpacity(0.3),
+                                color: Colors.pink.withValues(alpha:0.3),
                                 blurRadius: 10,
                                 offset: const Offset(0, 5),
                               ),
@@ -137,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         borderRadius: BorderRadius.circular(20),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
+                            color: Colors.black.withValues(alpha:0.1),
                             blurRadius: 15,
                             offset: const Offset(0, 8),
                           ),
@@ -178,9 +175,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                                             begin: Alignment.topLeft,
                                             end: Alignment.bottomRight,
                                             colors: [
-                                              Colors.white.withOpacity(0.1 * _floatingController.value),
+                                              Colors.white.withValues(alpha:0.1 * _floatingController.value),
                                               Colors.transparent,
-                                              Colors.white.withOpacity(0.05 * _floatingController.value),
+                                              Colors.white.withValues(alpha: 0.05 * _floatingController.value),
                                             ],
                                           ),
                                         ),
@@ -232,7 +229,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           boxShadow: currentIndex == entry.key
                               ? [
                             BoxShadow(
-                              color: const Color(0xFFFF6B6B).withOpacity(0.5),
+                              color: const Color(0xFFFF6B6B).withValues(alpha:0.5),
                               blurRadius: 8,
                               offset: const Offset(0, 2),
                             ),
@@ -352,7 +349,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: colors[0].withOpacity(0.4),
+              color: colors[0].withValues(alpha:0.4),
               blurRadius: 15,
               offset: const Offset(0, 8),
             ),
@@ -369,7 +366,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     begin: Alignment.topRight,
                     end: Alignment.bottomLeft,
                     colors: [
-                      Colors.white.withOpacity(0.1),
+                      Colors.white.withValues(alpha:0.1),
                       Colors.transparent,
                     ],
                   ),
@@ -387,7 +384,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.2),
+                      color: Colors.white.withValues(alpha:0.2),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Image.asset(
@@ -411,7 +408,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         subtitle,
                         style: TextStyle(
                           fontSize: 12,
-                          color: Colors.white.withOpacity(0.8),
+                          color: Colors.white.withValues(alpha:0.8),
                         ),
                       ),
                     ],

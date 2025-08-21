@@ -147,8 +147,7 @@ class _ContactScreenState extends State<ContactScreen> {
                     children: [
                       ContactDetailsWidget(
                         name: "STITBD",
-                        address:
-                            "Level-2, 25/2 Lake Circus Road, Kalabagan, Dhanmondi, Dhaka, Bangladesh ",
+                        address: "Level-2, 25/2 Lake Circus Road, Kalabagan, Dhanmondi, Dhaka, Bangladesh ",
                         email: "info@stitbd.com",
                         phone: "+88 01757-769498",
                         call: "Call",

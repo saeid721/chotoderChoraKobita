@@ -56,8 +56,7 @@ class BanglaKobitaListScreen extends StatefulWidget {
   State<BanglaKobitaListScreen> createState() => _BanglaKobitaListScreenState();
 }
 
-class _BanglaKobitaListScreenState extends State<BanglaKobitaListScreen>
-    with TickerProviderStateMixin {
+class _BanglaKobitaListScreenState extends State<BanglaKobitaListScreen> with TickerProviderStateMixin {
   late AnimationController _animationController;
   final List<AnimationController> _itemControllers = [];
   String searchQuery = '';

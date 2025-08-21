@@ -32,7 +32,7 @@ class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
           color: titleColor,
         ),
       ),
-      centerTitle: true,
+      //centerTitle: true,
     );
   }
 

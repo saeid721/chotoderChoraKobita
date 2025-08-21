@@ -109,6 +109,7 @@ class ContactDetailsWidget extends StatelessWidget {
                           sizedBoxW(5),
                           GlobalText(
                             str: phone,
+                            fontSize: 13,
                             color: ColorRes.dark,
                           ),
                         ],
@@ -124,6 +125,7 @@ class ContactDetailsWidget extends StatelessWidget {
                           sizedBoxW(5),
                           GlobalText(
                             str: email,
+                            fontSize: 13,
                             color: ColorRes.dark,
                           ),
                         ],
@@ -141,8 +143,10 @@ class ContactDetailsWidget extends StatelessWidget {
                             child: GlobalText(
                               str: address,
                               maxLines: 3,
+                              fontSize: 13,
                               overflow: TextOverflow.ellipsis,
                               color: ColorRes.dark,
+                              textAlign: TextAlign.start,
                             ),
                           ),
                         ],
@@ -181,6 +185,7 @@ class ContactDetailsWidget extends StatelessWidget {
                         sizedBoxW(5),
                         GlobalText(
                           str: call,
+                          fontSize: 12,
                           color: ColorRes.dark,
                         ),
                       ],
@@ -212,6 +217,7 @@ class ContactDetailsWidget extends StatelessWidget {
                         sizedBoxW(5),
                         GlobalText(
                           str: sms,
+                          fontSize: 12,
                           color: ColorRes.dark,
                         ),
                       ],
@@ -243,7 +249,7 @@ class ContactDetailsWidget extends StatelessWidget {
                         sizedBoxW(5),
                         GlobalText(
                           str: mail,
-                          fontSize: 14,
+                          fontSize: 12,
                           color: ColorRes.dark,
                         ),
                       ],
@@ -275,7 +281,7 @@ class ContactDetailsWidget extends StatelessWidget {
                         sizedBoxW(5),
                         GlobalText(
                           str: map,
-                          fontSize: 14,
+                          fontSize: 12,
                           color: ColorRes.dark,
                         ),
                       ],

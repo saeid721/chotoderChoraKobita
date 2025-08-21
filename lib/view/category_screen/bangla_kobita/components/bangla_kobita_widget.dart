@@ -1,87 +1,4 @@
-// import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
-// import '../../../../global/widget/colors.dart';
-// import '../../../../global/widget/enum.dart';
-// import '../../../../global/widget/global_image_loader.dart';
-// import '../../../../global/widget/global_text.dart';
-// import '../../../../global/widget/images.dart';
-//
-// class KobitaWidget extends StatelessWidget {
-//   final String fullKobita;
-//   final String? writer;
-//
-//   const KobitaWidget({
-//     super.key,
-//     required this.fullKobita,
-//     this.writer,
-//   });
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     final availableHeight = Get.height - kToolbarHeight - MediaQuery.of(context).padding.top;
-//     final isLargeScreen = Get.width > 400;
-//
-//     return SizedBox(
-//       height: availableHeight,
-//       width: Get.width,
-//       child: Stack(
-//         children: [
-//           // Background Image
-//           GlobalImageLoader(
-//             imagePath: Images.kobitaBg,
-//             width: Get.width,
-//             height: availableHeight,
-//             fit: BoxFit.fill,
-//             imageFor: ImageFor.asset,
-//           ),
-//
-//           // Poem Content
-//           Column(
-//             crossAxisAlignment: CrossAxisAlignment.center,
-//             children: [
-//               const SizedBox(height: 10),
-//               GlobalText(
-//                 str: fullKobita,
-//                 fontSize: isLargeScreen ? 21 : 18,
-//                 fontWeight: FontWeight.w600,
-//                 color: ColorRes.textColor,
-//                 textAlign: TextAlign.center,
-//               ),
-//               if (writer != null && writer!.isNotEmpty)
-//                 Padding(
-//                   padding: const EdgeInsets.only(top: 10),
-//                   child: Row(
-//                     mainAxisAlignment: MainAxisAlignment.center,
-//                     children: [
-//                       const GlobalImageLoader(
-//                         imagePath: Images.penInc,
-//                         height: 25,
-//                         width: 25,
-//                         fit: BoxFit.fill,
-//                         color: ColorRes.primaryColor,
-//                       ),
-//                       GlobalText(
-//                         str: writer!,
-//                         fontSize: 14,
-//                         color: ColorRes.black,
-//                       ),
-//                     ],
-//                   ),
-//                 ),
-//             ],
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
-//
-//
-
-
-
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../global/widget/enum.dart';
@@ -131,7 +48,6 @@ class _KobitaWidgetState extends State<KobitaWidget>
       vsync: this,
     );
 
-    // Animate text in
     _textController.forward();
   }
 
@@ -145,7 +61,8 @@ class _KobitaWidgetState extends State<KobitaWidget>
 
   @override
   Widget build(BuildContext context) {
-    final availableHeight = Get.height - kToolbarHeight - MediaQuery.of(context).padding.top;
+    final availableHeight =
+        Get.height - kToolbarHeight - MediaQuery.of(context).padding.top;
     final isLargeScreen = Get.width > 400;
 
     return SizedBox(
@@ -153,7 +70,7 @@ class _KobitaWidgetState extends State<KobitaWidget>
       width: Get.width,
       child: Stack(
         children: [
-          // Animated background with gradient
+          // Background gradient
           AnimatedContainer(
             duration: const Duration(seconds: 1),
             decoration: const BoxDecoration(
@@ -171,10 +88,10 @@ class _KobitaWidgetState extends State<KobitaWidget>
             ),
           ),
 
-          // Floating decorative elements
+          // Floating decorations
           ...List.generate(8, (index) => _buildFloatingDecoration(index)),
 
-          // Background Image with overlay
+          // Background image
           GlobalImageLoader(
             imagePath: Images.kobitaBg,
             width: Get.width,
@@ -183,7 +100,7 @@ class _KobitaWidgetState extends State<KobitaWidget>
             imageFor: ImageFor.asset,
           ),
 
-          // Gradient overlay for better text readability
+          // Overlay gradient
           Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -199,14 +116,65 @@ class _KobitaWidgetState extends State<KobitaWidget>
             ),
           ),
 
-          // Reading controls overlay
+          // Reading controls
           Positioned(
-            top: 20,
-            right: 20,
-            child: _buildReadingControls(),
+            top: 10,
+            right: 10,
+            child: Container(
+              padding: const EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                color: Colors.white.withValues(alpha: 0.8),
+                borderRadius: BorderRadius.circular(16),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.1),
+                    blurRadius: 10,
+                    offset: const Offset(0, 5),
+                  ),
+                ],
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      setState(() {
+                        if (_textSize > 16) _textSize -= 2;
+                      });
+                    },
+                    icon: const Icon(Icons.text_decrease),
+                    tooltip: 'ছোট করুন',
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      setState(() {
+                        if (_textSize < 28) _textSize += 2;
+                      });
+                    },
+                    icon: const Icon(Icons.text_increase),
+                    tooltip: 'বড় করুন',
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      setState(() {
+                        _isPlaying = !_isPlaying;
+                      });
+                      if (_isPlaying) {
+                        _sparkleController.repeat();
+                      } else {
+                        _sparkleController.stop();
+                      }
+                    },
+                    icon: Icon(_isPlaying ? Icons.pause_circle : Icons.play_circle),
+                    tooltip: _isPlaying ? 'থামান' : 'শুরু করুন',
+                    color: Colors.purple,
+                  ),
+                ],
+              ),
+            ),
           ),
 
-          // Main content with enhanced animations
+          // Poem content
           Center(
             child: Container(
               constraints: const BoxConstraints(maxWidth: 600),
@@ -234,7 +202,7 @@ class _KobitaWidgetState extends State<KobitaWidget>
             ),
           ),
 
-          // Bottom decorative wave
+          // Bottom wave
           Positioned(
             bottom: 0,
             left: 0,
@@ -262,8 +230,10 @@ class _KobitaWidgetState extends State<KobitaWidget>
     return AnimatedBuilder(
       animation: _floatingController,
       builder: (context, child) {
-        final offsetY = 50 + (index * 80) + (30 * _floatingController.value);
-        final offsetX = (index.isEven ? 30 : Get.width - 80) + (20 * _floatingController.value * (index.isEven ? 1 : -1));
+        final offsetY =
+            50 + (index * 80) + (30 * _floatingController.value);
+        final offsetX = (index.isEven ? 30 : Get.width - 80) +
+            (20 * _floatingController.value * (index.isEven ? 1 : -1));
 
         return Positioned(
           top: offsetY,
@@ -291,66 +261,14 @@ class _KobitaWidgetState extends State<KobitaWidget>
     );
   }
 
-  Widget _buildReadingControls() {
-    return Container(
-      padding: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.9),
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.1),
-            blurRadius: 10,
-            offset: const Offset(0, 5),
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          // Font size controls
-          IconButton(
-            onPressed: () {
-              setState(() {
-                if (_textSize > 16) _textSize -= 2;
-              });
-            },
-            icon: const Icon(Icons.text_decrease),
-            tooltip: 'ছোট করুন',
-          ),
-          IconButton(
-            onPressed: () {
-              setState(() {
-                if (_textSize < 28) _textSize += 2;
-              });
-            },
-            icon: const Icon(Icons.text_increase),
-            tooltip: 'বড় করুন',
-          ),
-
-          // Reading mode toggle
-          IconButton(
-            onPressed: () {
-              setState(() {
-                _isPlaying = !_isPlaying;
-              });
-
-              if (_isPlaying) {
-                _sparkleController.repeat();
-              } else {
-                _sparkleController.stop();
-              }
-            },
-            icon: Icon(_isPlaying ? Icons.pause_circle : Icons.play_circle),
-            tooltip: _isPlaying ? 'থামান' : 'শুরু করুন',
-            color: Colors.purple,
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget _buildPoemContent(bool isLargeScreen) {
+    // Clean up writer text
+    final rawWriter = widget.writer ?? '';
+    final writer = rawWriter.trim();
+    final hasWriter = writer.isNotEmpty &&
+        writer.toLowerCase() != 'null' &&
+        writer.toLowerCase() != 'undefined';
+
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
@@ -371,37 +289,37 @@ class _KobitaWidgetState extends State<KobitaWidget>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // Decorative header
+          // Title
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             decoration: BoxDecoration(
               gradient: const LinearGradient(
-                colors: [Color(0xFFFF9A8B), Color(0xFFA8E6CF)],
+                colors: [Color(0xFFFF714B), Color(0xFF4D2D8C)],
               ),
               borderRadius: BorderRadius.circular(20),
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text('📖', style: TextStyle(fontSize: 20)),
-                SizedBox(width: 8),
+                const Text('📖', style: TextStyle(fontSize: 20)),
+                const SizedBox(width: 8),
                 Text(
                   widget.title,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                     color: Colors.white,
                   ),
                 ),
-                SizedBox(width: 8),
-                Text('📖', style: TextStyle(fontSize: 20)),
+                const SizedBox(width: 8),
+                const Text('📖', style: TextStyle(fontSize: 20)),
               ],
             ),
           ),
 
           const SizedBox(height: 25),
 
-          // Poem text with enhanced styling
+          // Poem text
           AnimatedDefaultTextStyle(
             duration: const Duration(milliseconds: 300),
             style: TextStyle(
@@ -417,8 +335,8 @@ class _KobitaWidgetState extends State<KobitaWidget>
 
           const SizedBox(height: 5),
 
-          // Writer info with enhanced design
-          if (widget.writer != null && widget.writer!.isNotEmpty)
+          // Writer (only if valid)
+          if (hasWriter)
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
               decoration: BoxDecoration(
@@ -464,7 +382,7 @@ class _KobitaWidgetState extends State<KobitaWidget>
                         ),
                       ),
                       Text(
-                        widget.writer!,
+                        writer,
                         style: const TextStyle(
                           fontSize: 14,
                           color: Color(0xFF2D3748),
@@ -496,14 +414,13 @@ class _KobitaWidgetState extends State<KobitaWidget>
 
 class WavePainter extends CustomPainter {
   final double animationValue;
-
   WavePainter(this.animationValue);
 
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
       ..shader = const LinearGradient(
-        colors: [Color(0xFFFF9A8B), Color(0xFFA8E6CF)],
+        colors: [Color(0xFFFF714B), Color(0xFF4D2D8C)],
       ).createShader(Rect.fromLTWH(0, 0, size.width, size.height))
       ..style = PaintingStyle.fill;
 
@@ -512,8 +429,10 @@ class WavePainter extends CustomPainter {
 
     for (double x = 0; x <= size.width; x++) {
       final y = size.height * 0.5 +
-          (size.height * 0.3 *
-              (sin((x / size.width * 2 * 3.14159) + (animationValue * 2 * 3.14159))));
+          (size.height *
+              0.3 *
+              (sin((x / size.width * 2 * 3.14159) +
+                  (animationValue * 2 * 3.14159))));
       path.lineTo(x, y);
     }
 
