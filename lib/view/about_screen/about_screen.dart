@@ -13,18 +13,15 @@ class AboutUsScreen extends StatelessWidget {
       backgroundColor: ColorRes.white,
       appBar: AppBar(
         elevation: 1,
-        shadowColor: ColorRes.borderColor,
-        iconTheme: const IconThemeData(color: ColorRes.primaryColor),
-        title: const Text(
-          'ছোটদের মজার ছড়া ও কবিতা',
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w700,
-            color: ColorRes.primaryColor,
-          ),
+        shadowColor: ColorRes.white200,
+        backgroundColor: ColorRes.primaryColor,
+        iconTheme: const IconThemeData(color: Colors.white),
+        title: const GlobalText(
+          str: "ছোটদের মজার ছড়া ও কবিতা",
+          fontSize: 20,
+          fontWeight: FontWeight.w700,
+          color: ColorRes.white,
         ),
-        centerTitle: true,
-        backgroundColor: Colors.white,
       ),
       body: const SingleChildScrollView(
         child: Column(

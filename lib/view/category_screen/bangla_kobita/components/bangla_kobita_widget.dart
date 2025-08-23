@@ -6,6 +6,7 @@ import '../../../../global/widget/global_image_loader.dart';
 import '../../../../global/widget/global_sizedbox.dart';
 import '../../../../global/widget/global_text.dart';
 import '../../../../global/widget/images.dart';
+import '../../animation_controller.dart';
 
 class KobitaWidget extends StatefulWidget {
   final String fullKobita;
@@ -25,46 +26,26 @@ class KobitaWidget extends StatefulWidget {
 
 class _KobitaWidgetState extends State<KobitaWidget>
     with TickerProviderStateMixin {
-  late AnimationController _sparkleController;
-  late AnimationController _floatingController;
-  late AnimationController _textController;
+  late BanglaKobitaAnimations animations;
   double _textSize = 21.0;
   bool _isPlaying = false;
 
   @override
   void initState() {
     super.initState();
-
-    _sparkleController = AnimationController(
-      duration: const Duration(milliseconds: 2000),
-      vsync: this,
-    )..repeat();
-
-    _floatingController = AnimationController(
-      duration: const Duration(milliseconds: 3000),
-      vsync: this,
-    )..repeat(reverse: true);
-
-    _textController = AnimationController(
-      duration: const Duration(milliseconds: 800),
-      vsync: this,
-    );
-
-    _textController.forward();
+    animations = BanglaKobitaAnimations(vsync: this);
+    animations.init();
   }
 
   @override
   void dispose() {
-    _sparkleController.dispose();
-    _floatingController.dispose();
-    _textController.dispose();
+    animations.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final availableHeight =
-        Get.height - kToolbarHeight - MediaQuery.of(context).padding.top;
+    final availableHeight = Get.height - kToolbarHeight - MediaQuery.of(context).padding.top;
     final isLargeScreen = Get.width > 400;
 
     return SizedBox(
@@ -162,9 +143,9 @@ class _KobitaWidgetState extends State<KobitaWidget>
                         _isPlaying = !_isPlaying;
                       });
                       if (_isPlaying) {
-                        _sparkleController.repeat();
+                        animations.sparkleController.repeat();
                       } else {
-                        _sparkleController.stop();
+                        animations.sparkleController.stop();
                       }
                     },
                     icon: Icon(
@@ -185,16 +166,16 @@ class _KobitaWidgetState extends State<KobitaWidget>
               margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
               child: SingleChildScrollView(
                 child: AnimatedBuilder(
-                  animation: _textController,
+                  animation: animations.textController,
                   builder: (context, child) {
                     return FadeTransition(
-                      opacity: _textController,
+                      opacity: animations.textController,
                       child: SlideTransition(
                         position: Tween<Offset>(
                           begin: const Offset(0, 0.5),
                           end: Offset.zero,
                         ).animate(CurvedAnimation(
-                          parent: _textController,
+                          parent: animations.textController,
                           curve: Curves.easeOutBack,
                         )),
                         child: _buildPoemContent(isLargeScreen),
@@ -232,27 +213,32 @@ class _KobitaWidgetState extends State<KobitaWidget>
     ];
 
     return AnimatedBuilder(
-      animation: _floatingController,
+      animation: animations.floatingController,
       builder: (context, child) {
         final offsetY =
-            50 + (index * 80) + (30 * _floatingController.value);
+            50 + (index * 80) + (30 * animations.floatingController.value);
         final offsetX = (index.isEven ? 30 : Get.width - 80) +
-            (20 * _floatingController.value * (index.isEven ? 1 : -1));
+            (20 * animations.floatingController.value * (index.isEven ? 1 : -1));
 
         return Positioned(
           top: offsetY,
           left: offsetX,
           child: AnimatedBuilder(
-            animation: _sparkleController,
+            animation: animations.floatingController,
             builder: (context, child) {
-              return Transform.rotate(
-                angle: _sparkleController.value * 2 * 3.14159,
-                child: Opacity(
-                  opacity: 0.4 + (0.4 * _floatingController.value),
-                  child: GlobalText(
-                    str: decorations[index],
-                    fontSize: 20 + (5 * _floatingController.value),
-                    color: colors[index],
+              final pos = animations.getFloatingPosition(index, Get.width);
+              return Positioned(
+                top: pos.dy,
+                left: pos.dx,
+                child: Transform.rotate(
+                  angle: animations.getSparkleRotation(),
+                  child: Opacity(
+                    opacity: 0.4 + (0.4 * animations.floatingController.value),
+                    child: GlobalText(
+                      str: decorations[index],
+                      fontSize: 20 + (5 * animations.floatingController.value),
+                      color: colors[index],
+                    ),
                   ),
                 ),
               );
@@ -398,10 +384,10 @@ class _KobitaWidgetState extends State<KobitaWidget>
 
   Widget _buildBottomWave() {
     return AnimatedBuilder(
-      animation: _floatingController,
+      animation: animations.floatingController,
       builder: (context, child) {
         return CustomPaint(
-          painter: WavePainter(_floatingController.value),
+          painter: WavePainter(animations.floatingController.value),
           size: Size(Get.width, 60),
         );
       },

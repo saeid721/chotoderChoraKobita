@@ -51,8 +51,6 @@ class _ContactScreenState extends State<ContactScreen> {
           fontWeight: FontWeight.w700,
           color: ColorRes.white,
         ),
-        centerTitle: true,
-        //backgroundColor: ColorRes.title,
       ),
       body: SafeArea(
         child: SingleChildScrollView(

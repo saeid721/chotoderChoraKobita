@@ -1,54 +1,10 @@
-// import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
-// import '../../../../../data/genaral/bangla_kobita_data.dart';
-// import '../../../../../global/widget/manu_item_widget.dart';
-// import '../../../../../global/widget/colors.dart';
-// import '../../../../../global/widget/global_app_bar.dart';
-// import '../../../../../global/widget/global_container.dart';
-// import 'bangla_full_kobita_screen.dart';
-//
-// class BanglaKobitaListScreen extends StatelessWidget {
-//   const BanglaKobitaListScreen({super.key});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     final size = MediaQuery.of(context).size;
-//
-//     return Scaffold(
-//       appBar: const GlobalAppBar(title: "ছোটদের বাংলা ছড়া-কবিতা"),
-//       body: GlobalContainer(
-//         backgroundColor: ColorRes.backgroundColor,
-//         width: size.width,
-//         child: SingleChildScrollView(
-//           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-//           child: Column(
-//             children: List.generate(banglaKobitaData.length, (index) {
-//               final kobita = banglaKobitaData[index];
-//               return Padding(
-//                 padding: const EdgeInsets.only(bottom: 8),
-//                 child: ManuItem(
-//                   title: kobita.title,
-//                   onTap: () {
-//                     Get.to(() => BanglaFullKobitaScreen(id: kobita.id));
-//                   },
-//                 ),
-//               );
-//             }),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../../data/genaral/bangla_kobita_data.dart';
 import '../../../../../global/widget/global_app_bar.dart';
 import '../../../global/widget/global_sizedbox.dart';
 import '../../../global/widget/global_text.dart';
+import '../animation_controller.dart';
 import 'bangla_full_kobita_screen.dart';
 
 class BanglaKobitaListScreen extends StatefulWidget {
@@ -58,54 +14,27 @@ class BanglaKobitaListScreen extends StatefulWidget {
   State<BanglaKobitaListScreen> createState() => _BanglaKobitaListScreenState();
 }
 
-class _BanglaKobitaListScreenState extends State<BanglaKobitaListScreen> with TickerProviderStateMixin {
-  late AnimationController _animationController;
-  final List<AnimationController> _itemControllers = [];
+class _BanglaKobitaListScreenState extends State<BanglaKobitaListScreen>
+    with TickerProviderStateMixin {
+  late BanglaKobitaAnimations animations;
   String searchQuery = '';
 
   @override
   void initState() {
     super.initState();
-    _animationController = AnimationController(
-      duration: const Duration(milliseconds: 1500),
-      vsync: this,
-    )..repeat(reverse: true);
-
-    // Initialize controllers for each item
-    for (int i = 0; i < banglaKobitaData.length; i++) {
-      _itemControllers.add(
-        AnimationController(
-          duration: Duration(milliseconds: 300 + (i * 50)),
-          vsync: this,
-        ),
-      );
-    }
-
-    // Animate items in sequence
-    _animateItemsIn();
-  }
-
-  void _animateItemsIn() async {
-    for (var controller in _itemControllers) {
-      controller.forward();
-      await Future.delayed(const Duration(milliseconds: 100));
-    }
+    animations = BanglaKobitaAnimations(vsync: this);
+    animations.init(itemCount: banglaKobitaData.length);
+    animations.animateItemsIn();
   }
 
   @override
   void dispose() {
-    _animationController.dispose();
-    for (var controller in _itemControllers) {
-      controller.dispose();
-    }
+    animations.dispose();
     super.dispose();
   }
 
-  List<dynamic> get filteredPoems {
-    if (searchQuery.isEmpty) return banglaKobitaData;
-    return banglaKobitaData.where((poem) =>
-        poem.title.toLowerCase().contains(searchQuery.toLowerCase())).toList();
-  }
+  List<dynamic> get filteredPoems { if (searchQuery.isEmpty) return banglaKobitaData;
+    return banglaKobitaData.where((poem) => poem.title.toLowerCase().contains(searchQuery.toLowerCase())).toList(); }
 
   @override
   Widget build(BuildContext context) {
@@ -135,10 +64,10 @@ class _BanglaKobitaListScreenState extends State<BanglaKobitaListScreen> with Ti
                 children: [
                   // Fun header with bouncing text
                   AnimatedBuilder(
-                    animation: _animationController,
+                    animation: animations.floatingController,
                     builder: (context, child) {
                       return Transform.scale(
-                        scale: 1.0 + (_animationController.value * 0.03),
+                        scale: 1.0 + (animations.floatingController.value * 0.03),
                         child: Container(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 5,
@@ -227,7 +156,35 @@ class _BanglaKobitaListScreenState extends State<BanglaKobitaListScreen> with Ti
             // Poems list with animations
             Expanded(
               child: filteredPoems.isEmpty
-                  ? _buildEmptyState()
+                  ? Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    AnimatedBuilder(
+                      animation: animations.floatingController,
+                      builder: (context, child) {
+                        return Transform.scale(
+                          scale: 1.0 + (animations.floatingController.value * 0.1),
+                          child: const Text('🔍', style: TextStyle(fontSize: 80)),
+                        );
+                      },
+                    ),
+                    sizedBoxH(20),
+                    GlobalText(
+                      str: 'কোন কবিতা খুঁজে পাওয়া যায়নি!',
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: Color(0xFF2D3748),
+                    ),
+                    sizedBoxH(10),
+                    GlobalText(
+                      str: 'অন্য নাম দিয়ে খুঁজে দেখুন',
+                      fontSize: 14,
+                      color: Colors.grey[600],
+                    ),
+                  ],
+                ),
+              )
                   : ListView.builder(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 itemCount: filteredPoems.length,
@@ -236,18 +193,18 @@ class _BanglaKobitaListScreenState extends State<BanglaKobitaListScreen> with Ti
                   final controllerIndex = banglaKobitaData.indexOf(poem);
 
                   return AnimatedBuilder(
-                    animation: _itemControllers[controllerIndex],
+                    animation: animations.itemControllers[controllerIndex],
                     builder: (context, child) {
                       return SlideTransition(
                         position: Tween<Offset>(
                           begin: const Offset(1.0, 0.0),
                           end: Offset.zero,
                         ).animate(CurvedAnimation(
-                          parent: _itemControllers[controllerIndex],
+                          parent: animations.itemControllers[controllerIndex],
                           curve: Curves.elasticOut,
                         )),
                         child: FadeTransition(
-                          opacity: _itemControllers[controllerIndex],
+                          opacity: animations.itemControllers[controllerIndex],
                           child: _buildPoemCard(poem, index),
                         ),
                       );
@@ -437,10 +394,10 @@ class _BanglaKobitaListScreenState extends State<BanglaKobitaListScreen> with Ti
 
                     // Arrow with bounce animation
                     AnimatedBuilder(
-                      animation: _animationController,
+                      animation: animations.floatingController,
                       builder: (context, child) {
                         return Transform.translate(
-                          offset: Offset(5 * _animationController.value, 0),
+                          offset: Offset(5 * animations.floatingController.value, 0),
                           child: Container(
                             padding: const EdgeInsets.all(8),
                             decoration: BoxDecoration(
@@ -462,38 +419,6 @@ class _BanglaKobitaListScreenState extends State<BanglaKobitaListScreen> with Ti
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildEmptyState() {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          AnimatedBuilder(
-            animation: _animationController,
-            builder: (context, child) {
-              return Transform.scale(
-                scale: 1.0 + (_animationController.value * 0.1),
-                child: const Text('🔍', style: TextStyle(fontSize: 80)),
-              );
-            },
-          ),
-          sizedBoxH(20),
-          GlobalText(
-            str: 'কোন কবিতা খুঁজে পাওয়া যায়নি!',
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-            color: Color(0xFF2D3748),
-          ),
-          sizedBoxH(10),
-          GlobalText(
-            str: 'অন্য নাম দিয়ে খুঁজে দেখুন',
-            fontSize: 14,
-            color: Colors.grey[600],
-          ),
-        ],
       ),
     );
   }
