@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import '../../../../global/widget/enum.dart';
 import '../../../../global/widget/global_image_loader.dart';
 import '../../../../global/widget/global_sizedbox.dart';
@@ -29,17 +30,47 @@ class _KobitaWidgetState extends State<KobitaWidget> with TickerProviderStateMix
   double _textSize = 21.0;
   bool _isPlaying = false;
 
+  // Text-to-Speech
+  final FlutterTts _flutterTts = FlutterTts();
+  bool _isSpeaking = false;
+
   @override
   void initState() {
     super.initState();
     animations = BanglaKobitaAnimations(vsync: this);
     animations.init();
+
+    // TTS Initialization
+    _flutterTts.setLanguage("bn-BD");
+    _flutterTts.setPitch(1.0);
+    _flutterTts.setSpeechRate(0.5);
+
+    _flutterTts.setCompletionHandler(() {
+      setState(() {
+        _isSpeaking = false;
+      });
+    });
   }
 
   @override
   void dispose() {
     animations.dispose();
+    _flutterTts.stop();
     super.dispose();
+  }
+
+  void _toggleTTS() async {
+    if (_isSpeaking) {
+      await _flutterTts.stop();
+      setState(() {
+        _isSpeaking = false;
+      });
+    } else {
+      await _flutterTts.speak(widget.fullKobita);
+      setState(() {
+        _isSpeaking = true;
+      });
+    }
   }
 
   @override
@@ -143,6 +174,14 @@ class _KobitaWidgetState extends State<KobitaWidget> with TickerProviderStateMix
                       color: Colors.purple,
                     ),
                     tooltip: _isPlaying ? 'থামান' : 'শুরু করুন',
+                  ),
+                  IconButton(
+                    onPressed: _toggleTTS,
+                    icon: Icon(
+                      _isSpeaking ? Icons.volume_off : Icons.volume_up,
+                      color: Colors.green,
+                    ),
+                    tooltip: _isSpeaking ? 'থামান' : 'পড়ুন',
                   ),
                 ],
               ),
@@ -248,7 +287,6 @@ class _KobitaWidgetState extends State<KobitaWidget> with TickerProviderStateMix
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // Title
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             decoration: BoxDecoration(
