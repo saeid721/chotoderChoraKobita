@@ -8,7 +8,7 @@ class EnglishPoemsClassOneData {
   });
 }
 
-final List<EnglishPoemsClassOneData> englishPoemsClassOneData = [
+final List<EnglishPoemsClassOneData> englishPoemsData = [
   EnglishPoemsClassOneData(
     id: '01',
     title: 'Twinkle Twinkle Little Star',

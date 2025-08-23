@@ -4,7 +4,7 @@ import '../../../../../data/genaral/bangla_kobita_data.dart';
 import '../../../../../global/widget/global_app_bar.dart';
 import '../../../global/widget/global_sizedbox.dart';
 import '../../../global/widget/global_text.dart';
-import '../animation_controller.dart';
+import '../controller/animation_controller.dart';
 import 'bangla_full_kobita_screen.dart';
 
 class BanglaKobitaListScreen extends StatefulWidget {

@@ -6,7 +6,7 @@ import '../../../../global/widget/global_image_loader.dart';
 import '../../../../global/widget/global_sizedbox.dart';
 import '../../../../global/widget/global_text.dart';
 import '../../../../global/widget/images.dart';
-import '../../animation_controller.dart';
+import '../../controller/animation_controller.dart';
 
 class KobitaWidget extends StatefulWidget {
   final String fullKobita;
@@ -45,7 +45,8 @@ class _KobitaWidgetState extends State<KobitaWidget>
 
   @override
   Widget build(BuildContext context) {
-    final availableHeight = Get.height - kToolbarHeight - MediaQuery.of(context).padding.top;
+    final availableHeight =
+        Get.height - kToolbarHeight - MediaQuery.of(context).padding.top;
     final isLargeScreen = Get.width > 400;
 
     return SizedBox(
@@ -199,6 +200,7 @@ class _KobitaWidgetState extends State<KobitaWidget>
     );
   }
 
+  // Fixed floating decorations (no nested Positioned)
   Widget _buildFloatingDecoration(int index) {
     final decorations = ['⭐', '🌟', '✨', '🌙', '🌸', '🦋', '🌈', '💫'];
     final colors = [
@@ -215,34 +217,20 @@ class _KobitaWidgetState extends State<KobitaWidget>
     return AnimatedBuilder(
       animation: animations.floatingController,
       builder: (context, child) {
-        final offsetY =
-            50 + (index * 80) + (30 * animations.floatingController.value);
-        final offsetX = (index.isEven ? 30 : Get.width - 80) +
-            (20 * animations.floatingController.value * (index.isEven ? 1 : -1));
-
+        final pos = animations.getFloatingPosition(index, Get.width);
         return Positioned(
-          top: offsetY,
-          left: offsetX,
-          child: AnimatedBuilder(
-            animation: animations.floatingController,
-            builder: (context, child) {
-              final pos = animations.getFloatingPosition(index, Get.width);
-              return Positioned(
-                top: pos.dy,
-                left: pos.dx,
-                child: Transform.rotate(
-                  angle: animations.getSparkleRotation(),
-                  child: Opacity(
-                    opacity: 0.4 + (0.4 * animations.floatingController.value),
-                    child: GlobalText(
-                      str: decorations[index],
-                      fontSize: 20 + (5 * animations.floatingController.value),
-                      color: colors[index],
-                    ),
-                  ),
-                ),
-              );
-            },
+          top: pos.dy,
+          left: pos.dx,
+          child: Transform.rotate(
+            angle: animations.getSparkleRotation(),
+            child: Opacity(
+              opacity: 0.4 + (0.4 * animations.floatingController.value),
+              child: GlobalText(
+                str: decorations[index],
+                fontSize: 20 + (5 * animations.floatingController.value),
+                color: colors[index],
+              ),
+            ),
           ),
         );
       },
@@ -250,7 +238,6 @@ class _KobitaWidgetState extends State<KobitaWidget>
   }
 
   Widget _buildPoemContent(bool isLargeScreen) {
-    // Clean up writer text
     final rawWriter = widget.writer ?? '';
     final writer = rawWriter.trim();
     final hasWriter = writer.isNotEmpty &&
@@ -414,8 +401,8 @@ class WavePainter extends CustomPainter {
       final y = size.height * 0.5 +
           (size.height *
               0.3 *
-              (sin((x / size.width * 2 * 3.14159) +
-                  (animationValue * 2 * 3.14159))));
+              (sin((x / size.width * 2 * pi) +
+                  (animationValue * 2 * pi))));
       path.lineTo(x, y);
     }
 

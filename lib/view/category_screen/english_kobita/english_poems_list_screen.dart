@@ -25,7 +25,7 @@ class _EnglishPoemsListScreenState extends State<EnglishPoemsListScreen> with Ti
     )..repeat(reverse: true);
 
     // Initialize controllers for each item
-    for (int i = 0; i < englishPoemsClassOneData.length; i++) {
+    for (int i = 0; i < englishPoemsData.length; i++) {
       _itemControllers.add(
         AnimationController(
           duration: Duration(milliseconds: 300 + (i * 50)),
@@ -55,8 +55,8 @@ class _EnglishPoemsListScreenState extends State<EnglishPoemsListScreen> with Ti
   }
 
   List<dynamic> get filteredPoems {
-    if (searchQuery.isEmpty) return englishPoemsClassOneData;
-    return englishPoemsClassOneData.where((poem) =>
+    if (searchQuery.isEmpty) return englishPoemsData;
+    return englishPoemsData.where((poem) =>
         poem.title.toLowerCase().contains(searchQuery.toLowerCase())).toList();
   }
 
@@ -186,7 +186,7 @@ class _EnglishPoemsListScreenState extends State<EnglishPoemsListScreen> with Ti
                 itemCount: filteredPoems.length,
                 itemBuilder: (context, index) {
                   final poem = filteredPoems[index];
-                  final controllerIndex = englishPoemsClassOneData.indexOf(poem);
+                  final controllerIndex = englishPoemsData.indexOf(poem);
 
                   return AnimatedBuilder(
                     animation: _itemControllers[controllerIndex],
