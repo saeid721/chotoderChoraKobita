@@ -14,8 +14,7 @@ class BanglaKobitaListScreen extends StatefulWidget {
   State<BanglaKobitaListScreen> createState() => _BanglaKobitaListScreenState();
 }
 
-class _BanglaKobitaListScreenState extends State<BanglaKobitaListScreen>
-    with TickerProviderStateMixin {
+class _BanglaKobitaListScreenState extends State<BanglaKobitaListScreen>with TickerProviderStateMixin {
   late BanglaKobitaAnimations animations;
   String searchQuery = '';
 
@@ -33,8 +32,10 @@ class _BanglaKobitaListScreenState extends State<BanglaKobitaListScreen>
     super.dispose();
   }
 
-  List<dynamic> get filteredPoems { if (searchQuery.isEmpty) return banglaKobitaData;
-    return banglaKobitaData.where((poem) => poem.title.toLowerCase().contains(searchQuery.toLowerCase())).toList(); }
+  List<dynamic> get filteredPoems {
+    if (searchQuery.isEmpty) return banglaKobitaData;
+    return banglaKobitaData.where((poem) =>
+        poem.title.toLowerCase().contains(searchQuery.toLowerCase())).toList(); }
 
   @override
   Widget build(BuildContext context) {
@@ -57,12 +58,10 @@ class _BanglaKobitaListScreenState extends State<BanglaKobitaListScreen>
         ),
         child: Column(
           children: [
-            // Header with search and fun animations
             Container(
               padding: const EdgeInsets.all(20),
               child: Column(
                 children: [
-                  // Fun header with bouncing text
                   AnimatedBuilder(
                     animation: animations.floatingController,
                     builder: (context, child) {
@@ -89,28 +88,29 @@ class _BanglaKobitaListScreenState extends State<BanglaKobitaListScreen>
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text('📖', style: TextStyle(fontSize: 24)),
-                              sizedBoxW(10),
-                              Text(
-                                'তোমার পছন্দের কবিতা খুঁজে নাও!',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white,
-                                ),
+                              GlobalText(
+                                str: '📖',
+                                fontSize: 24,
                               ),
                               sizedBoxW(10),
-                              Text('🎭', style: TextStyle(fontSize: 24)),
+                              GlobalText(
+                                str: 'তোমার পছন্দের কবিতা খুঁজে নাও!',
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white,
+                              ),
+                              sizedBoxW(10),
+                              GlobalText(
+                                str: '🎭',
+                                fontSize: 24,
+                              ),
                             ],
                           ),
                         ),
                       );
                     },
                   ),
-
                   sizedBoxH(20),
-
-                  // Search bar with fun design
                   Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -152,8 +152,6 @@ class _BanglaKobitaListScreenState extends State<BanglaKobitaListScreen>
                 ],
               ),
             ),
-
-            // Poems list with animations
             Expanded(
               child: filteredPoems.isEmpty
                   ? Center(
@@ -321,7 +319,6 @@ class _BanglaKobitaListScreenState extends State<BanglaKobitaListScreen>
           ),
           child: Stack(
             children: [
-              // Background decoration
               Positioned(
                 top: -20,
                 right: -20,
@@ -334,13 +331,10 @@ class _BanglaKobitaListScreenState extends State<BanglaKobitaListScreen>
                   ),
                 ),
               ),
-
-              // Card content
               Padding(
                 padding: const EdgeInsets.all(10),
                 child: Row(
                   children: [
-                    // Fun icon container
                     Container(
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
@@ -352,21 +346,16 @@ class _BanglaKobitaListScreenState extends State<BanglaKobitaListScreen>
                         style: const TextStyle(fontSize: 24),
                       ),
                     ),
-
                     sizedBoxW(10),
-
-                    // Poem title and number
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            poem.title,
-                            style: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700,
-                              color: Color(0xFF2D3748),
-                            ),
+                          GlobalText(
+                            str: poem.title,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
+                            color: Color(0xFF2D3748),
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -379,20 +368,16 @@ class _BanglaKobitaListScreenState extends State<BanglaKobitaListScreen>
                               color: Colors.white.withValues(alpha: 0.7),
                               borderRadius: BorderRadius.circular(12),
                             ),
-                            child: Text(
-                              'কবিতা #${index + 1}',
-                              style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w400,
-                                color: cardColors[0],
-                              ),
+                            child: GlobalText(
+                              str: 'কবিতা #${index + 1}',
+                              fontSize: 10,
+                              fontWeight: FontWeight.w400,
+                              color: cardColors[0],
                             ),
                           ),
                         ],
                       ),
                     ),
-
-                    // Arrow with bounce animation
                     AnimatedBuilder(
                       animation: animations.floatingController,
                       builder: (context, child) {

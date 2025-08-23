@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../../data/genaral/english_poems_data.dart';
 import '../../../../../global/widget/global_app_bar.dart';
+import '../../../global/widget/global_sizedbox.dart';
+import '../../../global/widget/global_text.dart';
+import '../controller/animation_controller.dart';
 import 'english_full_poem_screen.dart';
 
 class EnglishPoemsListScreen extends StatefulWidget {
@@ -12,45 +15,20 @@ class EnglishPoemsListScreen extends StatefulWidget {
 }
 
 class _EnglishPoemsListScreenState extends State<EnglishPoemsListScreen> with TickerProviderStateMixin {
-  late AnimationController _animationController;
-  final List<AnimationController> _itemControllers = [];
+  late BanglaKobitaAnimations animations;
   String searchQuery = '';
 
   @override
   void initState() {
     super.initState();
-    _animationController = AnimationController(
-      duration: const Duration(milliseconds: 1500),
-      vsync: this,
-    )..repeat(reverse: true);
-
-    // Initialize controllers for each item
-    for (int i = 0; i < englishPoemsData.length; i++) {
-      _itemControllers.add(
-        AnimationController(
-          duration: Duration(milliseconds: 300 + (i * 50)),
-          vsync: this,
-        ),
-      );
-    }
-
-    // Animate items in sequence
-    _animateItemsIn();
-  }
-
-  void _animateItemsIn() async {
-    for (var controller in _itemControllers) {
-      controller.forward();
-      await Future.delayed(const Duration(milliseconds: 100));
-    }
+    animations = BanglaKobitaAnimations(vsync: this);
+    animations.init(itemCount: englishPoemsData.length);
+    animations.animateItemsIn();
   }
 
   @override
   void dispose() {
-    _animationController.dispose();
-    for (var controller in _itemControllers) {
-      controller.dispose();
-    }
+    animations.dispose();
     super.dispose();
   }
 
@@ -81,17 +59,15 @@ class _EnglishPoemsListScreenState extends State<EnglishPoemsListScreen> with Ti
         ),
         child: Column(
           children: [
-            // Header with search and fun animations
             Container(
               padding: const EdgeInsets.all(20),
               child: Column(
                 children: [
-                  // Fun header with bouncing text
                   AnimatedBuilder(
-                    animation: _animationController,
+                    animation: animations.floatingController,
                     builder: (context, child) {
                       return Transform.scale(
-                        scale: 1.0 + (_animationController.value * 0.03),
+                        scale: 1.0 + (animations.floatingController.value * 0.03),
                         child: Container(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 5,
@@ -110,31 +86,32 @@ class _EnglishPoemsListScreenState extends State<EnglishPoemsListScreen> with Ti
                               ),
                             ],
                           ),
-                          child: const Row(
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text('📖', style: TextStyle(fontSize: 24)),
-                              SizedBox(width: 10),
-                              Text(
-                                'Find your favorite poem!',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.white,
-                                ),
+                              GlobalText(
+                                str: '📖',
+                                fontSize: 24,
                               ),
-                              SizedBox(width: 10),
-                              Text('🎭', style: TextStyle(fontSize: 24)),
+                              sizedBoxW(10),
+                              GlobalText(
+                                str: 'Find your favorite poem!',
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white,
+                              ),
+                              sizedBoxW(10),
+                              GlobalText(
+                                str: '🎭',
+                                fontSize: 24,
+                              ),
                             ],
                           ),
                         ),
                       );
                     },
                   ),
-
-                  const SizedBox(height: 20),
-
-                  // Search bar with fun design
+                  sizedBoxH(20),
                   Container(
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -176,11 +153,37 @@ class _EnglishPoemsListScreenState extends State<EnglishPoemsListScreen> with Ti
                 ],
               ),
             ),
-
-            // Poems list with animations
             Expanded(
               child: filteredPoems.isEmpty
-                  ? _buildEmptyState()
+                  ? Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    AnimatedBuilder(
+                      animation: animations.floatingController,
+                      builder: (context, child) {
+                        return Transform.scale(
+                          scale: 1.0 + (animations.floatingController.value * 0.1),
+                          child: const Text('🔍', style: TextStyle(fontSize: 80)),
+                        );
+                      },
+                    ),
+                    sizedBoxH(20),
+                    GlobalText(
+                      str: 'No poem could be found!',
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: Color(0xFF2D3748),
+                    ),
+                    sizedBoxH(10),
+                    GlobalText(
+                      str: 'Try searching with a different name',
+                      fontSize: 14,
+                      color: Colors.grey[600],
+                    ),
+                  ],
+                ),
+              )
                   : ListView.builder(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 itemCount: filteredPoems.length,
@@ -189,18 +192,18 @@ class _EnglishPoemsListScreenState extends State<EnglishPoemsListScreen> with Ti
                   final controllerIndex = englishPoemsData.indexOf(poem);
 
                   return AnimatedBuilder(
-                    animation: _itemControllers[controllerIndex],
+                    animation: animations.itemControllers[controllerIndex],
                     builder: (context, child) {
                       return SlideTransition(
                         position: Tween<Offset>(
                           begin: const Offset(1.0, 0.0),
                           end: Offset.zero,
                         ).animate(CurvedAnimation(
-                          parent: _itemControllers[controllerIndex],
+                          parent: animations.itemControllers[controllerIndex],
                           curve: Curves.elasticOut,
                         )),
                         child: FadeTransition(
-                          opacity: _itemControllers[controllerIndex],
+                          opacity: animations.itemControllers[controllerIndex],
                           child: _buildPoemCard(poem, index),
                         ),
                       );
@@ -340,13 +343,10 @@ class _EnglishPoemsListScreenState extends State<EnglishPoemsListScreen> with Ti
                   ),
                 ),
               ),
-
-              // Card content
               Padding(
                 padding: const EdgeInsets.all(10),
                 child: Row(
                   children: [
-                    // Fun icon container
                     Container(
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
@@ -358,21 +358,16 @@ class _EnglishPoemsListScreenState extends State<EnglishPoemsListScreen> with Ti
                         style: const TextStyle(fontSize: 24),
                       ),
                     ),
-
-                    const SizedBox(width: 10),
-
-                    // Poem title and number
+                    sizedBoxW(10),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            poem.title,
-                            style: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700,
-                              color: Color(0xFF2D3748),
-                            ),
+                          GlobalText(
+                            str: poem.title,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
+                            color: Color(0xFF2D3748),
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -385,25 +380,21 @@ class _EnglishPoemsListScreenState extends State<EnglishPoemsListScreen> with Ti
                               color: Colors.white.withValues(alpha: 0.7),
                               borderRadius: BorderRadius.circular(12),
                             ),
-                            child: Text(
-                              'Poem #${index + 1}',
-                              style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w400,
-                                color: cardColors[0],
-                              ),
+                            child: GlobalText(
+                              str: 'Poem #${index + 1}',
+                              fontSize: 10,
+                              fontWeight: FontWeight.w400,
+                              color: cardColors[0],
                             ),
                           ),
                         ],
                       ),
                     ),
-
-                    // Arrow with bounce animation
                     AnimatedBuilder(
-                      animation: _animationController,
+                      animation: animations.floatingController,
                       builder: (context, child) {
                         return Transform.translate(
-                          offset: Offset(5 * _animationController.value, 0),
+                          offset: Offset(5 * animations.floatingController.value, 0),
                           child: Container(
                             padding: const EdgeInsets.all(8),
                             decoration: BoxDecoration(
@@ -428,81 +419,4 @@ class _EnglishPoemsListScreenState extends State<EnglishPoemsListScreen> with Ti
       ),
     );
   }
-
-  Widget _buildEmptyState() {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          AnimatedBuilder(
-            animation: _animationController,
-            builder: (context, child) {
-              return Transform.scale(
-                scale: 1.0 + (_animationController.value * 0.1),
-                child: const Text('🔍', style: TextStyle(fontSize: 80)),
-              );
-            },
-          ),
-          const SizedBox(height: 20),
-          const Text(
-            'No poem could be found!',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-              color: Color(0xFF2D3748),
-            ),
-          ),
-          const SizedBox(height: 10),
-          Text(
-            'Try searching with a different name',
-            style: TextStyle(
-              fontSize: 14,
-              color: Colors.grey[600],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 }
-
-// {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: const GlobalAppBar(title: "English Rhymes-Poems for Children"),
-//       body: GlobalContainer(
-//         height: Get.height,
-//         width: Get.width,
-//         backgroundColor: ColorRes.backgroundColor,
-//         child: SingleChildScrollView(
-//           child: Padding(
-//             padding: EdgeInsets.symmetric(horizontal: Get.width * 0.04),
-//             child: Column(
-//               children: [
-//                 SizedBox(height: Get.height * 0.015),
-//                 ListView.builder(
-//                   itemCount: englishPoemsClassOneData.length,
-//                   shrinkWrap: true,
-//                   physics: const NeverScrollableScrollPhysics(),
-//                   itemBuilder: (ctx, index) {
-//                     final englishPoems = englishPoemsClassOneData[index];
-//                     return Padding(
-//                       padding: EdgeInsets.only(bottom: Get.height * 0.01),
-//                       child: ManuItem(
-//                         title: englishPoems.title,
-//                         onTap: () {
-//                           Get.to(() => EnglishFullPoemsScreen(id: englishPoems.id));
-//                         },
-//                       ),
-//                     );
-//                   },
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }

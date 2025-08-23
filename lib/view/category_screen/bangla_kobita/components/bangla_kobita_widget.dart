@@ -24,8 +24,7 @@ class KobitaWidget extends StatefulWidget {
   State<KobitaWidget> createState() => _KobitaWidgetState();
 }
 
-class _KobitaWidgetState extends State<KobitaWidget>
-    with TickerProviderStateMixin {
+class _KobitaWidgetState extends State<KobitaWidget> with TickerProviderStateMixin {
   late BanglaKobitaAnimations animations;
   double _textSize = 21.0;
   bool _isPlaying = false;
