@@ -40,16 +40,39 @@ class _KobitaWidgetState extends State<KobitaWidget> with TickerProviderStateMix
     animations = BanglaKobitaAnimations(vsync: this);
     animations.init();
 
-    // TTS Initialization
-    _flutterTts.setLanguage("bn-BD");
-    _flutterTts.setPitch(1.0);
-    _flutterTts.setSpeechRate(0.5);
+    _initTTS();
+  }
+
+  Future<void> _initTTS() async {
+    await _flutterTts.setLanguage("bn-BD");
+    await _flutterTts.setPitch(1.5);
+    await _flutterTts.setSpeechRate(0.4);
+    await _setPreferredVoice();
 
     _flutterTts.setCompletionHandler(() {
-      setState(() {
-        _isSpeaking = false;
-      });
+      setState(() => _isSpeaking = false);
     });
+  }
+
+  Future<void> _setPreferredVoice() async {
+    try {
+      List<dynamic> voices = await _flutterTts.getVoices;
+      final selectedVoice = voices.firstWhere(
+            (v) => v.toString().toLowerCase().contains('female') ||
+            v.toString().toLowerCase().contains('child') ||
+            v.toString().toLowerCase().contains('bn'),
+        orElse: () => voices.isNotEmpty ? voices.first : null,
+      );
+
+      if (selectedVoice != null && selectedVoice is Map) {
+        await _flutterTts.setVoice({
+          "name": selectedVoice["name"],
+          "locale": selectedVoice["locale"]
+        });
+      }
+    } catch (e) {
+      debugPrint("TTS voice selection failed: $e");
+    }
   }
 
   @override
@@ -62,14 +85,13 @@ class _KobitaWidgetState extends State<KobitaWidget> with TickerProviderStateMix
   void _toggleTTS() async {
     if (_isSpeaking) {
       await _flutterTts.stop();
-      setState(() {
-        _isSpeaking = false;
-      });
+      setState(() => _isSpeaking = false);
     } else {
+      await _flutterTts.setVolume(1.0);
+      await _flutterTts.setPitch(1.5);
+      await _flutterTts.setSpeechRate(0.4);
       await _flutterTts.speak(widget.fullKobita);
-      setState(() {
-        _isSpeaking = true;
-      });
+      setState(() => _isSpeaking = true);
     }
   }
 

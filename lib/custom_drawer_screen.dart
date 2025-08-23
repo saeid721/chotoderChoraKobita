@@ -51,8 +51,7 @@ class _CustomDrawerScreenState extends State<CustomDrawerScreen> {
                 Container(
                   width: Get.width,
                   height: 160,
-                  padding: const EdgeInsets.only(
-                      left: 20, right: 10, top: 50, bottom: 10),
+                  padding: const EdgeInsets.only(left: 20, right: 10, top: 50, bottom: 10),
 
                   decoration:  BoxDecoration(
                     border:
@@ -77,8 +76,7 @@ class _CustomDrawerScreenState extends State<CustomDrawerScreen> {
                 Expanded(
                   child: ListView.builder(
                     itemCount: menuItem.length,
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 20, horizontal: 20),
+                    padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                     itemBuilder: (ctx, index) {
                       return GestureDetector(
                         onTap: () async {
@@ -109,8 +107,7 @@ class _CustomDrawerScreenState extends State<CustomDrawerScreen> {
                         },
                         child: Container(
                           width: Get.width,
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 8),
+                          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
                             color: isClick == index
