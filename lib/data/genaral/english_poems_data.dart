@@ -11,13 +11,13 @@ class EnglishPoemsClassOneData {
 final List<EnglishPoemsClassOneData> englishPoemsData = [
   EnglishPoemsClassOneData(
     id: '01',
-    title: 'Twinkle Twinkle Little Star',
-    fullPoemImage: "assets/images/english/class/01.jpg",
+    title: 'Early To Bed Early To Rise',
+    fullPoemImage: "assets/images/english/class/02.jpg",
   ),
   EnglishPoemsClassOneData(
     id: '02',
-    title: 'Early To Bed Early To Rise',
-    fullPoemImage: "assets/images/english/class/02.jpg",
+    title: 'Twinkle Twinkle Little Star',
+    fullPoemImage: "assets/images/english/class/01.jpg",
   ),
   EnglishPoemsClassOneData(
     id: '03',
