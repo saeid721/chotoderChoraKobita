@@ -44,8 +44,7 @@ class _KobitaWidgetState extends State<KobitaWidget> with TickerProviderStateMix
 
   @override
   Widget build(BuildContext context) {
-    final availableHeight =
-        Get.height - kToolbarHeight - MediaQuery.of(context).padding.top;
+    final availableHeight = Get.height - kToolbarHeight - MediaQuery.of(context).padding.top;
     final isLargeScreen = Get.width > 400;
 
     return SizedBox(
@@ -53,7 +52,6 @@ class _KobitaWidgetState extends State<KobitaWidget> with TickerProviderStateMix
       width: Get.width,
       child: Stack(
         children: [
-          // Background gradient
           AnimatedContainer(
             duration: const Duration(seconds: 1),
             decoration: const BoxDecoration(
@@ -70,11 +68,7 @@ class _KobitaWidgetState extends State<KobitaWidget> with TickerProviderStateMix
               ),
             ),
           ),
-
-          // Floating decorations
           ...List.generate(8, (index) => _buildFloatingDecoration(index)),
-
-          // Background image
           GlobalImageLoader(
             imagePath: Images.kobitaBg,
             width: Get.width,
@@ -82,8 +76,6 @@ class _KobitaWidgetState extends State<KobitaWidget> with TickerProviderStateMix
             fit: BoxFit.fill,
             imageFor: ImageFor.asset,
           ),
-
-          // Overlay gradient
           Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -98,8 +90,6 @@ class _KobitaWidgetState extends State<KobitaWidget> with TickerProviderStateMix
               ),
             ),
           ),
-
-          // Reading controls
           Positioned(
             top: 10,
             right: 10,
@@ -158,8 +148,6 @@ class _KobitaWidgetState extends State<KobitaWidget> with TickerProviderStateMix
               ),
             ),
           ),
-
-          // Poem content
           Center(
             child: Container(
               constraints: const BoxConstraints(maxWidth: 600),
@@ -186,8 +174,6 @@ class _KobitaWidgetState extends State<KobitaWidget> with TickerProviderStateMix
               ),
             ),
           ),
-
-          // Bottom wave
           Positioned(
             bottom: 0,
             left: 0,
@@ -199,7 +185,6 @@ class _KobitaWidgetState extends State<KobitaWidget> with TickerProviderStateMix
     );
   }
 
-  // Fixed floating decorations (no nested Positioned)
   Widget _buildFloatingDecoration(int index) {
     final decorations = ['⭐', '🌟', '✨', '🌙', '🌸', '🦋', '🌈', '💫'];
     final colors = [
@@ -288,10 +273,7 @@ class _KobitaWidgetState extends State<KobitaWidget> with TickerProviderStateMix
               ],
             ),
           ),
-
           sizedBoxH(10),
-
-          // Poem text
           AnimatedDefaultTextStyle(
             duration: const Duration(milliseconds: 300),
             style: TextStyle(
@@ -307,8 +289,6 @@ class _KobitaWidgetState extends State<KobitaWidget> with TickerProviderStateMix
               color: const Color(0xFF2D3748),
             ),
           ),
-
-          // Writer (only if valid)
           if (hasWriter)
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
