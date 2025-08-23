@@ -254,8 +254,8 @@ class _EnglishPoemsListScreenState extends State<EnglishPoemsListScreen> with Ti
 
     final cardColors = colors[index % colors.length];
     final poemIcons = [
-      '🌟', // Twinkle Twinkle Little Star
       '🛏️', // Early To Bed Early To Rise
+      '🌟', // Twinkle Twinkle Little Star
       '🍬', // Johny Johny Yes Papa
       '👩‍👧', // Mommy and Daddy
       '🥚', // Humpty Dumpty
