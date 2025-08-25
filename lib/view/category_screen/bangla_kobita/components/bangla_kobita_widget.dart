@@ -32,7 +32,6 @@ class _KobitaWidgetState extends State<KobitaWidget> with TickerProviderStateMix
 
   // Text-to-Speech
   final FlutterTts _flutterTts = FlutterTts();
-  bool _isSpeaking = false;
 
   @override
   void initState() {
@@ -50,7 +49,8 @@ class _KobitaWidgetState extends State<KobitaWidget> with TickerProviderStateMix
     await _setPreferredVoice();
 
     _flutterTts.setCompletionHandler(() {
-      setState(() => _isSpeaking = false);
+      setState(() => _isPlaying = false);
+      animations.sparkleController.stop();
     });
   }
 
@@ -58,8 +58,8 @@ class _KobitaWidgetState extends State<KobitaWidget> with TickerProviderStateMix
     try {
       List<dynamic> voices = await _flutterTts.getVoices;
       final selectedVoice = voices.firstWhere(
-            (v) => v.toString().toLowerCase().contains('female') ||
-            v.toString().toLowerCase().contains('child') ||
+            (v) => v.toString().toLowerCase().contains('child') ||
+            v.toString().toLowerCase().contains('female') ||
             v.toString().toLowerCase().contains('bn'),
         orElse: () => voices.isNotEmpty ? voices.first : null,
       );
@@ -82,16 +82,18 @@ class _KobitaWidgetState extends State<KobitaWidget> with TickerProviderStateMix
     super.dispose();
   }
 
-  void _toggleTTS() async {
-    if (_isSpeaking) {
-      await _flutterTts.stop();
-      setState(() => _isSpeaking = false);
-    } else {
+  void _togglePlayPause() async {
+    setState(() => _isPlaying = !_isPlaying);
+
+    if (_isPlaying) {
       await _flutterTts.setVolume(1.0);
       await _flutterTts.setPitch(1.5);
       await _flutterTts.setSpeechRate(0.4);
       await _flutterTts.speak(widget.fullKobita);
-      setState(() => _isSpeaking = true);
+      animations.sparkleController.repeat();
+    } else {
+      await _flutterTts.stop();
+      animations.sparkleController.stop();
     }
   }
 
@@ -181,29 +183,12 @@ class _KobitaWidgetState extends State<KobitaWidget> with TickerProviderStateMix
                     tooltip: 'বড় করুন',
                   ),
                   IconButton(
-                    onPressed: () {
-                      setState(() {
-                        _isPlaying = !_isPlaying;
-                      });
-                      if (_isPlaying) {
-                        animations.sparkleController.repeat();
-                      } else {
-                        animations.sparkleController.stop();
-                      }
-                    },
+                    onPressed: _togglePlayPause,
                     icon: Icon(
                       _isPlaying ? Icons.pause_circle : Icons.play_circle,
                       color: Colors.purple,
                     ),
                     tooltip: _isPlaying ? 'থামান' : 'শুরু করুন',
-                  ),
-                  IconButton(
-                    onPressed: _toggleTTS,
-                    icon: Icon(
-                      _isSpeaking ? Icons.volume_off : Icons.volume_up,
-                      color: Colors.green,
-                    ),
-                    tooltip: _isSpeaking ? 'থামান' : 'পড়ুন',
                   ),
                 ],
               ),

@@ -3,7 +3,7 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
 
     <application
-        android:label="ছোটদের ছড়া-কবিতা"
+        android:label="ছোটদের ছড়া"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
