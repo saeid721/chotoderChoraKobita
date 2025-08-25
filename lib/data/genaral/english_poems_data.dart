@@ -12,42 +12,42 @@ final List<EnglishPoemsClassOneData> englishPoemsData = [
   EnglishPoemsClassOneData(
     id: '01',
     title: 'Early To Bed Early To Rise',
-    fullPoemImage: "assets/images/english/class/02.jpg",
+    fullPoemImage: "assets/images/english/class/01.png",
   ),
   EnglishPoemsClassOneData(
     id: '02',
     title: 'Twinkle Twinkle Little Star',
-    fullPoemImage: "assets/images/english/class/01.jpg",
+    fullPoemImage: "assets/images/english/class/02.png",
   ),
   EnglishPoemsClassOneData(
     id: '03',
     title: 'Johny Johny Yes Papa',
-    fullPoemImage: "assets/images/english/class/03.jpg",
+    fullPoemImage: "assets/images/english/class/03.png",
   ),
   EnglishPoemsClassOneData(
     id: '04',
     title: 'Mommy and Daddy',
-    fullPoemImage: "assets/images/english/class/04.jpg",
+    fullPoemImage: "assets/images/english/class/04.png",
   ),
   EnglishPoemsClassOneData(
     id: '05',
     title: 'Humpty Dumpty',
-    fullPoemImage: "assets/images/english/class/05.jpg",
+    fullPoemImage: "assets/images/english/class/05.png",
   ),
   EnglishPoemsClassOneData(
     id: '06',
     title: 'Roses Are Red',
-    fullPoemImage: "assets/images/english/class/06.jpg",
+    fullPoemImage: "assets/images/english/class/06.png",
   ),
   EnglishPoemsClassOneData(
     id: '07',
     title: 'Ding Dong Bell',
-    fullPoemImage: "assets/images/english/class/07.jpg",
+    fullPoemImage: "assets/images/english/class/07.png",
   ),
   EnglishPoemsClassOneData(
     id: '08',
     title: 'Snap Yo Fingers',
-    fullPoemImage: "assets/images/english/class/08.jpg",
+    fullPoemImage: "assets/images/english/class/08.png",
   ),
 
   EnglishPoemsClassOneData(
