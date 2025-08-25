@@ -27,8 +27,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   final List<String> sliderImage = [
     'assets/images/01.png',
     'assets/images/02.png',
-    'assets/images/03.jpg',
-    'assets/images/04.jpg',
+    'assets/images/03.png',
   ];
 
   @override
