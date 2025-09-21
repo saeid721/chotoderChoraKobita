@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:math' as math;
 import 'alpha_enmu.dart';
 import 'particle_painter.dart';
 

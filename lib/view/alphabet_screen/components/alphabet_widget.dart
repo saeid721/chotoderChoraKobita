@@ -62,7 +62,7 @@ class LetterGridWidget extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 4,
-          childAspectRatio: 0.85,
+          childAspectRatio: 0.90,
           crossAxisSpacing: 8,
           mainAxisSpacing: 8,
         ),
@@ -175,29 +175,30 @@ class ThemeSpecificCardWidget extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            letter.icon,
-            color: ColorRes.white,
-            size: 28,
-          ),
-          sizedBoxH(4),
-          GlobalText(
-            str: letter.letter,
-            fontSize: 32,
-            fontWeight: FontWeight.w900,
-            color: ColorRes.deep400,
-          ),
-          sizedBoxH(4),
-          GlobalText(
-            str: letter.pronunciation,
-            fontSize: 10,
-            fontWeight: FontWeight.w600,
-            color: ColorRes.deep200,
-          ),
-        ],
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(
+              letter.icon,
+              color: ColorRes.white,
+              size: 28,
+            ),
+            GlobalText(
+              str: letter.letter,
+              fontSize: 32,
+              fontWeight: FontWeight.w900,
+              color: ColorRes.deep400,
+            ),
+            GlobalText(
+              str: letter.pronunciation,
+              fontSize: 10,
+              fontWeight: FontWeight.w600,
+              color: ColorRes.deep200,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -217,23 +218,25 @@ class ThemeSpecificCardWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
         border: Border.all(color: const Color(0xFF00FFFF).withOpacity(0.3)),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(letter.icon, color: Colors.white.withOpacity(0.7), size: 24),
-          GlobalText(
-            str: letter.letter,
-            fontSize: 32,
-            fontWeight: FontWeight.w900,
-            color: const Color(0xFF00FFFF),
-          ),
-          sizedBoxH(4),
-          GlobalText(
-            str: letter.pronunciation.toLowerCase(),
-            fontSize: 8,
-            color: const Color(0xFF00FFFF).withOpacity(0.6),
-          ),
-        ],
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(letter.icon, color: Colors.white.withOpacity(0.7), size: 24),
+            GlobalText(
+              str: letter.letter,
+              fontSize: 32,
+              fontWeight: FontWeight.w900,
+              color: const Color(0xFF00FFFF),
+            ),
+            GlobalText(
+              str: letter.pronunciation.toLowerCase(),
+              fontSize: 8,
+              color: const Color(0xFF00FFFF).withOpacity(0.6),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -262,24 +265,26 @@ class ThemeSpecificCardWidget extends StatelessWidget {
             ),
           ],
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(letter.icon, color: Colors.white.withOpacity(0.7), size: 24),
-            GlobalText(
-              str: letter.letter,
-              fontSize: 34,
-              fontWeight: FontWeight.w900,
-              color: const Color(0xFF90EE90),
-            ),
-            sizedBoxH(4),
-            GlobalText(
-              str: letter.pronunciation.toLowerCase(),
-              fontSize: 9,
-              color: const Color(0xFF90EE90).withOpacity(0.7),
-              fontStyle: FontStyle.italic,
-            ),
-          ],
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon(letter.icon, color: Colors.white.withOpacity(0.7), size: 24),
+              GlobalText(
+                str: letter.letter,
+                fontSize: 34,
+                fontWeight: FontWeight.w900,
+                color: const Color(0xFF90EE90),
+              ),
+              GlobalText(
+                str: letter.pronunciation.toLowerCase(),
+                fontSize: 9,
+                color: const Color(0xFF90EE90).withOpacity(0.7),
+                fontStyle: FontStyle.italic,
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -315,24 +320,26 @@ class ThemeSpecificCardWidget extends StatelessWidget {
             ),
           ],
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(letter.icon, color: Colors.white.withOpacity(0.7), size: 24),
-            GlobalText(
-              str: letter.letter,
-              fontSize: 30,
-              fontWeight: FontWeight.w900,
-              color: const Color(0xFF00FFFF),
-            ),
-            sizedBoxH(4),
-            GlobalText(
-              str: letter.pronunciation.toLowerCase(),
-              fontSize: 8,
-              color: const Color(0xFF00FFFF).withOpacity(0.7),
-              fontWeight: FontWeight.bold,
-            ),
-          ],
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon(letter.icon, color: Colors.white.withOpacity(0.7), size: 24),
+              GlobalText(
+                str: letter.letter,
+                fontSize: 30,
+                fontWeight: FontWeight.w900,
+                color: const Color(0xFF00FFFF),
+              ),
+              GlobalText(
+                str: letter.pronunciation.toLowerCase(),
+                fontSize: 8,
+                color: const Color(0xFF00FFFF).withOpacity(0.7),
+                fontWeight: FontWeight.bold,
+              ),
+            ],
+          ),
         ),
       ),
     );

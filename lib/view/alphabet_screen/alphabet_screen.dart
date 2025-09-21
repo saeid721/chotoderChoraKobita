@@ -87,7 +87,6 @@ class _AlphabetScreenState extends State<AlphabetScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorRes.white,
       appBar: AppBar(
         elevation: 1,
         shadowColor: ColorRes.white200,
