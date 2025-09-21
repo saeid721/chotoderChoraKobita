@@ -13,6 +13,7 @@ class Images {
   static const String shareInc = 'assets/icons/share.png';
   static const String ratingInc = 'assets/icons/rating.png';
   static const String policyInc = 'assets/icons/policy.png';
+  static const String alphabetInc = 'assets/icons/alphabet.png';
 
   static const String faqInc = 'assets/icons/faq.png';
   static const String notificationInc = 'assets/icons/notification.png';

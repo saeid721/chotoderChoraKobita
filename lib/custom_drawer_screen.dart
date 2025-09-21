@@ -9,6 +9,7 @@ import 'global/widget/global_image_loader.dart';
 import 'global/widget/global_text.dart';
 import 'global/widget/images.dart';
 import 'view/about_screen/about_screen.dart';
+import 'view/alphabet_screen/alphabet_screen.dart';
 import 'view/category_screen/home_screen.dart';
 import 'view/contact_screen/contact_screen.dart';
 import 'view/privacy_policy_screen/privacy_policy_screen.dart';
@@ -29,6 +30,7 @@ class _CustomDrawerScreenState extends State<CustomDrawerScreen> {
     GlobalMenuModel(img: Images.shareInc, text: 'Share Your Friends'),
     GlobalMenuModel(img: Images.ratingInc, text: 'Rate Our App'),
     GlobalMenuModel(img: Images.policyInc, text: 'Privacy & Policy'),
+    GlobalMenuModel(img: Images.alphabetInc, text: 'Alphabet'),
   ];
 
   // Function to handle app sharing
@@ -102,6 +104,9 @@ class _CustomDrawerScreenState extends State<CustomDrawerScreen> {
                               break;
                             case 5:
                               Get.to(() => const AppPrivacyPolicyScreen());
+                              break;
+                            case 6:
+                              Get.to(() => const AlphabetScreen());
                               break;
                           }
                         },
