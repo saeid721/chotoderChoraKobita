@@ -8,7 +8,7 @@ import 'components/alpha_enmu.dart';
 import 'components/alphabet_widget.dart';
 import 'components/particle_painter_animation.dart';
 import 'components/theme_background_widget.dart';
-import 'components/theme_selector_widget.dart'; // New import
+import 'components/theme_selector_widget.dart';
 import 'controller/alphabet_controller.dart';
 import 'model/alphabet_model.dart';
 
