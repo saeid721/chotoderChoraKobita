@@ -56,13 +56,13 @@ class LetterGridWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
       child: GridView.builder(
         shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
+        //physics: const NeverScrollableScrollPhysics(),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 4,
-          childAspectRatio: 0.90,
+          childAspectRatio: 0.87,
           crossAxisSpacing: 8,
           mainAxisSpacing: 8,
         ),
@@ -178,18 +178,18 @@ class ThemeSpecificCardWidget extends StatelessWidget {
       child: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Icon(
-              letter.icon,
-              color: ColorRes.white,
-              size: 28,
+            GlobalText(
+              str: letter.icon,
+              fontSize: 16,
             ),
             GlobalText(
               str: letter.letter,
-              fontSize: 32,
+              fontSize: 36,
               fontWeight: FontWeight.w900,
-              color: ColorRes.deep400,
+              color: ColorRes.primaryColor,
             ),
             GlobalText(
               str: letter.pronunciation,
@@ -223,7 +223,10 @@ class ThemeSpecificCardWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Icon(letter.icon, color: Colors.white.withOpacity(0.7), size: 24),
+            GlobalText(
+              str: letter.icon,
+              fontSize: 16,
+            ),
             GlobalText(
               str: letter.letter,
               fontSize: 32,
@@ -270,7 +273,10 @@ class ThemeSpecificCardWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Icon(letter.icon, color: Colors.white.withOpacity(0.7), size: 24),
+              GlobalText(
+                str: letter.icon,
+                fontSize: 16,
+              ),
               GlobalText(
                 str: letter.letter,
                 fontSize: 34,
@@ -325,7 +331,10 @@ class ThemeSpecificCardWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Icon(letter.icon, color: Colors.white.withOpacity(0.7), size: 24),
+              GlobalText(
+                str: letter.icon,
+                fontSize: 16,
+              ),
               GlobalText(
                 str: letter.letter,
                 fontSize: 30,
@@ -393,7 +402,10 @@ class ReadingOverlayWidget extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(selectedLetter.icon, color: Colors.white.withOpacity(0.7), size: 60),
+                      GlobalText(
+                        str: selectedLetter.icon,
+                        fontSize: 60,
+                      ),
                       sizedBoxH(10),
                       AnimatedBuilder(
                         animation: readingController,
@@ -411,6 +423,12 @@ class ReadingOverlayWidget extends StatelessWidget {
                       ),
                       sizedBoxH(10),
                       GlobalText(
+                        str: '/${selectedLetter.pronunciation}/',
+                        fontSize: 18,
+                        color: Colors.white.withOpacity(0.8),
+                      ),
+                      sizedBoxH(10),
+                      GlobalText(
                         str: selectedLetter.word,
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -418,9 +436,10 @@ class ReadingOverlayWidget extends StatelessWidget {
                       ),
                       sizedBoxH(10),
                       GlobalText(
-                        str: '/${selectedLetter.pronunciation}/',
-                        fontSize: 18,
-                        color: Colors.white.withOpacity(0.8),
+                        str: selectedLetter.description ?? '',
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
                       sizedBoxH(30),
                       GestureDetector(
@@ -453,7 +472,7 @@ class ReadingOverlayWidget extends StatelessWidget {
   List<Color> _themeGradientColors() {
     switch (currentTheme) {
       case AlphabetTheme.storybook:
-        return [const Color(0xFFFF6B6B), const Color(0xFF4ECDC4), const Color(0xFFFFD700)];
+        return [const Color(0xFFFFE6F0), const Color(0xFF4ECDC4), const Color(0xFFFF6B6B)];
       case AlphabetTheme.holographic:
         return [const Color(0xFF00FFFF), const Color(0xFFFF00FF), const Color(0xFF8A2BE2)];
       case AlphabetTheme.enchanted:

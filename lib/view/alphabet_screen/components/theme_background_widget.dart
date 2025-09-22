@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'alpha_enmu.dart';
-import 'particle_painter.dart';
+import 'particle_painter_animation.dart';
 
 class ThemeBackgroundWidget extends StatelessWidget {
   final AlphabetTheme currentTheme;

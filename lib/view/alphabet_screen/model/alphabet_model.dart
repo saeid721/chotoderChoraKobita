@@ -6,13 +6,16 @@ class LetterModel {
   final String pronunciation;
   final String phonetic;
   final String word;
+  final String? description;
   final Color primaryColor;
   final Color secondaryColor;
-  final IconData icon;  LetterModel({
+  final String icon;
+  LetterModel({
     required this.letter,
     required this.pronunciation,
     required this.phonetic,
     required this.word,
+    this.description,
     required this.primaryColor,
     required this.secondaryColor,
     required this.icon,
