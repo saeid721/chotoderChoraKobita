@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:async';
 import '../../global/widget/colors.dart';
+import '../../global/widget/global_sizedbox.dart';
 import '../../global/widget/global_text.dart';
 import 'components/alpha_enmu.dart';
 import 'components/alphabet_widget.dart';
@@ -102,19 +103,19 @@ class _AlphabetScreenState extends State<AlphabetScreen>
           ThemeSelectorWidget(
             theme: AlphabetTheme.storybook,
             emoji: '🌟',
+            color: const Color(0xFFFEF8C6),
+            currentTheme: _controller.currentTheme,
+            onSwitchTheme: _switchTheme,
+          ),
+          sizedBoxW(8),
+          ThemeSelectorWidget(
+            theme: AlphabetTheme.holographic,
+            emoji: '🚀',
             color: const Color(0xFFFF6B6B),
             currentTheme: _controller.currentTheme,
             onSwitchTheme: _switchTheme,
           ),
-          const SizedBox(width: 8),
-          ThemeSelectorWidget(
-            theme: AlphabetTheme.holographic,
-            emoji: '🚀',
-            color: const Color(0xFF00FFFF),
-            currentTheme: _controller.currentTheme,
-            onSwitchTheme: _switchTheme,
-          ),
-          const SizedBox(width: 8),
+          sizedBoxW(8),
           ThemeSelectorWidget(
             theme: AlphabetTheme.enchanted,
             emoji: '🌿',
@@ -122,7 +123,7 @@ class _AlphabetScreenState extends State<AlphabetScreen>
             currentTheme: _controller.currentTheme,
             onSwitchTheme: _switchTheme,
           ),
-          const SizedBox(width: 8),
+          sizedBoxW(8),
           ThemeSelectorWidget(
             theme: AlphabetTheme.ocean,
             emoji: '🌊',
@@ -130,7 +131,7 @@ class _AlphabetScreenState extends State<AlphabetScreen>
             currentTheme: _controller.currentTheme,
             onSwitchTheme: _switchTheme,
           ),
-          const SizedBox(width: 8),
+          sizedBoxW(8),
         ],
       ),
       body: Stack(

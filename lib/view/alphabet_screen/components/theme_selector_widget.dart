@@ -29,22 +29,12 @@ class ThemeSelectorWidget extends StatelessWidget {
         height: 40,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          gradient: LinearGradient(
-            colors: [color, color.withOpacity(0.6)],
-          ),
+          gradient: isActive ? LinearGradient(
+            colors: [ color, color.withOpacity(0.6)]) : null,
           border: Border.all(
-            color: isActive ? Colors.white : Colors.transparent,
-            width: 2,
+            color: color,
+            width: 1,
           ),
-          boxShadow: isActive
-              ? [
-            BoxShadow(
-              color: color.withOpacity(0.5),
-              blurRadius: 10,
-              spreadRadius: 1,
-            ),
-          ]
-              : null,
         ),
         transform: Matrix4.identity()..scale(isActive ? 1.1 : 1.0),
         child: Center(

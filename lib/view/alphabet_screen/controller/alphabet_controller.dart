@@ -47,9 +47,6 @@ class AlphabetController {
     LetterModel(letter: 'Z', pronunciation: 'ZEE', phonetic: '/ziː/', word: 'Zakat', description: 'Giving to the poor', icon: '💰', primaryColor: Color(0xFF74B9FF), secondaryColor: Color(0xFF0984E3)),
   ];
 
-
-
-
   final TickerProvider vsync;
   final Function(LetterModel, Offset) onLetterTap;
   final Function(AlphabetTheme) onSwitchTheme;
