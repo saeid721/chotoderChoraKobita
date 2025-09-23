@@ -23,6 +23,7 @@ class CustomDrawerScreen extends StatefulWidget {
 
 class _CustomDrawerScreenState extends State<CustomDrawerScreen> {
   int isClick = 0;
+
   final List<GlobalMenuModel> menuItem = [
     GlobalMenuModel(img: Images.homeInc, text: 'Home'),
     GlobalMenuModel(img: Images.aboutInc, text: 'About Us'),
@@ -53,11 +54,10 @@ class _CustomDrawerScreenState extends State<CustomDrawerScreen> {
                 Container(
                   width: Get.width,
                   height: 160,
-                  padding: const EdgeInsets.only(left: 20, right: 10, top: 50, bottom: 10),
-
-                  decoration:  BoxDecoration(
-                    border:
-                    Border.all(color: ColorRes.primaryColor, width: 0.3),
+                  padding: const EdgeInsets.only(
+                      left: 20, right: 10, top: 50, bottom: 10),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: ColorRes.primaryColor, width: 0.3),
                     gradient: const LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
@@ -78,66 +78,74 @@ class _CustomDrawerScreenState extends State<CustomDrawerScreen> {
                 Expanded(
                   child: ListView.builder(
                     itemCount: menuItem.length,
-                    padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 20, horizontal: 20),
                     itemBuilder: (ctx, index) {
-                      return GestureDetector(
-                        onTap: () async {
-                          setState(() {
-                            isClick = index;
-                          });
-                          log('Index: $index');
-                          switch (index) {
-                            case 0:
-                              Get.to(() => const HomeScreen());
-                              break;
-                            case 1:
-                              Get.to(() => const AboutUsScreen());
-                              break;
-                            case 2:
-                              Get.to(() => const ContactScreen());
-                              break;
-                            case 3:
-                              _shareApp(); // Trigger share app function
-                              break;
-                            case 4:
-                            // Add any action for Rating here
-                              break;
-                            case 5:
-                              Get.to(() => const AppPrivacyPolicyScreen());
-                              break;
-                            case 6:
-                              Get.to(() => const AlphabetScreen());
-                              break;
-                          }
-                        },
-                        child: Container(
-                          width: Get.width,
-                          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: isClick == index
-                                ? ColorRes.primaryColor
-                                : Colors.white,
-                          ),
-                          margin: const EdgeInsets.only(bottom: 5),
-                          child: Row(
-                            children: [
-                              GlobalImageLoader(
-                                imagePath: menuItem[index].img,
-                                height: 20,
-                                width: 20,
-                                fit: BoxFit.fill,
-                                imageFor: ImageFor.asset,
-                              ),
-                              const SizedBox(width: 10),
-                              GlobalText(
-                                str: menuItem[index].text,
-                                color: isClick == index
-                                    ? ColorRes.white
-                                    : ColorRes.black,
-                                fontSize: 16,
-                              ),
-                            ],
+                      return Material(
+                        color: Colors.transparent,
+                        child: GestureDetector(
+                          onTap: () async {
+                            setState(() {
+                              isClick = index;
+                            });
+                            log('Index: $index');
+                            Get.back(); // ✅ Close the drawer first
+
+                            switch (index) {
+                              case 0:
+                                Get.to(() => const HomeScreen());
+                                break;
+                              case 1:
+                                Get.to(() => const AboutUsScreen());
+                                break;
+                              case 2:
+                                Get.to(() => const ContactScreen());
+                                break;
+                              case 3:
+                                _shareApp();
+                                break;
+                              case 4:
+                              // Add Rating Action here
+                                break;
+                              case 5:
+                                Get.to(() => const AppPrivacyPolicyScreen());
+                                break;
+                              case 6:
+                                Get.to(() => const AlphabetScreen());
+                                break;
+                            }
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 8),
+                            margin: const EdgeInsets.only(bottom: 5),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: isClick == index
+                                  ? ColorRes.primaryColor
+                                  : Colors.white,
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                GlobalImageLoader(
+                                  imagePath: menuItem[index].img,
+                                  height: 20,
+                                  width: 20,
+                                  fit: BoxFit.fill,
+                                  imageFor: ImageFor.asset,
+                                ),
+                                const SizedBox(width: 10),
+                                GlobalText(
+                                  str: menuItem[index].text,
+                                  color: isClick == index
+                                      ? ColorRes.white
+                                      : ColorRes.black,
+                                  fontSize: 16,
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       );
