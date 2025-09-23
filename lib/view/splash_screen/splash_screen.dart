@@ -79,18 +79,18 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
               fit: BoxFit.contain,
               imageFor: ImageFor.asset,
             ),
-            // const Spacer(flex: 2), // Add space below
-            // // Version Text at Bottom
-            // const Padding(
-            //   padding: EdgeInsets.only(bottom: 20.0),
-            //   child: GlobalText(
-            //     str: "Version 1.0.1",
-            //     fontSize: 12,
-            //     fontWeight: FontWeight.w400,
-            //     textAlign: TextAlign.center,
-            //     color: ColorRes.black,
-            //   ),
-            // ),
+            const Spacer(flex: 2), // Add space below
+            // Version Text at Bottom
+            const Padding(
+              padding: EdgeInsets.only(bottom: 20.0),
+              child: GlobalText(
+                str: "Version 1.0.1",
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+                textAlign: TextAlign.center,
+                color: ColorRes.grey,
+              ),
+            ),
           ],
         ),
       ),
