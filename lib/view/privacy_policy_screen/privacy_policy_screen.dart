@@ -47,6 +47,7 @@ class _AppPrivacyPolicyScreenState extends State<AppPrivacyPolicyScreen> {
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 textAlign: TextAlign.left,
+                isSelectable: false,
               ),
               const GlobalText(
                 str:
@@ -55,6 +56,7 @@ class _AppPrivacyPolicyScreenState extends State<AppPrivacyPolicyScreen> {
                 fontSize: 12,
                 fontWeight: FontWeight.w400,
                 textAlign: TextAlign.justify,
+                isSelectable: false,
               ),
               sizedBoxH(5),
               const GlobalText(
@@ -64,6 +66,7 @@ class _AppPrivacyPolicyScreenState extends State<AppPrivacyPolicyScreen> {
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 textAlign: TextAlign.left,
+                isSelectable: false,
               ),
               const GlobalText(
                 str:
@@ -72,6 +75,7 @@ class _AppPrivacyPolicyScreenState extends State<AppPrivacyPolicyScreen> {
                 fontSize: 12,
                 fontWeight: FontWeight.w400,
                 textAlign: TextAlign.justify,
+                isSelectable: false,
               ),
               sizedBoxH(5),
               const GlobalText(
@@ -81,6 +85,7 @@ class _AppPrivacyPolicyScreenState extends State<AppPrivacyPolicyScreen> {
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 textAlign: TextAlign.left,
+                isSelectable: false,
               ),
               const GlobalText(
                 str:
@@ -89,6 +94,7 @@ class _AppPrivacyPolicyScreenState extends State<AppPrivacyPolicyScreen> {
                 fontSize: 12,
                 fontWeight: FontWeight.w400,
                 textAlign: TextAlign.justify,
+                isSelectable: false,
               ),
               sizedBoxH(5),
               const GlobalText(
@@ -98,6 +104,7 @@ class _AppPrivacyPolicyScreenState extends State<AppPrivacyPolicyScreen> {
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 textAlign: TextAlign.left,
+                isSelectable: false,
               ),
               const GlobalText(
                 str:
@@ -106,6 +113,7 @@ class _AppPrivacyPolicyScreenState extends State<AppPrivacyPolicyScreen> {
                 fontSize: 12,
                 fontWeight: FontWeight.w400,
                 textAlign: TextAlign.justify,
+                isSelectable: false,
               ),
               sizedBoxH(5),
               const GlobalText(
@@ -114,6 +122,7 @@ class _AppPrivacyPolicyScreenState extends State<AppPrivacyPolicyScreen> {
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 textAlign: TextAlign.left,
+                isSelectable: false,
               ),
               const GlobalText(
                 str:
@@ -122,6 +131,7 @@ class _AppPrivacyPolicyScreenState extends State<AppPrivacyPolicyScreen> {
                 fontSize: 12,
                 fontWeight: FontWeight.w400,
                 textAlign: TextAlign.justify,
+                isSelectable: false,
               ),
               sizedBoxH(5),
               const GlobalText(
@@ -130,6 +140,7 @@ class _AppPrivacyPolicyScreenState extends State<AppPrivacyPolicyScreen> {
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 textAlign: TextAlign.left,
+                isSelectable: false,
               ),
               const GlobalText(
                 str:
@@ -140,6 +151,7 @@ The Service Provider does not knowingly collect personally identifiable informat
                 fontSize: 12,
                 fontWeight: FontWeight.w400,
                 textAlign: TextAlign.justify,
+                isSelectable: false,
               ),
               sizedBoxH(5),
               const GlobalText(
@@ -148,6 +160,7 @@ The Service Provider does not knowingly collect personally identifiable informat
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 textAlign: TextAlign.left,
+                isSelectable: false,
               ),
               const GlobalText(
                 str:
@@ -156,6 +169,7 @@ The Service Provider does not knowingly collect personally identifiable informat
                 fontSize: 12,
                 fontWeight: FontWeight.w400,
                 textAlign: TextAlign.justify,
+                isSelectable: false,
               ),
               sizedBoxH(5),
               const GlobalText(
@@ -164,6 +178,7 @@ The Service Provider does not knowingly collect personally identifiable informat
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 textAlign: TextAlign.left,
+                isSelectable: false,
               ),
               const GlobalText(
                 str:
@@ -174,6 +189,7 @@ This privacy policy is effective as of 2025-02-01"""
                 fontSize: 12,
                 fontWeight: FontWeight.w400,
                 textAlign: TextAlign.justify,
+                isSelectable: false,
               ),
               sizedBoxH(5),
               const GlobalText(
@@ -182,6 +198,7 @@ This privacy policy is effective as of 2025-02-01"""
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 textAlign: TextAlign.left,
+                isSelectable: false,
               ),
               const GlobalText(
                 str:
@@ -190,6 +207,7 @@ This privacy policy is effective as of 2025-02-01"""
                 fontSize: 12,
                 fontWeight: FontWeight.w400,
                 textAlign: TextAlign.justify,
+                isSelectable: false,
               ),
               sizedBoxH(5),
               const GlobalText(
@@ -198,6 +216,7 @@ This privacy policy is effective as of 2025-02-01"""
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
                 textAlign: TextAlign.left,
+                isSelectable: false,
               ),
               const GlobalText(
                 str:
@@ -206,6 +225,7 @@ This privacy policy is effective as of 2025-02-01"""
                 fontSize: 12,
                 fontWeight: FontWeight.w400,
                 textAlign: TextAlign.justify,
+                isSelectable: false,
               ),
               sizedBoxH(5),
             ],

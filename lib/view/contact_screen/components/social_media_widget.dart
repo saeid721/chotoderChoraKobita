@@ -56,6 +56,7 @@ class SocialMediaWidget extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,
             maxLines: maxLines ?? 1,
+            isSelectable: false,
           ),
         ],
       ),

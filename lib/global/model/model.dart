@@ -6,12 +6,12 @@ class GlobalModel{
 class GlobalMenuModel{
   String img;
   String text;
-  String? subText;
+  String? slug;
 
   GlobalMenuModel({
     required this.img,
     required this.text,
-    this.subText
+    this.slug
   });
 }
 

@@ -60,7 +60,7 @@ class _ContactScreenState extends State<ContactScreen> {
               spacing: 5,
               children: [
                 const GlobalText(
-                  str: "আস-সালামু আলাইকুম ওয়া রহমাতুল্লাহি ওয়া বারকাতুহু",
+                  str: "আস-সালামু আলাইকুম ওয়া রহমাতুল্লাহি",
                   fontSize: 15,
                   fontWeight: FontWeight.w800,
                   textAlign: TextAlign.center,

@@ -98,6 +98,7 @@ class _AlphabetScreenState extends State<AlphabetScreen>
           fontSize: 20,
           fontWeight: FontWeight.w700,
           color: ColorRes.white,
+          isSelectable: false,
         ),
         actions: [
           ThemeSelectorWidget(

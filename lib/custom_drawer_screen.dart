@@ -25,13 +25,13 @@ class _CustomDrawerScreenState extends State<CustomDrawerScreen> {
   int isClick = 0;
 
   final List<GlobalMenuModel> menuItem = [
-    GlobalMenuModel(img: Images.homeInc, text: 'Home'),
-    GlobalMenuModel(img: Images.aboutInc, text: 'About Us'),
-    GlobalMenuModel(img: Images.contactInc, text: 'Contact Us'),
-    GlobalMenuModel(img: Images.shareInc, text: 'Share Your Friends'),
-    GlobalMenuModel(img: Images.ratingInc, text: 'Rate Our App'),
-    GlobalMenuModel(img: Images.policyInc, text: 'Privacy & Policy'),
-    GlobalMenuModel(img: Images.alphabetInc, text: 'Alphabet'),
+    GlobalMenuModel(img: Images.homeInc, text: 'Home', slug: 'home'),
+    GlobalMenuModel(img: Images.alphabetInc, text: 'Alphabet', slug: 'alphabet'),
+    GlobalMenuModel(img: Images.aboutInc, text: 'About Us', slug: 'about'),
+    GlobalMenuModel(img: Images.contactInc, text: 'Contact Us', slug: 'contact'),
+    GlobalMenuModel(img: Images.shareInc, text: 'Share Your Friends',  slug: 'share'),
+    GlobalMenuModel(img: Images.ratingInc, text: 'Rate Our App', slug: 'rate'),
+    GlobalMenuModel(img: Images.policyInc, text: 'Privacy & Policy', slug: 'policy'),
   ];
 
   // Function to handle app sharing
@@ -88,29 +88,27 @@ class _CustomDrawerScreenState extends State<CustomDrawerScreen> {
                             setState(() {
                               isClick = index;
                             });
-                            log('Index: $index');
-                            Get.back(); // ✅ Close the drawer first
-
-                            switch (index) {
-                              case 0:
+                            Get.back();
+                            switch (menuItem[index].slug) {
+                              case 'home':
                                 Get.to(() => const HomeScreen());
                                 break;
-                              case 1:
+                              case 'alphabet':
                                 Get.to(() => const AlphabetScreen());
                                 break;
-                              case 2:
+                              case 'about':
                                 Get.to(() => const AboutUsScreen());
                                 break;
-                              case 3:
+                              case 'contact':
                                 Get.to(() => const ContactScreen());
                                 break;
-                              case 4:
+                              case 'share':
                                 _shareApp();
                                 break;
-                              case 5:
+                              case 'rate':
                               // Add Rating Action here
                                 break;
-                              case 6:
+                              case 'policy':
                                 Get.to(() => const AppPrivacyPolicyScreen());
                                 break;
                             }
@@ -143,6 +141,7 @@ class _CustomDrawerScreenState extends State<CustomDrawerScreen> {
                                       ? ColorRes.white
                                       : ColorRes.black,
                                   fontSize: 16,
+                                  isSelectable: false,
                                 ),
                               ],
                             ),
@@ -167,6 +166,7 @@ class _CustomDrawerScreenState extends State<CustomDrawerScreen> {
                       color: ColorRes.textColor,
                       fontSize: 13,
                       textAlign: TextAlign.center,
+                      isSelectable: false,
                     ),
                   ],
                 ),
