@@ -96,22 +96,22 @@ class _CustomDrawerScreenState extends State<CustomDrawerScreen> {
                                 Get.to(() => const HomeScreen());
                                 break;
                               case 1:
-                                Get.to(() => const AboutUsScreen());
+                                Get.to(() => const AlphabetScreen());
                                 break;
                               case 2:
-                                Get.to(() => const ContactScreen());
+                                Get.to(() => const AboutUsScreen());
                                 break;
                               case 3:
-                                _shareApp();
+                                Get.to(() => const ContactScreen());
                                 break;
                               case 4:
-                              // Add Rating Action here
+                                _shareApp();
                                 break;
                               case 5:
-                                Get.to(() => const AppPrivacyPolicyScreen());
+                              // Add Rating Action here
                                 break;
                               case 6:
-                                Get.to(() => const AlphabetScreen());
+                                Get.to(() => const AppPrivacyPolicyScreen());
                                 break;
                             }
                           },
