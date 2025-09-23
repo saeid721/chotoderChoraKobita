@@ -370,6 +370,7 @@ class _EnglishPoemsListScreenState extends State<EnglishPoemsListScreen> with Ti
                             color: Color(0xFF2D3748),
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
+                            isSelectable: false,
                           ),
                           Container(
                             padding: const EdgeInsets.symmetric(
@@ -385,6 +386,7 @@ class _EnglishPoemsListScreenState extends State<EnglishPoemsListScreen> with Ti
                               fontSize: 10,
                               fontWeight: FontWeight.w400,
                               color: cardColors[0],
+                              isSelectable: false,
                             ),
                           ),
                         ],

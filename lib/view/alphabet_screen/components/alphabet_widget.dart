@@ -394,7 +394,7 @@ class ReadingOverlayWidget extends StatelessWidget {
               child: Transform.rotate(
                 angle: (1 - readingController.value) * math.pi,
                 child: Container(
-                  margin: const EdgeInsets.all(40),
+                  margin: const EdgeInsets.all(20),
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
@@ -453,7 +453,7 @@ class ReadingOverlayWidget extends StatelessWidget {
                       sizedBoxH(10),
                       GlobalText(
                         str: selectedLetter.description ?? '',
-                        fontSize: 24,
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                         isSelectable: false,

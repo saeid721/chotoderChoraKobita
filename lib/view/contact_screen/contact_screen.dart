@@ -74,6 +74,7 @@ class _ContactScreenState extends State<ContactScreen> {
                   fontWeight: FontWeight.w400,
                   textAlign: TextAlign.justify,
                   color: ColorRes.dark,
+                  fontSize: 14,
                 ),
                 const SizedBox(height: 2),
                 const GlobalText(

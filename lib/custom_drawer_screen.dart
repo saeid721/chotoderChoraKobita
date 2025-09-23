@@ -161,9 +161,10 @@ class _CustomDrawerScreenState extends State<CustomDrawerScreen> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
+                    Divider(),
                     GlobalText(
                       str: 'Version: 1.0.1',
-                      color: ColorRes.textColor,
+                      color: ColorRes.grey,
                       fontSize: 13,
                       textAlign: TextAlign.center,
                       isSelectable: false,

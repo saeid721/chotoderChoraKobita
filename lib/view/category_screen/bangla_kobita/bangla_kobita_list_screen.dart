@@ -98,6 +98,7 @@ class _BanglaKobitaListScreenState extends State<BanglaKobitaListScreen>with Tic
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
                                 color: Colors.white,
+                                isSelectable: false,
                               ),
                               sizedBoxW(10),
                               GlobalText(
@@ -173,12 +174,14 @@ class _BanglaKobitaListScreenState extends State<BanglaKobitaListScreen>with Tic
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
                       color: Color(0xFF2D3748),
+                      isSelectable: false,
                     ),
                     sizedBoxH(10),
                     GlobalText(
                       str: 'অন্য নাম দিয়ে খুঁজে দেখুন',
                       fontSize: 14,
                       color: Colors.grey[600],
+                      isSelectable: false,
                     ),
                   ],
                 ),
@@ -358,6 +361,7 @@ class _BanglaKobitaListScreenState extends State<BanglaKobitaListScreen>with Tic
                             color: Color(0xFF2D3748),
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
+                            isSelectable: false,
                           ),
                           Container(
                             padding: const EdgeInsets.symmetric(
@@ -373,6 +377,7 @@ class _BanglaKobitaListScreenState extends State<BanglaKobitaListScreen>with Tic
                               fontSize: 10,
                               fontWeight: FontWeight.w400,
                               color: cardColors[0],
+                              isSelectable: false,
                             ),
                           ),
                         ],
