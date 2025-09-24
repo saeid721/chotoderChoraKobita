@@ -239,9 +239,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   }
 }
 
-//
 // =================== REUSABLE WIDGETS ===================
-//
 
 class CustomAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final AnimationController morphController;
@@ -576,9 +574,7 @@ class QuantumCard extends StatelessWidget {
   }
 }
 
-//
 // =================== Animation ===================
-//
 
 class WaveClipper extends CustomClipper<Path> {
   final double value;
