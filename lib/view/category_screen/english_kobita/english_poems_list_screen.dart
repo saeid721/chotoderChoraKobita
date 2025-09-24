@@ -4,7 +4,7 @@ import '../../../../../data/genaral/english_poems_data.dart';
 import '../../../../../global/widget/global_app_bar.dart';
 import '../../../global/widget/global_sizedbox.dart';
 import '../../../global/widget/global_text.dart';
-import '../controller/animation_controller.dart';
+import '../../home_screen/controller/animation_controller.dart';
 import 'english_full_poem_screen.dart';
 
 class EnglishPoemsListScreen extends StatefulWidget {

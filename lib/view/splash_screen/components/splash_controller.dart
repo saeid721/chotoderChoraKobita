@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../category_screen/home_screen.dart';
+import '../../home_screen/home_screen.dart';
 
 class SplashController {
   AnimationController? _animationController;

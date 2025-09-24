@@ -7,7 +7,7 @@ import '../../../../global/widget/global_image_loader.dart';
 import '../../../../global/widget/global_sizedbox.dart';
 import '../../../../global/widget/global_text.dart';
 import '../../../../global/widget/images.dart';
-import '../../controller/animation_controller.dart';
+import '../../../home_screen/controller/animation_controller.dart';
 
 class KobitaWidget extends StatefulWidget {
   final String fullKobita;
