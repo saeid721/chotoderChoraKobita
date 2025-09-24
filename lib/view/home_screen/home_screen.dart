@@ -212,7 +212,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       delegate: SliverChildBuilderDelegate(
                             (context, index) {
                           final category = homeScreenCategories[index];
-                          return QuantumCard(
+                          return HomeMenuWidget(
                             title: category['title'] as String,
                             subtitle: category['subtitle'] as String,
                             icon: category['icon'] as String,
@@ -413,7 +413,7 @@ class NeuralNetwork extends StatelessWidget {
   }
 }
 
-class QuantumCard extends StatelessWidget {
+class HomeMenuWidget extends StatelessWidget {
   final String title;
   final String subtitle;
   final String icon;
@@ -425,7 +425,7 @@ class QuantumCard extends StatelessWidget {
   final AnimationController morphController;
   final AnimationController particleController;
 
-  const QuantumCard({
+  const HomeMenuWidget({
     super.key,
     required this.title,
     required this.subtitle,
