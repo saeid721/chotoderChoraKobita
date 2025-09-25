@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
-class BanglaNumberModel {
+class EnglishNumberModel {
   final String letter;
   final Color primaryColor;
   final Color secondaryColor;
 
-  BanglaNumberModel({
+  EnglishNumberModel({
     required this.letter,
     required this.primaryColor,
     required this.secondaryColor,
   });
 }
 
-/// Generate 1–100 Bangla numbers list
-final List<BanglaNumberModel> letters = List.generate(100, (index) {
+/// Generate 1–100 English numbers list
+final List<EnglishNumberModel> letters = List.generate(100, (index) {
   final number = index + 1;
-  return BanglaNumberModel(
+  return EnglishNumberModel(
     letter: number.toString(),
     primaryColor: const Color(0xFF6C5CE7),
     secondaryColor: const Color(0xFFA29BFE),

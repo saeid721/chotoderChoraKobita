@@ -4,28 +4,28 @@ import 'dart:async';
 import '../../global/widget/colors.dart';
 import '../../global/widget/global_sizedbox.dart';
 import '../../global/widget/global_text.dart';
-import 'components/bangla_number_enmu.dart';
-import 'components/bangla_number_widget.dart';
-import 'components/bangla_number_particle_painter_animation.dart';
-import 'components/bangla_number_theme_background_widget.dart';
-import 'components/bangla_number_theme_selector_widget.dart';
-import 'controller/bangla_number_controller.dart';
-import 'model/bangla_number_model.dart';
+import 'components/english_number_enmu.dart';
+import 'components/english_number_widget.dart';
+import 'components/english_number_particle_painter_animation.dart';
+import 'components/english_number_theme_background_widget.dart';
+import 'components/english_number_theme_selector_widget.dart';
+import 'controller/english_number_controller.dart';
+import 'model/english_number_model.dart';
 
-class BanglaNumberScreen extends StatefulWidget {
-  const BanglaNumberScreen({super.key});
+class EnglishNumberScreen extends StatefulWidget {
+  const EnglishNumberScreen({super.key});
 
   @override
-  State<BanglaNumberScreen> createState() => _BanglaNumberScreenState();
+  State<EnglishNumberScreen> createState() => _EnglishNumberScreenState();
 }
 
-class _BanglaNumberScreenState extends State<BanglaNumberScreen> with TickerProviderStateMixin {
-  late BanglaNumberController _controller;
+class _EnglishNumberScreenState extends State<EnglishNumberScreen> with TickerProviderStateMixin {
+  late EnglishNumberController _controller;
 
   @override
   void initState() {
     super.initState();
-    _controller = BanglaNumberController(
+    _controller = EnglishNumberController(
       vsync: this,
       onLetterTap: (letter, position) => _onLetterTap(letter, position),
       onSwitchTheme: (theme) => _switchTheme(theme),
@@ -34,7 +34,7 @@ class _BanglaNumberScreenState extends State<BanglaNumberScreen> with TickerProv
     _controller.init();
   }
 
-  void _onLetterTap(BanglaNumberModel letter, Offset globalPosition) {
+  void _onLetterTap(EnglishNumberModel letter, Offset globalPosition) {
     if (_controller.isReading) return;
 
     HapticFeedback.heavyImpact();
@@ -50,7 +50,7 @@ class _BanglaNumberScreenState extends State<BanglaNumberScreen> with TickerProv
     _controller.speakLetter(letter);
   }
 
-  void _switchTheme(BanglaNumberTheme newTheme) {
+  void _switchTheme(EnglishNumberTheme newTheme) {
     if (_controller.currentTheme == newTheme || _controller.isReading) return;
 
     HapticFeedback.mediumImpact();
@@ -93,7 +93,7 @@ class _BanglaNumberScreenState extends State<BanglaNumberScreen> with TickerProv
         backgroundColor: ColorRes.primaryColor,
         iconTheme: const IconThemeData(color: Colors.white),
         title: const GlobalText(
-          str: "বাংলা সংখ্যা",
+          str: "English Numbers",
           fontSize: 20,
           fontWeight: FontWeight.w700,
           color: ColorRes.white,
@@ -101,7 +101,7 @@ class _BanglaNumberScreenState extends State<BanglaNumberScreen> with TickerProv
         ),
         actions: [
           ThemeSelectorWidget(
-            theme: BanglaNumberTheme.storybook,
+            theme: EnglishNumberTheme.storybook,
             emoji: '🌟',
             color: const Color(0xFFFEF8C6),
             currentTheme: _controller.currentTheme,
@@ -109,7 +109,7 @@ class _BanglaNumberScreenState extends State<BanglaNumberScreen> with TickerProv
           ),
           sizedBoxW(8),
           ThemeSelectorWidget(
-            theme: BanglaNumberTheme.holographic,
+            theme: EnglishNumberTheme.holographic,
             emoji: '🚀',
             color: const Color(0xFFFF6B6B),
             currentTheme: _controller.currentTheme,
@@ -117,7 +117,7 @@ class _BanglaNumberScreenState extends State<BanglaNumberScreen> with TickerProv
           ),
           sizedBoxW(8),
           ThemeSelectorWidget(
-            theme: BanglaNumberTheme.enchanted,
+            theme: EnglishNumberTheme.enchanted,
             emoji: '🌿',
             color: const Color(0xFF90EE90),
             currentTheme: _controller.currentTheme,
@@ -125,7 +125,7 @@ class _BanglaNumberScreenState extends State<BanglaNumberScreen> with TickerProv
           ),
           sizedBoxW(8),
           ThemeSelectorWidget(
-            theme: BanglaNumberTheme.ocean,
+            theme: EnglishNumberTheme.ocean,
             emoji: '🌊',
             color: const Color(0xFF87CEEB),
             currentTheme: _controller.currentTheme,

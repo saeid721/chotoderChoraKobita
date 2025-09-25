@@ -1,6 +1,4 @@
 import 'dart:math';
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -9,6 +7,7 @@ import '../alphabet_screen/alphabet_screen.dart';
 import '../bangla_alphabet_screen/bangla_alphabet_screen.dart';
 import '../bangla_kobita_screen/bangla_kobita_list_screen.dart';
 import '../bangla_number_screen/bangla_number_screen.dart';
+import '../english_number_screen/english_number_screen.dart';
 import '../english_poem_screen/english_poems_list_screen.dart';
 import '../puzzles_screen/puzzles_screen.dart';
 import 'components/cosmic_background.dart';
@@ -24,8 +23,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
-  late final HomeAnimationController _animationController;
   final GlobalKey<ScaffoldState> drawerKey = GlobalKey<ScaffoldState>();
+
+  late final HomeAnimationController _animationController;
 
   final List<StarParticle> _stars = [];
   final List<FloatingIsland> _islands = [];
@@ -219,7 +219,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         Get.to(() => BanglaNumberScreen());
         break;
       case 'englishNumbers':
-        Get.to(() => HomeScreen());
+        Get.to(() => EnglishNumberScreen());
         break;
       case 'banglaAlphabet':
         Get.to(() => BanglaAlphabetScreen());
