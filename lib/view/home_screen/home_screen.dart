@@ -3,9 +3,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+
 import '../../custom_drawer_screen.dart';
 import '../alphabet_screen/alphabet_screen.dart';
-import '../app_exit_dialog.dart';
 import '../bangla_alphabet_screen/bangla_alphabet_screen.dart';
 import '../category_screen/bangla_kobita/bangla_kobita_list_screen.dart';
 import '../category_screen/english_kobita/english_poems_list_screen.dart';
@@ -18,543 +18,454 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
-  late AnimationController primaryController;
-  late AnimationController orbitalController;
-  late AnimationController pulseController;
-  late AnimationController morphController;
-  late AnimationController particleController;
+  // Only keep controllers we actually use in the UI
+  late final AnimationController _floatingController;
+  late final AnimationController _pulseController;
+  late final AnimationController _shimmerController;
+  late final AnimationController _universeController;
+  late final AnimationController _galaxyController;
+  late AnimationController _particleController;
+  late AnimationController _morphController;
 
-  final List<Map<String, dynamic>> particles = [];
+  final GlobalKey _headerKey = GlobalKey();
+
+  final List<StarParticle> _stars = [];
+  final List<FloatingIsland> _islands = [];
+
+  static const List<Color> _kidFriendlyColors = [
+    Color(0xFF6366F1), // Indigo
+    Color(0xFFEC4899), // Pink
+    Color(0xFF10B981), // Emerald
+    Color(0xFFF59E0B), // Amber
+    Color(0xFF8B5CF6), // Violet
+    Color(0xFF06B6D4), // Cyan
+  ];
+
+  final List<CategoryItem> _categories = [
+    CategoryItem(title: 'ছড়া', subtitle: 'বাংলা ছড়া', icon: '📜', gradient: [Color(0xFF6366F1), Color(0xFF8B5CF6)], emoji: '🎵'),
+    CategoryItem(title: 'Poems', subtitle: 'English Poems', icon: '📝', gradient: [Color(0xFFEC4899), Color(0xFFF97316)], emoji: '✨'),
+    CategoryItem(title: 'সংখ্যা', subtitle: 'বাংলা সংখ্যা', icon: '🔢', gradient: [Color(0xFF10B981), Color(0xFF06B6D4)], emoji: '🎯'),
+    CategoryItem(title: 'Numbers', subtitle: 'English Numbers', icon: '🔟', gradient: [Color(0xFFF59E0B), Color(0xFFEF4444)], emoji: '🌟'),
+    CategoryItem(title: 'অক্ষর', subtitle: 'বাংলা অক্ষর', icon: '🅱️', gradient: [Color(0xFF8B5CF6), Color(0xFFEC4899)], emoji: '🎨'),
+    CategoryItem(title: 'Alphabet', subtitle: 'English Alphabet', icon: '🔤', gradient: [Color(0xFF06B6D4), Color(0xFF6366F1)], emoji: '🚀'),
+    CategoryItem(title: 'Puzzles', subtitle: 'Brain Games', icon: '🧩', gradient: [Color(0xFFF97316), Color(0xFF10B981)], emoji: '🧠'),
+    CategoryItem(title: 'Drawing', subtitle: 'Creative Art', icon: '🎨', gradient: [Color(0xFFEF4444), Color(0xFF8B5CF6)], emoji: '🎪'),
+  ];
 
   @override
   void initState() {
     super.initState();
-    primaryController = AnimationController(duration: const Duration(seconds: 4), vsync: this)..repeat();
-    orbitalController =  AnimationController(duration: const Duration(seconds: 8), vsync: this)..repeat();
-    pulseController = AnimationController(duration: const Duration(milliseconds: 2000), vsync: this) ..repeat(reverse: true);
-    morphController = AnimationController(duration: const Duration(seconds: 6), vsync: this)..repeat();
-    particleController = AnimationController(duration: const Duration(seconds: 15), vsync: this)..repeat();
-
-    _generateParticles();
+    _initAnimations();
+    _generateCosmicElements();
   }
 
-  void _generateParticles() {
+  void _initAnimations() {
+    _floatingController = AnimationController(
+      duration: const Duration(seconds: 6),
+      vsync: this,
+    )..repeat();
+
+    _pulseController = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    )..repeat(reverse: true);
+
+    _shimmerController = AnimationController(
+      duration: const Duration(seconds: 3),
+      vsync: this,
+    )..repeat();
+
+    _universeController = AnimationController(
+      duration: const Duration(seconds: 30),
+      vsync: this,
+    )..repeat();
+
+    _galaxyController = AnimationController(
+      duration: const Duration(seconds: 25),
+      vsync: this,
+    )..repeat();
+
+    _morphController = AnimationController(
+      duration: const Duration(seconds: 8),
+      vsync: this,
+    )..repeat();
+
+    _particleController = AnimationController(
+      duration: const Duration(seconds: 12),
+      vsync: this,
+    )..repeat();
+  }
+
+  void _generateCosmicElements() {
     final random = Random();
-    for (int i = 0; i < 20; i++) {
-      particles.add({
-        'x': random.nextDouble(),
-        'y': random.nextDouble(),
-        'size': random.nextDouble() * 4 + 2,
-        'speed': random.nextDouble() * 0.5 + 0.2,
-        'color': [
-          Colors.cyan,
-          Colors.pink,
-          Colors.purple,
-          Colors.yellow,
-          Colors.green,
-        ][random.nextInt(5)],
-      });
+
+    // Generate stars
+    _stars.clear();
+    for (int i = 0; i < 100; i++) {
+      _stars.add(StarParticle(
+        x: random.nextDouble(),
+        y: random.nextDouble(),
+        size: random.nextDouble() * 3 + 1,
+        twinkleSpeed: random.nextDouble() * 0.5 + 0.3,
+        brightness: random.nextDouble(),
+      ));
+    }
+
+    // Generate floating islands
+    _islands.clear();
+    for (int i = 0; i < 5; i++) {
+      _islands.add(FloatingIsland(
+        x: random.nextDouble() * 0.8 + 0.1,
+        y: random.nextDouble() * 0.6 + 0.2,
+        size: random.nextDouble() * 30 + 40,
+        floatSpeed: random.nextDouble() * 0.3 + 0.2,
+        color: _kidFriendlyColors[random.nextInt(_kidFriendlyColors.length)],
+      ));
     }
   }
 
   @override
   void dispose() {
-    primaryController.dispose();
-    orbitalController.dispose();
-    pulseController.dispose();
-    morphController.dispose();
-    particleController.dispose();
+    _floatingController.dispose();
+    _pulseController.dispose();
+    _shimmerController.dispose();
+    _universeController.dispose();
+    _galaxyController.dispose();
     super.dispose();
   }
 
-  final homeScreenCategories = [
-      {'title': 'ছড়া', 'subtitle': 'বাংলা ছড়া', 'icon': '📜', 'colors': [Color(0xFF667eea), Color(0xFF764ba2)]},
-      {'title': 'Poems', 'subtitle': 'English Poems', 'icon': '📝', 'colors': [Color(0xFFf093fb), Color(0xFFf5576c)]},
-      {'title': 'সংখ্যা', 'subtitle': 'বাংলা সংখ্যা', 'icon': '🔢', 'colors': [Color(0xFF36d1dc), Color(0xFF5b86e5)]},
-      {'title': 'Numbers', 'subtitle': 'English Numbers', 'icon': '🔟', 'colors': [Color(0xFFff9a9e), Color(0xFFfad0c4)]},
-      {'title': 'অক্ষর', 'subtitle': 'বাংলা অক্ষর', 'icon': '🅱️', 'colors': [Color(0xFF4facfe), Color(0xFF00f2fe)]},
-      {'title': 'Alphabet', 'subtitle': 'English Alphabet', 'icon': '🔤', 'colors': [Color(0xFFfbc2eb), Color(0xFFa6c1ee)]},
-      {'title': 'Puzzles', 'subtitle': 'Brain Games', 'icon': '🧩', 'colors': [Color(0xFFffecd2), Color(0xFFfcb69f)]},
-      {'title': 'Drawing', 'subtitle': 'Creative Art', 'icon': '🎨', 'colors': [Color(0xFFa8c0ff), Color(0xFF3f2b96)]},
-  ];
-
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        HapticFeedback.mediumImpact();
-        showDialog(
-          context: context,
-          barrierDismissible: false,
-          builder: (context) => AppExitDialog(
-            title: "",
-            message: "তুমি কি অ্যাপ থেকে বের হতে চাও?",
-            onTap: () => SystemNavigator.pop(),
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: RadialGradient(
+            center: Alignment(-0.5, -0.8),
+            radius: 1.5,
+            colors: [
+              Color(0xFF1E1B4B),
+              Color(0xFF312E81),
+              Color(0xFF1E40AF),
+              Color(0xFF0C4A6E),
+            ],
           ),
-        );
-        return false;
-      },
-      child: Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: CustomAppBarWidget(
-          morphController: morphController,
-          pulseController: pulseController,
-          primaryController: primaryController,
         ),
-        drawer: const CustomDrawerScreen(),
-        body: Container(
-          decoration: const BoxDecoration(
-            gradient: RadialGradient(
-              center: Alignment.topLeft,
-              radius: 2.0,
-              colors: [
-                Color(0xFF1a1a2e),
-                Color(0xFF16213e),
-                Color(0xFF0f3460),
-                Color(0xFF533483),
-              ],
-            ),
-          ),
-          child: Stack(
-            children: [
-              AnimatedBackground(primaryController: primaryController),
-              ParticleSystem(particleController: particleController, particles: particles),
-              NeuralNetwork(orbitalController: orbitalController),
-              CustomScrollView(
-                physics: const BouncingScrollPhysics(),
-                slivers: [
-                  SliverToBoxAdapter(
-                    child: Container(
-                      height: 150,
-                      margin: const EdgeInsets.only(top: 60, left: 20, right: 20),
-                      child: AnimatedBuilder(
-                        animation: pulseController,
-                        builder: (context, child) {
-                          return Transform(
-                            transform: Matrix4.identity()
-                              ..setEntry(3, 2, 0.003)
-                              ..rotateX(pulseController.value * 0.1),
-                            alignment: Alignment.center,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(30),
-                              child: BackdropFilter(
-                                filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    gradient: LinearGradient(
-                                      colors: [
-                                        Colors.white.withOpacity(0.1),
-                                        Colors.cyan.withOpacity(0.1),
-                                        Colors.purple.withOpacity(0.1),
-                                      ],
-                                    ),
-                                    borderRadius: BorderRadius.circular(30),
-                                    border: Border.all(color: Colors.white.withOpacity(0.2), width: 2),
-                                  ),
-                                  child: Stack(
-                                    children: [
-                                      CustomPaint(
-                                        size: const Size(double.infinity, 200),
-                                        painter: GridPainter(morphController.value),
-                                      ),
-                                      Center(
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            AnimatedBuilder(
-                                              animation: primaryController,
-                                              builder: (context, child) {
-                                                return Transform.scale(
-                                                  scale: 1.0 +
-                                                      sin(primaryController.value * 4 * pi) * 0.1,
-                                                  child: const Icon(Icons.rocket_launch,
-                                                      size: 50, color: Colors.cyan),
-                                                );
-                                              },
-                                            ),
-                                            const SizedBox(height: 16),
-                                            ShaderMask(
-                                              shaderCallback: (bounds) => const LinearGradient(
-                                                colors: [Colors.cyan, Colors.pink, Colors.yellow],
-                                              ).createShader(bounds),
-                                              child: const Text(
-                                                'ডিজিটাল শিক্ষার নতুন যুগ!',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                  fontSize: 24,
-                                                  fontWeight: FontWeight.w800,
-                                                  color: Colors.white,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      )
+        child: Stack(
+          children: [
+            _buildCosmicBackground(),
+
+            // Main content
+            CustomScrollView(
+              physics: const BouncingScrollPhysics(),
+              slivers: [
+                SliverAppBar(
+                  key: _headerKey,
+                  expandedHeight: 70,
+                  floating: false,
+                  pinned: true,
+                  elevation: 0,
+                  centerTitle: true,
+                  title: AnimatedBuilder(
+                    animation: _shimmerController,
+                    builder: (context, child) {
+                      return ShaderMask(
+                        shaderCallback: (bounds) {
+                          return LinearGradient(
+                            colors: const [
+                              Colors.white,
+                              Color(0xFF6366F1),
+                              Colors.white,
+                            ],
+                            stops: [
+                              (_shimmerController.value - 0.3).clamp(0.0, 1.0),
+                              _shimmerController.value,
+                              (_shimmerController.value + 0.3).clamp(0.0, 1.0),
+                            ],
+                          ).createShader(bounds);
+                        },
+                        child: const Text(
+                          'ভবিষ্যতের শিক্ষা 🌟',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w900,
+                            color: Colors.white,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                  backgroundColor: Colors.transparent,
+                  leading: Container(
+                    margin: const EdgeInsets.all(8),
+                    child: ClipRRect(
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                        child: IconButton(
+                          onPressed: () {
+                            Get.to(() => const CustomDrawerScreen());
+                          },
+                          icon: const Icon(Icons.menu_rounded, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+
+                SliverToBoxAdapter(
+                  child: Container(
+                    margin: const EdgeInsets.all(20),
+                    height: 120,
+                    child: AnimatedBuilder(
+                      animation: _morphController,
+                      builder: (context, child) {
+                        return Transform(
+                          transform: Matrix4.identity()
+                            ..setEntry(3, 2, 0.001)
+                            ..rotateX(sin(_morphController.value * 2 * pi) * 0.05),
+                          alignment: Alignment.center,
+                          child: ClipPath(
+                            clipper: MagicalPortalClipper(_morphController.value),
+                            child: BackdropFilter(
+                              filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      const Color(0xFF9333EA).withOpacity(0.3),
+                                      const Color(0xFFEC4899).withOpacity(0.2),
+                                      const Color(0xFF06B6D4).withOpacity(0.1),
                                     ],
                                   ),
+                                  border: Border.all(
+                                    color: Colors.white.withOpacity(0.3),
+                                    width: 2,
+                                  ),
+                                ),
+                                child: Stack(
+                                  children: [
+                                    // Magical particles
+                                    CustomPaint(
+                                      size: const Size(double.infinity, 120),
+                                      painter: MagicalParticlesPainter(_particleController.value),
+                                    ),
+                                    // Content
+                                    Center(
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          const Text(
+                                            '🌟 আজকে কী শিখবো? 🌟',
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                          const SizedBox(height: 8),
+                                          Text(
+                                            'তোমার পছন্দের বিষয় বেছে নাও!',
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              color: Colors.white.withOpacity(0.8),
+                                            ),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
-                          );
-                        },
-                      ),
+                          ),
+                        );
+                      },
                     ),
                   ),
-                  SliverPadding(
-                    padding: const EdgeInsets.all(20),
-                    sliver: SliverGrid(
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 1.25,
-                        crossAxisSpacing: 15,
-                        mainAxisSpacing: 15,
-                      ),
-                      delegate: SliverChildBuilderDelegate(
-                            (context, index) {
-                          final category = homeScreenCategories[index];
-                          return HomeMenuWidget(
-                            title: category['title'] as String,
-                            subtitle: category['subtitle'] as String,
-                            icon: category['icon'] as String,
-                            colors: category['colors'] as List<Color>,
-                            index: index,
-                            orbitalController: orbitalController,
-                            pulseController: pulseController,
-                            primaryController: primaryController,
-                            morphController: morphController,
-                            particleController: particleController,
-                          );
-                        },
-                        childCount: homeScreenCategories.length,
-                      ),
+                ),
+
+                SliverPadding(
+                  padding: const EdgeInsets.all(10),
+                  sliver: SliverGrid(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 1.3,
+                      crossAxisSpacing: 15,
+                      mainAxisSpacing: 15,
+                    ),
+                    delegate: SliverChildBuilderDelegate(
+                          (context, index) => _buildCategoryCard(index),
+                      childCount: _categories.length,
                     ),
                   ),
-                ],
-              ),
-            ],
-          ),
+                ),
+
+                const SliverToBoxAdapter(
+                  child: SizedBox(height: 40),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
   }
-}
 
-// =================== REUSABLE WIDGETS ===================
-
-class CustomAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
-  final AnimationController morphController;
-  final AnimationController pulseController;
-  final AnimationController primaryController;
-
-  const CustomAppBarWidget({
-    super.key,
-    required this.morphController,
-    required this.pulseController,
-    required this.primaryController,
-  });
-
-  @override
-  Size get preferredSize => const Size.fromHeight(100);
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: morphController,
-      builder: (context, child) {
-        return ClipPath(
-          clipper: WaveClipper(morphController.value),
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
-            child: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Colors.cyan.withOpacity(0.1),
-                    Colors.purple.withOpacity(0.1),
-                    Colors.pink.withOpacity(0.1),
-                  ],
-                ),
-              ),
-              child: AppBar(
-                backgroundColor: Colors.transparent,
-                elevation: 0,
-                centerTitle: true,
-                iconTheme: const IconThemeData(color: Colors.white, size: 28),
-                title: AnimatedBuilder(
-                  animation: pulseController,
-                  builder: (context, child) {
-                    return Transform.scale(
-                      scale: 1.0 + (pulseController.value * 0.1),
-                      child: ShaderMask(
-                        shaderCallback: (bounds) => LinearGradient(
-                          colors: [
-                            Colors.cyan,
-                            Colors.pink,
-                            Colors.yellow,
-                            Colors.purple,
-                          ],
-                          stops: [
-                            (primaryController.value - 0.3).clamp(0.0, 1.0),
-                            (primaryController.value - 0.1).clamp(0.0, 1.0),
-                            (primaryController.value + 0.1).clamp(0.0, 1.0),
-                            (primaryController.value + 0.3).clamp(0.0, 1.0),
-                          ],
-                        ).createShader(bounds),
-                        child: const Text(
-                          "🚀 ভবিষ্যতের শিক্ষা 🌟",
-                          style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.w800,
-                            color: Colors.white,
-                          ),
+  Widget _buildCosmicBackground() {
+    return Stack(
+      children: [
+        AnimatedBuilder(
+          animation: _universeController,
+          builder: (context, child) {
+            final screenSize = MediaQuery.of(context).size;
+            return Stack(
+              children: _stars.map((star) {
+                final twinkle = sin(_universeController.value * 2 * pi * star.twinkleSpeed) * 0.5 + 0.5;
+                return Positioned(
+                  left: star.x * screenSize.width,
+                  top: star.y * screenSize.height,
+                  child: Container(
+                    width: star.size,
+                    height: star.size,
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(star.brightness * twinkle),
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.white.withOpacity(twinkle * 0.5),
+                          blurRadius: star.size * 3,
+                          spreadRadius: star.size * 0.5,
                         ),
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
-
-class AnimatedBackground extends StatelessWidget {
-  final AnimationController primaryController;
-  const AnimatedBackground({super.key, required this.primaryController});
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: primaryController,
-      builder: (context, child) {
-        return Container(
-          decoration: BoxDecoration(
-            gradient: RadialGradient(
-              center: Alignment(
-                cos(primaryController.value * 2 * pi) * 0.5,
-                sin(primaryController.value * 2 * pi) * 0.5,
-              ),
-              radius: 1.5,
-              colors: [
-                Color.lerp(const Color(0xFF1a1a2e), const Color(0xFF533483),
-                    sin(primaryController.value * 2 * pi) * 0.5 + 0.5)!,
-                const Color(0xFF16213e),
-                const Color(0xFF0f3460),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
-
-class ParticleSystem extends StatelessWidget {
-  final AnimationController particleController;
-  final List<Map<String, dynamic>> particles;
-  const ParticleSystem({super.key, required this.particleController, required this.particles});
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: particleController,
-      builder: (context, child) {
-        return Stack(
-          children: particles.map((particle) {
-            final progress = (particleController.value + particle['speed']) % 1.0;
-            final screenWidth = MediaQuery.of(context).size.width;
-            final screenHeight = MediaQuery.of(context).size.height;
-
-            return Positioned(
-              left: (particle['x'] * screenWidth + cos(progress * 2 * pi) * 50) % screenWidth,
-              top: (particle['y'] * screenHeight + sin(progress * 2 * pi) * 30) % screenHeight,
-              child: Container(
-                width: particle['size'],
-                height: particle['size'],
-                decoration: BoxDecoration(
-                  color: particle['color'].withOpacity(0.3 + sin(progress * 4 * pi) * 0.3),
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: particle['color'].withOpacity(0.5),
-                      blurRadius: particle['size'] * 2,
+                      ],
                     ),
-                  ],
-                ),
-              ),
+                  ),
+                );
+              }).toList(),
             );
-          }).toList(),
-        );
-      },
+          },
+        ),
+
+        AnimatedBuilder(
+          animation: _galaxyController,
+          builder: (context, child) {
+            return CustomPaint(
+              size: MediaQuery.of(context).size,
+              painter: NebulaPainter(_galaxyController.value),
+            );
+          },
+        ),
+      ],
     );
   }
-}
 
-class NeuralNetwork extends StatelessWidget {
-  final AnimationController orbitalController;
-  const NeuralNetwork({super.key, required this.orbitalController});
+  Widget _buildCategoryCard(int index) {
+    final category = _categories[index];
 
-  @override
-  Widget build(BuildContext context) {
     return AnimatedBuilder(
-      animation: orbitalController,
-      builder: (context, child) {
-        return CustomPaint(
-          size: MediaQuery.of(context).size,
-          painter: NeuralNetworkPainter(orbitalController.value),
-        );
-      },
-    );
-  }
-}
-
-class HomeMenuWidget extends StatelessWidget {
-  final String title;
-  final String subtitle;
-  final String icon;
-  final List<Color> colors;
-  final int index;
-  final AnimationController orbitalController;
-  final AnimationController pulseController;
-  final AnimationController primaryController;
-  final AnimationController morphController;
-  final AnimationController particleController;
-
-  const HomeMenuWidget({
-    super.key,
-    required this.title,
-    required this.subtitle,
-    required this.icon,
-    required this.colors,
-    required this.index,
-    required this.orbitalController,
-    required this.pulseController,
-    required this.primaryController,
-    required this.morphController,
-    required this.particleController,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: orbitalController,
+      animation: _floatingController,
       builder: (context, child) {
         return Transform.translate(
           offset: Offset(
-            sin(orbitalController.value * 2 * pi + index) * 5,
-            cos(orbitalController.value * 2 * pi + index) * 5,
+            sin(_floatingController.value * 2 * pi + index * 0.5) * 3,
+            cos(_floatingController.value * 2 * pi + index * 0.7) * 3,
           ),
           child: GestureDetector(
             onTapDown: (_) => HapticFeedback.mediumImpact(),
             onTap: () {
               HapticFeedback.mediumImpact();
-              switch (title) {
-                case 'ছড়া':
-                  Get.to(() => BanglaKobitaListScreen());
-                  break;
-                case 'Poems':
-                  Get.to(() => EnglishPoemsListScreen());
-                  break;
-                case 'সংখ্যা':
-                  Get.to(() => HomeScreen());
-                  break;
-                case 'Numbers':
-                  Get.to(() => HomeScreen());
-                  break;
-                case 'অক্ষর':
-                  Get.to(() => BanglaAlphabetScreen());
-                  break;
-                case 'Alphabet':
-                  Get.to(() => AlphabetScreen());
-                  break;
-                case 'Puzzles':
-                  Get.to(() => HomeScreen());
-                  break;
-                case 'Drawing':
-                  Get.to(() => HomeScreen());
-                  break;
-                default:
-                  Get.to(() => HomeScreen());
-              }
+              _handleCategoryTap(category);
             },
             child: AnimatedBuilder(
-              animation: pulseController,
+              animation: _pulseController,
               builder: (context, child) {
+                final scale = 1.0 + sin(_pulseController.value * 2 * pi + index) * 0.02;
                 return Transform.scale(
-                  scale: 1.0 +
-                      sin(pulseController.value * 2 * pi + index * 0.5) * 0.02,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(25),
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              colors[0].withOpacity(0.2),
-                              colors[1].withOpacity(0.1),
-                              Colors.white.withOpacity(0.05),
-                            ],
-                          ),
-                          borderRadius: BorderRadius.circular(25),
-                          border: Border.all(
-                              width: 1.5,
-                              color: Colors.white.withOpacity(0.1)),
-                          boxShadow: [
-                            BoxShadow(
-                              color: colors[0].withOpacity(0.2),
-                              blurRadius: 20,
-                              spreadRadius: -5,
-                            )
-                          ],
+                  scale: scale,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(28),
+                      color: Colors.white.withOpacity(0.05),
+                      border: Border.all(
+                        color: Colors.white.withOpacity(0.1),
+                        width: 1.5,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: category.gradient[0].withOpacity(0.2),
+                          blurRadius: 20,
+                          spreadRadius: -5,
                         ),
+                      ],
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(28),
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
                         child: Stack(
                           children: [
                             AnimatedBuilder(
-                              animation: primaryController,
+                              animation: _shimmerController,
                               builder: (context, child) {
-                                return Positioned.fill(
-                                  child: CustomPaint(
-                                    painter: GlowPainter(primaryController.value,
-                                        colors[0]),
+                                return Container(
+                                  decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                      colors: [
+                                        category.gradient[0].withOpacity(0.15),
+                                        category.gradient[1].withOpacity(0.1),
+                                        Colors.white.withOpacity(0.05),
+                                      ],
+                                    ),
                                   ),
                                 );
                               },
                             ),
-                            Center(
+                            Padding(
+                              padding: const EdgeInsets.all(10),
                               child: Column(
-                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text(
-                                    icon,
-                                    style: const TextStyle(fontSize: 36),
+                                  AnimatedBuilder(
+                                    animation: _pulseController,
+                                    builder: (context, child) {
+                                      final iconScale = 1.0 + sin(_pulseController.value * 3 * pi + index) * 0.1;
+                                      return Transform.scale(
+                                        scale: iconScale,
+                                        child: Center(
+                                          child: Text(
+                                            category.icon,
+                                            style: const TextStyle(fontSize: 24),
+                                          ),
+                                        ),
+                                      );
+                                    },
                                   ),
-                                  const SizedBox(height: 12),
+                                  const SizedBox(height: 8),
                                   ShaderMask(
-                                    shaderCallback: (bounds) =>
-                                        LinearGradient(colors: colors)
-                                            .createShader(bounds),
+                                    shaderCallback: (bounds) => LinearGradient(
+                                      colors: category.gradient,
+                                    ).createShader(bounds),
                                     child: Text(
-                                      title,
+                                      category.title,
                                       style: const TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w800,
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.w900,
                                         color: Colors.white,
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(height: 6),
+                                  const SizedBox(height: 4),
                                   Text(
-                                    subtitle,
+                                    category.subtitle,
                                     style: TextStyle(
                                       fontSize: 12,
                                       color: Colors.white.withOpacity(0.7),
+                                      fontWeight: FontWeight.w500,
                                     ),
+                                    textAlign: TextAlign.center,
                                   ),
                                 ],
                               ),
@@ -572,129 +483,199 @@ class HomeMenuWidget extends StatelessWidget {
       },
     );
   }
+
+  void _handleCategoryTap(CategoryItem category) {
+    HapticFeedback.mediumImpact();
+    switch (category.title) {
+      case 'ছড়া':
+        Get.to(() => BanglaKobitaListScreen());
+        break;
+      case 'Poems':
+        Get.to(() => EnglishPoemsListScreen());
+        break;
+      case 'সংখ্যা':
+        Get.to(() => HomeScreen());
+        break;
+      case 'Numbers':
+        Get.to(() => HomeScreen());
+        break;
+      case 'অক্ষর':
+        Get.to(() => BanglaAlphabetScreen());
+        break;
+      case 'Alphabet':
+        Get.to(() => AlphabetScreen());
+        break;
+      case 'Puzzles':
+        Get.to(() => HomeScreen());
+        break;
+      case 'Drawing':
+        Get.to(() => HomeScreen());
+        break;
+      default:
+        Get.to(() => HomeScreen());
+    }
+  }
 }
 
-// =================== Animation ===================
+// Data models and helper classes
+class CategoryItem {
+  final String title;
+  final String subtitle;
+  final String icon;
+  final List<Color> gradient;
+  final String emoji;
 
-class WaveClipper extends CustomClipper<Path> {
+  CategoryItem({
+    required this.title,
+    required this.subtitle,
+    required this.icon,
+    required this.gradient,
+    required this.emoji,
+  });
+}
+
+class StarParticle {
+  final double x, y, size, twinkleSpeed, brightness;
+  StarParticle({
+    required this.x,
+    required this.y,
+    required this.size,
+    required this.twinkleSpeed,
+    required this.brightness,
+  });
+}
+
+class FloatingIsland {
+  final double x, y, size, floatSpeed;
+  final Color color;
+  FloatingIsland({
+    required this.x,
+    required this.y,
+    required this.size,
+    required this.floatSpeed,
+    required this.color,
+  });
+}
+
+// Custom painters
+class NebulaPainter extends CustomPainter {
+  final double progress;
+  NebulaPainter(this.progress);
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()..blendMode = BlendMode.screen;
+
+    for (int i = 0; i < 5; i++) {
+      final center = Offset(
+        size.width * (0.3 + cos(progress * 2 * pi + i) * 0.4),
+        size.height * (0.4 + sin(progress * 2 * pi + i) * 0.3),
+      );
+
+      paint.shader = RadialGradient(
+        colors: [
+          const Color(0xFF9333EA).withOpacity(0.1),
+          const Color(0xFFEC4899).withOpacity(0.05),
+          Colors.transparent,
+        ],
+      ).createShader(Rect.fromCircle(center: center, radius: 200 + i * 50));
+
+      canvas.drawCircle(center, 200 + i * 50, paint);
+    }
+  }
+
+  @override
+  bool shouldRepaint(NebulaPainter oldDelegate) => oldDelegate.progress != progress;
+}
+
+class MagicalPortalClipper extends CustomClipper<Path> {
   final double value;
-  WaveClipper(this.value);
+  MagicalPortalClipper(this.value);
 
   @override
   Path getClip(Size size) {
     final path = Path();
-    path.lineTo(0, size.height * 0.7);
+    final waveHeight = 15.0;
+    final frequency = 4.0;
 
-    final controlPoint1 =
-    Offset(size.width * 0.25, size.height * (0.7 + 0.1 * sin(value * 2 * pi)));
-    final endPoint1 = Offset(size.width * 0.5, size.height * 0.7);
-    path.quadraticBezierTo(
-        controlPoint1.dx, controlPoint1.dy, endPoint1.dx, endPoint1.dy);
+    // Create magical wavy edges
+    path.moveTo(0, waveHeight);
 
-    final controlPoint2 =
-    Offset(size.width * 0.75, size.height * (0.7 - 0.1 * sin(value * 2 * pi)));
-    final endPoint2 = Offset(size.width, size.height * 0.7);
-    path.quadraticBezierTo(
-        controlPoint2.dx, controlPoint2.dy, endPoint2.dx, endPoint2.dy);
+    // Top wavy edge
+    for (double x = 0; x <= size.width; x += 5) {
+      final y = waveHeight * sin((x / size.width) * frequency * pi + value * 2 * pi) + waveHeight;
+      path.lineTo(x, y);
+    }
 
-    path.lineTo(size.width, 0);
+    // Right wavy edge
+    for (double y = waveHeight; y <= size.height - waveHeight; y += 5) {
+      final x = size.width - waveHeight * sin((y / size.height) * frequency * pi + value * 2 * pi + pi/2) - waveHeight;
+      path.lineTo(x, y);
+    }
+
+    // Bottom wavy edge
+    for (double x = size.width; x >= 0; x -= 5) {
+      final y = size.height - waveHeight * sin((x / size.width) * frequency * pi + value * 2 * pi + pi) - waveHeight;
+      path.lineTo(x, y);
+    }
+
+    // Left wavy edge
+    for (double y = size.height - waveHeight; y >= waveHeight; y -= 5) {
+      final x = waveHeight * sin((y / size.height) * frequency * pi + value * 2 * pi + 3*pi/2) + waveHeight;
+      path.lineTo(x, y);
+    }
+
     path.close();
     return path;
   }
 
   @override
-  bool shouldReclip(covariant WaveClipper oldClipper) => true;
+  bool shouldReclip(covariant MagicalPortalClipper oldClipper) => oldClipper.value != value;
 }
 
-class NeuralNetworkPainter extends CustomPainter {
+class MagicalParticlesPainter extends CustomPainter {
   final double progress;
-  NeuralNetworkPainter(this.progress);
+  MagicalParticlesPainter(this.progress);
 
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = Colors.white.withOpacity(0.05)
-      ..strokeWidth = 1
-      ..style = PaintingStyle.stroke;
+    final paint = Paint();
+    final random = Random(42); // Fixed seed for consistent pattern
 
-    final nodes = [
-      Offset(size.width * 0.2, size.height * 0.3),
-      Offset(size.width * 0.5, size.height * 0.2),
-      Offset(size.width * 0.8, size.height * 0.35),
-      Offset(size.width * 0.3, size.height * 0.6),
-      Offset(size.width * 0.7, size.height * 0.65),
-    ];
+    // Draw magical floating particles
+    for (int i = 0; i < 30; i++) {
+      final x = random.nextDouble() * size.width;
+      final y = random.nextDouble() * size.height;
+      final particleProgress = (progress + i * 0.1) % 1.0;
+      final opacity = sin(particleProgress * 2 * pi) * 0.5 + 0.5;
+      final scale = 0.5 + opacity * 0.5;
 
-    for (final node in nodes) {
-      canvas.drawCircle(
-          node, 3 + sin(progress * 2 * pi) * 1.5, paint..style = PaintingStyle.fill);
-    }
+      // Different magical symbols
+      final symbols = ['✨', '⭐', '💫', '🌟', '✦', '★'];
+      final symbol = symbols[i % symbols.length];
 
-    for (int i = 0; i < nodes.length; i++) {
-      for (int j = i + 1; j < nodes.length; j++) {
-        final opacity = 0.05 + sin(progress * 2 * pi + i + j) * 0.05;
-        paint.color = Colors.white.withOpacity(opacity);
-        canvas.drawLine(nodes[i], nodes[j], paint);
-      }
+      final textPainter = TextPainter(
+        text: TextSpan(
+          text: symbol,
+          style: TextStyle(
+            fontSize: 12 * scale,
+            color: Colors.white.withOpacity(opacity * 0.6),
+          ),
+        ),
+        textDirection: TextDirection.ltr,
+      );
+
+      textPainter.layout();
+      textPainter.paint(
+        canvas,
+        Offset(
+          x + cos(particleProgress * 2 * pi) * 20,
+          y + sin(particleProgress * 2 * pi) * 10,
+        ),
+      );
     }
   }
 
   @override
-  bool shouldRepaint(covariant NeuralNetworkPainter oldDelegate) => true;
-}
-
-class GridPainter extends CustomPainter {
-  final double value;
-  GridPainter(this.value);
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = Colors.white.withOpacity(0.05)
-      ..strokeWidth = 1;
-
-    const spacing = 20.0;
-    for (double x = 0; x < size.width; x += spacing) {
-      canvas.drawLine(
-          Offset(x, 0),
-          Offset(x, size.height),
-          paint..color = Colors.white.withOpacity(0.05 + sin(value * 2 * pi) * 0.02));
-    }
-
-    for (double y = 0; y < size.height; y += spacing) {
-      canvas.drawLine(
-          Offset(0, y),
-          Offset(size.width, y),
-          paint..color = Colors.white.withOpacity(0.05 + cos(value * 2 * pi) * 0.02));
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant GridPainter oldDelegate) => true;
-}
-
-class GlowPainter extends CustomPainter {
-  final double progress;
-  final Color color;
-  GlowPainter(this.progress, this.color);
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final center = size.center(Offset.zero);
-    final radius = size.shortestSide * 0.5;
-    final glowRadius = radius * (0.7 + sin(progress * 2 * pi) * 0.2);
-
-    final paint = Paint()
-      ..shader = RadialGradient(
-        colors: [
-          color.withOpacity(0.3),
-          Colors.transparent,
-        ],
-      ).createShader(Rect.fromCircle(center: center, radius: glowRadius));
-
-    canvas.drawCircle(center, glowRadius, paint);
-  }
-
-  @override
-  bool shouldRepaint(covariant GlowPainter oldDelegate) => true;
+  bool shouldRepaint(MagicalParticlesPainter oldDelegate) => oldDelegate.progress != progress;
 }
