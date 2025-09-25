@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import '../controller/home_animation_controller.dart';
 import 'home_category_model.dart';
 
-class CategoryCard extends StatelessWidget {
+class HomeCategoryWidget extends StatefulWidget {
   final HomeCategoryModel category;
   final int index;
   final AnimationController floatingController;
@@ -13,7 +13,7 @@ class CategoryCard extends StatelessWidget {
   final AnimationController shimmerController;
   final Function(HomeCategoryModel) onTap;
 
-  const CategoryCard({
+  const HomeCategoryWidget({
     super.key,
     required this.category,
     required this.index,
@@ -24,122 +24,267 @@ class CategoryCard extends StatelessWidget {
   });
 
   @override
+  State<HomeCategoryWidget> createState() => _HomeCategoryWidgetState();
+}
+
+class _HomeCategoryWidgetState extends State<HomeCategoryWidget>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _hoverController;
+  late Animation<double> _hoverAnimation;
+  bool _isPressed = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _hoverController = AnimationController(
+      duration: const Duration(milliseconds: 300),
+      vsync: this,
+    );
+    _hoverAnimation = Tween<double>(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(CurvedAnimation(
+      parent: _hoverController,
+      curve: Curves.easeInOut,
+    ));
+  }
+
+  @override
+  void dispose() {
+    _hoverController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: floatingController,
-      builder: (context, child) {
-        return Transform.translate(
-          offset: Offset(
-            sin(floatingController.value * 2 * pi + index * 0.5) * 3,
-            cos(floatingController.value * 2 * pi + index * 0.7) * 3,
-          ),
-          child: GestureDetector(
-            onTapDown: (_) => HapticFeedback.mediumImpact(),
-            onTap: () => onTap(category),
-            child: AnimatedBuilder(
-              animation: pulseController,
-              builder: (context, child) {
-                final scale = 1.0 + sin(pulseController.value * 2 * pi + index) * 0.02;
-                return Transform.scale(
-                  scale: scale,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(28),
-                      color: Colors.white.withOpacity(0.05),
-                      border: Border.all(
-                        color: Colors.white.withOpacity(0.1),
-                        width: 1.5,
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: category.gradient[0].withOpacity(0.2),
-                          blurRadius: 20,
-                          spreadRadius: -5,
-                        ),
+    return GestureDetector(
+      onTapDown: (_) {
+        setState(() => _isPressed = true);
+        _hoverController.forward();
+        HapticFeedback.mediumImpact();
+      },
+      onTapUp: (_) {
+        setState(() => _isPressed = false);
+        _hoverController.reverse();
+        widget.onTap(widget.category);
+      },
+      onTapCancel: () {
+        setState(() => _isPressed = false);
+        _hoverController.reverse();
+      },
+      child: AnimatedBuilder(
+        animation: widget.pulseController,
+        builder: (context, child) {
+          final scale = 1.0 + sin(widget.pulseController.value * 2 * pi + widget.index) * 0.02;
+          return Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(32),
+              boxShadow: [
+                // Main 3D shadow
+                BoxShadow(
+                  color: widget.category.gradient[0].withOpacity(0.4),
+                  blurRadius: 25 + (_hoverAnimation.value * 10),
+                  spreadRadius: -5,
+                  offset: Offset(0, 8 + (_hoverAnimation.value * 4)),
+                ),
+                // Inner glow
+                BoxShadow(
+                  color: widget.category.gradient[1].withOpacity(0.3),
+                  blurRadius: 15,
+                  spreadRadius: -8,
+                  offset: const Offset(0, -2),
+                ),
+                // Outer rim glow
+                BoxShadow(
+                  color: Colors.white.withOpacity(0.1),
+                  blurRadius: 5,
+                  spreadRadius: 0,
+                  offset: const Offset(0, 1),
+                ),
+              ],
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(32),
+              child: BackdropFilter(
+                filter: ImageFilter.blur(
+                  sigmaX: 20 + (_hoverAnimation.value * 5),
+                  sigmaY: 20 + (_hoverAnimation.value * 5),
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      stops: const [0.0, 0.3, 0.7, 1.0],
+                      colors: [
+                        Colors.white.withOpacity(0.2 + (_hoverAnimation.value * 0.1)),
+                        widget.category.gradient[0].withOpacity(0.15 + (_hoverAnimation.value * 0.05)),
+                        widget.category.gradient[1].withOpacity(0.1 + (_hoverAnimation.value * 0.05)),
+                        Colors.white.withOpacity(0.05),
                       ],
                     ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(28),
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
-                        child: Stack(
-                          children: [
-                            AnimatedBuilder(
-                              animation: shimmerController,
-                              builder: (context, child) {
-                                return Container(
-                                  decoration: BoxDecoration(
-                                    gradient: LinearGradient(
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
-                                      colors: [
-                                        category.gradient[0].withOpacity(0.15),
-                                        category.gradient[1].withOpacity(0.1),
-                                        Colors.white.withOpacity(0.05),
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(10),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  AnimatedBuilder(
-                                    animation: pulseController,
-                                    builder: (context, child) {
-                                      final iconScale = 1.0 + sin(pulseController.value * 3 * pi + index) * 0.1;
-                                      return Transform.scale(
-                                        scale: iconScale,
-                                        child: Center(
-                                          child: Text(
-                                            category.icon,
-                                            style: const TextStyle(fontSize: 24),
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                  const SizedBox(height: 8),
-                                  ShaderMask(
-                                    shaderCallback: (bounds) => LinearGradient(
-                                      colors: category.gradient,
-                                    ).createShader(bounds),
-                                    child: Text(
-                                      category.title,
-                                      style: const TextStyle(
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.w900,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 4),
-                                  Text(
-                                    category.subtitle,
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.white.withOpacity(0.7),
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ],
+                    border: Border.all(
+                      color: Colors.white.withOpacity(0.3 + (_hoverAnimation.value * 0.2)),
+                      width: 1.5,
+                    ),
+                    borderRadius: BorderRadius.circular(32),
+                  ),
+                  child: Stack(
+                    children: [
+                      // Animated shimmer overlay
+                      AnimatedBuilder(
+                        animation: widget.shimmerController,
+                        builder: (context, child) {
+                          return Positioned.fill(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(32),
+                                gradient: LinearGradient(
+                                  begin: Alignment(-1.0 + (widget.shimmerController.value * 2), -1.0),
+                                  end: Alignment(1.0 + (widget.shimmerController.value * 2), 1.0),
+                                  colors: [
+                                    Colors.transparent,
+                                    Colors.white.withOpacity(0.1),
+                                    Colors.white.withOpacity(0.2),
+                                    Colors.white.withOpacity(0.1),
+                                    Colors.transparent,
+                                  ],
+                                  stops: const [0.0, 0.4, 0.5, 0.6, 1.0],
+                                ),
                               ),
                             ),
-                          ],
+                          );
+                        },
+                      ),
+
+                      // 3D highlight effect
+                      Positioned(
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        height: 60,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(32),
+                              topRight: Radius.circular(32),
+                            ),
+                            gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: [
+                                Colors.white.withOpacity(0.4),
+                                Colors.white.withOpacity(0.1),
+                                Colors.transparent,
+                              ],
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+
+                      // Main content
+                      Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              // Animated icon
+                              Text(
+                                widget.category.icon,
+                                style: TextStyle(
+                                  fontSize: 30,
+                                  shadows: [
+                                    Shadow(
+                                      color: widget.category.gradient[0].withOpacity(0.5),
+                                      blurRadius: 8,
+                                      offset: const Offset(0, 2),
+                                    ),
+                                  ],
+                                ),
+                              ),
+
+                              // Title with gradient and 3D text effect
+                              ShaderMask(
+                                shaderCallback: (bounds) => LinearGradient(
+                                  colors: [
+                                    widget.category.gradient[0],
+                                    widget.category.gradient[1],
+                                  ],
+                                ).createShader(bounds),
+                                child: Text(
+                                  widget.category.title,
+                                  style: TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w900,
+                                    color: Colors.white,
+                                    shadows: [
+                                      Shadow(
+                                        color: widget.category.gradient[0].withOpacity(0.5),
+                                        blurRadius: 4,
+                                        offset: const Offset(0, 2),
+                                      ),
+                                      const Shadow(
+                                        color: Colors.black26,
+                                        blurRadius: 5,
+                                        offset: Offset(0, 3),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+
+                              // Subtitle with glow effect
+                              Text(
+                                widget.category.subtitle,
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  color: Colors.white.withOpacity(0.85),
+                                  fontWeight: FontWeight.w600,
+                                  shadows: [
+                                    Shadow(
+                                      color: widget.category.gradient[1].withOpacity(0.3),
+                                      blurRadius: 4,
+                                      offset: const Offset(0, 1),
+                                    ),
+                                  ],
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+
+                      // Bottom rim highlight
+                      Positioned(
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        height: 2,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.only(
+                              bottomLeft: Radius.circular(32),
+                              bottomRight: Radius.circular(32),
+                            ),
+                            gradient: LinearGradient(
+                              colors: [
+                                widget.category.gradient[0].withOpacity(0.6),
+                                widget.category.gradient[1].withOpacity(0.6),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                );
-              },
+                ),
+              ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

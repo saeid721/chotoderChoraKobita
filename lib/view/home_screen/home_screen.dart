@@ -182,8 +182,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       crossAxisSpacing: 15,
                       mainAxisSpacing: 15,
                     ),
-                    delegate: SliverChildBuilderDelegate(
-                          (context, index) => CategoryCard(
+                    delegate: SliverChildBuilderDelegate((context, index) => HomeCategoryWidget(
                         category: homeCategoriesItem[index],
                         index: index,
                         floatingController: _animationController.floatingController,
