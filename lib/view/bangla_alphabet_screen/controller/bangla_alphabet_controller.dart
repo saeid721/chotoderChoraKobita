@@ -19,32 +19,63 @@ class AlphabetController {
   Timer? _particleTimer;
 
   final List<LetterModel> letters = [
-    LetterModel(letter: 'A', pronunciation: 'AY', phonetic: '/eɪ/', word: 'Allah', description: 'One God', icon: '🕋', primaryColor: Color(0xFF6C5CE7), secondaryColor: Color(0xFFA29BFE)),
-    LetterModel(letter: 'B', pronunciation: 'BEE', phonetic: '/biː/', word: 'Bismillah', description: 'We begin with Allah', icon: '﷽', primaryColor: Color(0xFFE17055), secondaryColor: Color(0xFFFD79A8)),
-    LetterModel(letter: 'C', pronunciation: 'SEE', phonetic: '/siː/', word: 'Crescent', description: 'Moon of Islam', icon: '🌙', primaryColor: Color(0xFF00CEC9), secondaryColor: Color(0xFF55EFC4)),
-    LetterModel(letter: 'D', pronunciation: 'DEE', phonetic: '/diː/', word: 'Dua', description: 'Talking to Allah', icon: '🙏', primaryColor: Color(0xFFFF6B6B), secondaryColor: Color(0xFFFFE66D)),
-    LetterModel(letter: 'E', pronunciation: 'EE', phonetic: '/iː/', word: 'Eid', description: 'Happy Muslim Festival', icon: '🎉', primaryColor: Color(0xFF4ECDC4), secondaryColor: Color(0xFF45B7D1)),
-    LetterModel(letter: 'F', pronunciation: 'EFF', phonetic: '/ɛf/', word: 'Fajr', description: 'Morning Prayer', icon: '🌅', primaryColor: Color(0xFFFF9FF3), secondaryColor: Color(0xFFF368E0)),
-    LetterModel(letter: 'G', pronunciation: 'GEE', phonetic: '/dʒiː/', word: 'Ghusl', description: 'Cleaning body', icon: '🚿', primaryColor: Color(0xFF5F27CD), secondaryColor: Color(0xFF00D2D3)),
-    LetterModel(letter: 'H', pronunciation: 'AYCH', phonetic: '/eɪtʃ/', word: 'Hajj', description: 'Trip to Makkah', icon: '🕋', primaryColor: Color(0xFFE55039), secondaryColor: Color(0xFFFA983A)),
-    LetterModel(letter: 'I', pronunciation: 'EYE', phonetic: '/aɪ/', word: 'Iman', description: 'Faith in Allah', icon: '💖', primaryColor: Color(0xFF3867D6), secondaryColor: Color(0xFF8854D0)),
-    LetterModel(letter: 'J', pronunciation: 'JAY', phonetic: '/dʒeɪ/', word: 'Jannah', description: 'Beautiful Paradise', icon: '🌴', primaryColor: Color(0xFF2ECC71), secondaryColor: Color(0xFF27AE60)),
-    LetterModel(letter: 'K', pronunciation: 'KAY', phonetic: '/keɪ/', word: 'Kaaba', description: 'House of Allah', icon: '🕋', primaryColor: Color(0xFF95A5A6), secondaryColor: Color(0xFFBDC3C7)),
-    LetterModel(letter: 'L', pronunciation: 'ELL', phonetic: '/ɛl/', word: 'Lailatul Qadr', description: 'Special Night', icon: '⭐', primaryColor: Color(0xFFF1C40F), secondaryColor: Color(0xFFF39C12)),
-    LetterModel(letter: 'M', pronunciation: 'EMM', phonetic: '/ɛm/', word: 'Masjid', description: 'Mosque for Prayer', icon: '🏠', primaryColor: Color(0xFF9B59B6), secondaryColor: Color(0xFF8E44AD)),
-    LetterModel(letter: 'N', pronunciation: 'ENN', phonetic: '/ɛn/', word: 'Nabi', description: 'Prophet of Allah', icon: '🕌', primaryColor: Color(0xFF2C3E50), secondaryColor: Color(0xFF34495E)),
-    LetterModel(letter: 'O', pronunciation: 'OH', phonetic: '/oʊ/', word: 'Oud', description: 'Nice perfume', icon: '🌸', primaryColor: Color(0xFF3498DB), secondaryColor: Color(0xFF2980B9)),
-    LetterModel(letter: 'P', pronunciation: 'PEE', phonetic: '/piː/', word: 'Prophet', description: 'Messenger of Allah', icon: '👳', primaryColor: Color(0xFF1ABC9C), secondaryColor: Color(0xFF16A085)),
-    LetterModel(letter: 'Q', pronunciation: 'CUE', phonetic: '/kjuː/', word: 'Quran', description: 'Holy Book', icon: '📖', primaryColor: Color(0xFFE74C3C), secondaryColor: Color(0xFFC0392B)),
-    LetterModel(letter: 'R', pronunciation: 'ARR', phonetic: '/ɑːr/', word: 'Ramadan', description: 'Fasting Month', icon: '🌙', primaryColor: Color(0xFFFF6B9D), secondaryColor: Color(0xFFFFA8E2)),
-    LetterModel(letter: 'S', pronunciation: 'ESS', phonetic: '/ɛs/', word: 'Salah', description: '5 Times Prayer', icon: '🙏', primaryColor: Color(0xFFFFD93D), secondaryColor: Color(0xFFFF6B6B)),
-    LetterModel(letter: 'T', pronunciation: 'TEE', phonetic: '/tiː/', word: 'Tasbih', description: 'Prayer Beads', icon: '📿', primaryColor: Color(0xFF74B9FF), secondaryColor: Color(0xFF0984E3)),
-    LetterModel(letter: 'U', pronunciation: 'YOU', phonetic: '/juː/', word: 'Umrah', description: 'Small Pilgrimage', icon: '🕋', primaryColor: Color(0xFF6C5CE7), secondaryColor: Color(0xFFA29BFE)),
-    LetterModel(letter: 'V', pronunciation: 'VEE', phonetic: '/viː/', word: 'Veil', description: 'Muslim Dress', icon: '🧕', primaryColor: Color(0xFFE17055), secondaryColor: Color(0xFFD63031)),
-    LetterModel(letter: 'W', pronunciation: 'DOUBLE-YOU', phonetic: '/ˈdʌbəljuː/', word: 'Wudu', description: 'Washing before Salah', icon: '💧', primaryColor: Color(0xFF00B894), secondaryColor: Color(0xFF00CEC9)),
-    LetterModel(letter: 'X', pronunciation: 'EKS', phonetic: '/ɛks/', word: 'Xylophone', description: 'Just for fun', icon: '🎵', primaryColor: Color(0xFF2D3436), secondaryColor: Color(0xFF636E72)),
-    LetterModel(letter: 'Y', pronunciation: 'WHY', phonetic: '/waɪ/', word: 'Yawm al-Qiyamah', description: 'Day of Judgment', icon: '⏳', primaryColor: Color(0xFFFDCB6E), secondaryColor: Color(0xFFE84393)),
-    LetterModel(letter: 'Z', pronunciation: 'ZEE', phonetic: '/ziː/', word: 'Zakat', description: 'Giving to the poor', icon: '💰', primaryColor: Color(0xFF74B9FF), secondaryColor: Color(0xFF0984E3)),
+    LetterModel(letter: 'ক', pronunciation: 'ko', phonetic: '/kɔ/', word: 'কাক', description: 'একটি পাখি', icon: '🐦', primaryColor: Color(0xFFF1C40F), secondaryColor: Color(0xFFF39C12)),
+    LetterModel(letter: 'খ', pronunciation: 'kho', phonetic: '/kʰɔ/', word: 'খরগোশ', description: 'একটি প্রাণী', icon: '🐇', primaryColor: Color(0xFF9B59B6), secondaryColor: Color(0xFF8E44AD)),
+    LetterModel(letter: 'গ', pronunciation: 'go', phonetic: '/gɔ/', word: 'গরু', description: 'গৃহপালিত প্রাণী', icon: '🐄', primaryColor: Color(0xFF2C3E50), secondaryColor: Color(0xFF34495E)),
+    LetterModel(letter: 'ঘ', pronunciation: 'gho', phonetic: '/ɡʱɔ/', word: 'ঘোড়া', description: 'একটি প্রাণী', icon: '🐎', primaryColor: Color(0xFF3498DB), secondaryColor: Color(0xFF2980B9)),
+    LetterModel(letter: 'ঙ', pronunciation: 'ung', phonetic: '/ŋɔ/', word: 'ঙিন', description: 'প্রতীকী ধ্বনি', icon: '🔔', primaryColor: Color(0xFF1ABC9C), secondaryColor: Color(0xFF16A085)),
+
+    LetterModel(letter: 'চ', pronunciation: 'cho', phonetic: '/tʃɔ/', word: 'চশমা', description: 'চোখের জন্য', icon: '👓', primaryColor: Color(0xFFE74C3C), secondaryColor: Color(0xFFC0392B)),
+    LetterModel(letter: 'ছ', pronunciation: 'chho', phonetic: '/tʃʰɔ/', word: 'ছাতা', description: 'বৃষ্টি থেকে বাঁচে', icon: '☂️', primaryColor: Color(0xFFFF6B9D), secondaryColor: Color(0xFFFFA8E2)),
+    LetterModel(letter: 'জ', pronunciation: 'jo', phonetic: '/dʒɔ/', word: 'জাহাজ', description: 'নৌকা', icon: '🚢', primaryColor: Color(0xFFFFD93D), secondaryColor: Color(0xFFFF6B6B)),
+    LetterModel(letter: 'ঝ', pronunciation: 'jho', phonetic: '/dʒʱɔ/', word: 'ঝুড়ি', description: 'একটি ঝুড়ি', icon: '🧺', primaryColor: Color(0xFF74B9FF), secondaryColor: Color(0xFF0984E3)),
+    LetterModel(letter: 'ঞ', pronunciation: 'nyo', phonetic: '/ɲɔ/', word: 'ঞ্যান', description: 'শব্দ উচ্চারণ', icon: '🔊', primaryColor: Color(0xFF6C5CE7), secondaryColor: Color(0xFFA29BFE)),
+
+    LetterModel(letter: 'ক', pronunciation: 'ko', phonetic: '/kɔ/', word: 'কাক', description: 'একটি পাখি', icon: '🐦', primaryColor: Color(0xFFF1C40F), secondaryColor: Color(0xFFF39C12)),
+    LetterModel(letter: 'খ', pronunciation: 'kho', phonetic: '/kʰɔ/', word: 'খরগোশ', description: 'একটি প্রাণী', icon: '🐇', primaryColor: Color(0xFF9B59B6), secondaryColor: Color(0xFF8E44AD)),
+    LetterModel(letter: 'গ', pronunciation: 'go', phonetic: '/gɔ/', word: 'গরু', description: 'গৃহপালিত প্রাণী', icon: '🐄', primaryColor: Color(0xFF2C3E50), secondaryColor: Color(0xFF34495E)),
+    LetterModel(letter: 'ঘ', pronunciation: 'gho', phonetic: '/ɡʱɔ/', word: 'ঘোড়া', description: 'একটি প্রাণী', icon: '🐎', primaryColor: Color(0xFF3498DB), secondaryColor: Color(0xFF2980B9)),
+    LetterModel(letter: 'ঙ', pronunciation: 'ung', phonetic: '/ŋɔ/', word: 'ঙিন', description: 'প্রতীকী ধ্বনি', icon: '🔔', primaryColor: Color(0xFF1ABC9C), secondaryColor: Color(0xFF16A085)),
+
+    LetterModel(letter: 'চ', pronunciation: 'cho', phonetic: '/tʃɔ/', word: 'চশমা', description: 'চোখের জন্য', icon: '👓', primaryColor: Color(0xFFE74C3C), secondaryColor: Color(0xFFC0392B)),
+    LetterModel(letter: 'ছ', pronunciation: 'chho', phonetic: '/tʃʰɔ/', word: 'ছাতা', description: 'বৃষ্টি থেকে রক্ষা', icon: '☂️', primaryColor: Color(0xFFFF6B9D), secondaryColor: Color(0xFFFFA8E2)),
+    LetterModel(letter: 'জ', pronunciation: 'jo', phonetic: '/dʒɔ/', word: 'জাহাজ', description: 'সমুদ্র যান', icon: '🚢', primaryColor: Color(0xFFFFD93D), secondaryColor: Color(0xFFFF6B6B)),
+    LetterModel(letter: 'ঝ', pronunciation: 'jho', phonetic: '/dʒʱɔ/', word: 'ঝুড়ি', description: 'একটি ঝুড়ি', icon: '🧺', primaryColor: Color(0xFF74B9FF), secondaryColor: Color(0xFF0984E3)),
+    LetterModel(letter: 'ঞ', pronunciation: 'nyo', phonetic: '/ɲɔ/', word: 'ঞ্যান', description: 'শব্দ উচ্চারণ', icon: '🔊', primaryColor: Color(0xFF6C5CE7), secondaryColor: Color(0xFFA29BFE)),
+
+    LetterModel(letter: 'ট', pronunciation: 'to', phonetic: '/ʈɔ/', word: 'টব', description: 'গাছের টব', icon: '🪴', primaryColor: Color(0xFFE17055), secondaryColor: Color(0xFFFD79A8)),
+    LetterModel(letter: 'ঠ', pronunciation: 'tho', phonetic: '/ʈʰɔ/', word: 'ঠাকুর', description: 'সম্মানিত ব্যক্তি', icon: '🙏', primaryColor: Color(0xFF00CEC9), secondaryColor: Color(0xFF55EFC4)),
+    LetterModel(letter: 'ড', pronunciation: 'do', phonetic: '/ɖɔ/', word: 'ডাক্তার', description: 'চিকিৎসক', icon: '👨‍⚕️', primaryColor: Color(0xFFFF6B6B), secondaryColor: Color(0xFFFFE66D)),
+    LetterModel(letter: 'ঢ', pronunciation: 'dho', phonetic: '/ɖʱɔ/', word: 'ঢাক', description: 'বাদ্যযন্ত্র', icon: '🥁', primaryColor: Color(0xFF4ECDC4), secondaryColor: Color(0xFF45B7D1)),
+    LetterModel(letter: 'ণ', pronunciation: 'no', phonetic: '/ɳɔ/', word: 'ণব', description: 'বিরল শব্দ', icon: '🔣', primaryColor: Color(0xFFFF9FF3), secondaryColor: Color(0xFFF368E0)),
+
+    LetterModel(letter: 'ত', pronunciation: 'to', phonetic: '/tɔ/', word: 'তালা', description: 'লক', icon: '🔒', primaryColor: Color(0xFF5F27CD), secondaryColor: Color(0xFF00D2D3)),
+    LetterModel(letter: 'থ', pronunciation: 'tho', phonetic: '/tʰɔ/', word: 'থালা', description: 'খাওয়ার পাত্র', icon: '🍽️', primaryColor: Color(0xFFE55039), secondaryColor: Color(0xFFFA983A)),
+    LetterModel(letter: 'দ', pronunciation: 'do', phonetic: '/dɔ/', word: 'দুধ', description: 'পানীয়', icon: '🥛', primaryColor: Color(0xFF3867D6), secondaryColor: Color(0xFF8854D0)),
+    LetterModel(letter: 'ধ', pronunciation: 'dho', phonetic: '/dʱɔ/', word: 'ধান', description: 'শস্য', icon: '🌾', primaryColor: Color(0xFF2ECC71), secondaryColor: Color(0xFF27AE60)),
+    LetterModel(letter: 'ন', pronunciation: 'no', phonetic: '/nɔ/', word: 'নদী', description: 'জলধারা', icon: '🌊', primaryColor: Color(0xFF95A5A6), secondaryColor: Color(0xFFBDC3C7)),
+
+    LetterModel(letter: 'প', pronunciation: 'po', phonetic: '/pɔ/', word: 'পাখি', description: 'উড়ন্ত প্রাণী', icon: '🕊️', primaryColor: Color(0xFFF1C40F), secondaryColor: Color(0xFFF39C12)),
+    LetterModel(letter: 'ফ', pronunciation: 'pho', phonetic: '/pʰɔ/', word: 'ফুল', description: 'গাছের সৌন্দর্য', icon: '🌸', primaryColor: Color(0xFF9B59B6), secondaryColor: Color(0xFF8E44AD)),
+    LetterModel(letter: 'ব', pronunciation: 'bo', phonetic: '/bɔ/', word: 'বই', description: 'শিক্ষার মাধ্যম', icon: '📖', primaryColor: Color(0xFF2C3E50), secondaryColor: Color(0xFF34495E)),
+    LetterModel(letter: 'ভ', pronunciation: 'bho', phonetic: '/bʱɔ/', word: 'ভাত', description: 'খাবার', icon: '🍚', primaryColor: Color(0xFF3498DB), secondaryColor: Color(0xFF2980B9)),
+    LetterModel(letter: 'ম', pronunciation: 'mo', phonetic: '/mɔ/', word: 'মাছ', description: 'জলজ প্রাণী', icon: '🐟', primaryColor: Color(0xFF1ABC9C), secondaryColor: Color(0xFF16A085)),
+
+    LetterModel(letter: 'য', pronunciation: 'zo', phonetic: '/zɔ/', word: 'যানবাহন', description: 'যাতায়াতের মাধ্যম', icon: '🚌', primaryColor: Color(0xFFE74C3C), secondaryColor: Color(0xFFC0392B)),
+    LetterModel(letter: 'র', pronunciation: 'ro', phonetic: '/rɔ/', word: 'রোদ', description: 'সূর্যের আলো', icon: '☀️', primaryColor: Color(0xFFFF6B9D), secondaryColor: Color(0xFFFFA8E2)),
+    LetterModel(letter: 'ল', pronunciation: 'lo', phonetic: '/lɔ/', word: 'লাল', description: 'একটি রং', icon: '🟥', primaryColor: Color(0xFFFFD93D), secondaryColor: Color(0xFFFF6B6B)),
+    LetterModel(letter: 'শ', pronunciation: 'sho', phonetic: '/ʃɔ/', word: 'শিশু', description: 'ছোট বাচ্চা', icon: '🧒', primaryColor: Color(0xFF74B9FF), secondaryColor: Color(0xFF0984E3)),
+    LetterModel(letter: 'ষ', pronunciation: 'ssho', phonetic: '/ʂɔ/', word: 'ষাঁড়', description: 'প্রাণী', icon: '🐂', primaryColor: Color(0xFF6C5CE7), secondaryColor: Color(0xFFA29BFE)),
+
+    LetterModel(letter: 'স', pronunciation: 'so', phonetic: '/sɔ/', word: 'সাপ', description: 'সরীসৃপ', icon: '🐍', primaryColor: Color(0xFFE17055), secondaryColor: Color(0xFFFD79A8)),
+    LetterModel(letter: 'হ', pronunciation: 'ho', phonetic: '/ɦɔ/', word: 'হাতি', description: 'বড় প্রাণী', icon: '🐘', primaryColor: Color(0xFF00CEC9), secondaryColor: Color(0xFF55EFC4)),
+    LetterModel(letter: 'ড়', pronunciation: 'ro', phonetic: '/ɽɔ/', word: 'ড়াল', description: 'বিরল শব্দ', icon: '🔡', primaryColor: Color(0xFFFF6B6B), secondaryColor: Color(0xFFFFE66D)),
+    LetterModel(letter: 'ঢ়', pronunciation: 'rho', phonetic: '/ɽʱɔ/', word: 'ঢ়', description: 'উচ্চারণ বিশেষ', icon: '🔠', primaryColor: Color(0xFF4ECDC4), secondaryColor: Color(0xFF45B7D1)),
+    LetterModel(letter: 'য়', pronunciation: 'y', phonetic: '/jɔ/', word: 'বাংলায়', description: 'শব্দের অংশ', icon: '📝', primaryColor: Color(0xFFFF9FF3), secondaryColor: Color(0xFFF368E0)),
+
+    LetterModel(letter: 'ক্ষ', pronunciation: 'kkho', phonetic: '/kʰjɔ/', word: 'ক্ষেত', description: 'ধানের ক্ষেত', icon: '🌱', primaryColor: Color(0xFF5F27CD), secondaryColor: Color(0xFF00D2D3)),
+    LetterModel(letter: 'ত্র', pronunciation: 'tro', phonetic: '/trɔ/', word: 'ত্রিভুজ', description: 'জ্যামিতি আকার', icon: '🔺', primaryColor: Color(0xFFE55039), secondaryColor: Color(0xFFFA983A)),
+    LetterModel(letter: 'জ্ঞ', pronunciation: 'ggno', phonetic: '/ɡdʒɔ/', word: 'জ্ঞ', description: 'জ্ঞান', icon: '📚', primaryColor: Color(0xFF3867D6), secondaryColor: Color(0xFF8854D0)),
   ];
 
   final TickerProvider vsync;
@@ -67,7 +98,7 @@ class AlphabetController {
 
   void _initializeTts() {
     flutterTts = FlutterTts();
-    flutterTts.setLanguage("en-US");
+    flutterTts.setLanguage("bn-US");
     flutterTts.setSpeechRate(0.7);
     flutterTts.setVolume(0.9);
     flutterTts.setPitch(1.2);

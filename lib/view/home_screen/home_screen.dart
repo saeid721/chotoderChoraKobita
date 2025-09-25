@@ -8,6 +8,7 @@ import '../../custom_drawer_screen.dart';
 import '../alphabet_screen/alphabet_screen.dart';
 import '../bangla_alphabet_screen/bangla_alphabet_screen.dart';
 import '../bangla_kobita_screen/bangla_kobita_list_screen.dart';
+import '../bangla_number_screen/bangla_number_screen.dart';
 import '../english_poem_screen/english_poems_list_screen.dart';
 import '../puzzles_screen/puzzles_screen.dart';
 import 'components/cosmic_background.dart';
@@ -215,7 +216,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         Get.to(() => EnglishPoemsListScreen());
         break;
       case 'banglaNumbers':
-        Get.to(() => HomeScreen());
+        Get.to(() => BanglaNumberScreen());
         break;
       case 'englishNumbers':
         Get.to(() => HomeScreen());
