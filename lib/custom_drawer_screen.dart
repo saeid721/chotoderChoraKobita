@@ -9,7 +9,6 @@ import 'global/widget/global_image_loader.dart';
 import 'global/widget/global_text.dart';
 import 'global/widget/images.dart';
 import 'view/about_screen/about_screen.dart';
-import 'view/alphabet_screen/alphabet_screen.dart';
 import 'view/home_screen/home_screen.dart';
 import 'view/contact_screen/contact_screen.dart';
 import 'view/privacy_policy_screen/privacy_policy_screen.dart';
@@ -26,7 +25,6 @@ class _CustomDrawerScreenState extends State<CustomDrawerScreen> {
 
   final List<GlobalMenuModel> menuItem = [
     GlobalMenuModel(img: Images.homeInc, text: 'Home', slug: 'home'),
-    // GlobalMenuModel(img: Images.alphabetInc, text: 'Alphabet', slug: 'alphabet'),
     GlobalMenuModel(img: Images.aboutInc, text: 'About Us', slug: 'about'),
     GlobalMenuModel(img: Images.contactInc, text: 'Contact Us', slug: 'contact'),
     GlobalMenuModel(img: Images.shareInc, text: 'Share Your Friends',  slug: 'share'),

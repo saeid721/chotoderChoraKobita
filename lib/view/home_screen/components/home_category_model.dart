@@ -6,7 +6,6 @@ class HomeCategoryModel {
   final String slug;
   final String icon;
   final List<Color> gradient;
-  final String emoji;
 
   HomeCategoryModel({
     required this.title,
@@ -14,7 +13,6 @@ class HomeCategoryModel {
     required this.slug,
     required this.icon,
     required this.gradient,
-    required this.emoji,
   });
 }
 

@@ -144,7 +144,6 @@ class CategoryCard extends StatelessWidget {
   }
 }
 
-
 class MagicalPortal extends StatelessWidget {
   final AnimationController morphController;
   final AnimationController particleController;
@@ -157,7 +156,7 @@ class MagicalPortal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 125,
       child: AnimatedBuilder(
         animation: morphController,
