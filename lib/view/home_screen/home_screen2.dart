@@ -9,8 +9,8 @@
 // import '../../global/widget/global_image_loader.dart';
 // import '../../global/widget/images.dart';
 // import '../app_exit_dialog.dart';
-// import '../category_screen/bangla_kobita/bangla_kobita_list_screen.dart';
-// import '../category_screen/english_kobita/english_poems_list_screen.dart';
+// import '../category_screen/bangla_kobita_screen/bangla_kobita_list_screen.dart';
+// import '../category_screen/english_poem_screen/english_poems_list_screen.dart';
 //
 // class HomeScreen extends StatefulWidget {
 //   const HomeScreen({super.key});

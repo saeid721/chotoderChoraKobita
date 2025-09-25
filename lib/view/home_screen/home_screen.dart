@@ -3,12 +3,11 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-
 import '../../custom_drawer_screen.dart';
 import '../alphabet_screen/alphabet_screen.dart';
 import '../bangla_alphabet_screen/bangla_alphabet_screen.dart';
-import '../category_screen/bangla_kobita/bangla_kobita_list_screen.dart';
-import '../category_screen/english_kobita/english_poems_list_screen.dart';
+import '../bangla_kobita_screen/bangla_kobita_list_screen.dart';
+import '../english_poem_screen/english_poems_list_screen.dart';
 import '../puzzles_screen/puzzles_screen.dart';
 
 class HomeScreen extends StatefulWidget {
