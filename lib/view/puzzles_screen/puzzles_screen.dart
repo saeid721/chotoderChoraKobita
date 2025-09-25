@@ -17,71 +17,79 @@ class PuzzlesScreen extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          _buildSliverAppBar(context),
+          SliverAppBar(
+            expandedHeight: 200,
+            pinned: true,
+            flexibleSpace: FlexibleSpaceBar(
+              background: Stack(
+                fit: StackFit.expand,
+                children: [
+                  // Background gradient
+                  Container(
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [Colors.blueAccent, Colors.purpleAccent],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                    ),
+                  ),
+                  // Glassmorphism effect
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        color: Colors.white.withOpacity(0.2),
+                        width: 1.5,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 20,
+                          spreadRadius: 5,
+                        ),
+                      ],
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Puzzles & Brain Games',
+                        style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                          fontSize: 28,
+                          shadows: [
+                            Shadow(
+                              blurRadius: 10,
+                              color: Colors.black.withOpacity(0.3),
+                              offset: const Offset(2, 2),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
           SliverToBoxAdapter(child: _buildCategoryHeader()),
-          _buildPuzzleGrid(),
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            sliver: SliverMasonryGrid.count(
+              crossAxisCount: 2,
+              mainAxisSpacing: 12,
+              crossAxisSpacing: 12,
+              childCount: puzzleData.length,
+              itemBuilder: (context, index) => PuzzleCard(
+                puzzle: puzzleData[index],
+                index: index,
+              ),
+            ),
+          ),
         ],
       ),
     );
   }
 
-  // Sliver AppBar with glassmorphism effect
-  Widget _buildSliverAppBar(BuildContext context) {
-    return SliverAppBar(
-      expandedHeight: 200,
-      pinned: true,
-      flexibleSpace: FlexibleSpaceBar(
-        background: Stack(
-          fit: StackFit.expand,
-          children: [
-            // Background gradient
-            Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Colors.blueAccent, Colors.purpleAccent],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-              ),
-            ),
-            // Glassmorphism effect
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(
-                  color: Colors.white.withOpacity(0.2),
-                  width: 1.5,
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
-                    blurRadius: 20,
-                    spreadRadius: 5,
-                  ),
-                ],
-              ),
-              child: Center(
-                child: Text(
-                  'Puzzles & Brain Games',
-                  style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-                    fontSize: 28,
-                    shadows: [
-                      Shadow(
-                        blurRadius: 10,
-                        color: Colors.black.withOpacity(0.3),
-                        offset: const Offset(2, 2),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 
   // Category header
   Widget _buildCategoryHeader() {
@@ -99,22 +107,6 @@ class PuzzlesScreen extends StatelessWidget {
     );
   }
 
-  // Puzzle grid using SliverMasonryGrid
-  Widget _buildPuzzleGrid() {
-    return SliverPadding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      sliver: SliverMasonryGrid.count(
-        crossAxisCount: 2,
-        mainAxisSpacing: 12,
-        crossAxisSpacing: 12,
-        childCount: puzzleData.length,
-        itemBuilder: (context, index) => PuzzleCard(
-          puzzle: puzzleData[index],
-          index: index,
-        ),
-      ),
-    );
-  }
 }
 
 // Puzzle data model

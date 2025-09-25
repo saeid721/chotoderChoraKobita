@@ -7,6 +7,7 @@ import '../alphabet_screen/alphabet_screen.dart';
 import '../bangla_alphabet_screen/bangla_alphabet_screen.dart';
 import '../bangla_kobita_screen/bangla_kobita_list_screen.dart';
 import '../bangla_number_screen/bangla_number_screen.dart';
+import '../drawing_screen/drawing_screen.dart';
 import '../english_number_screen/english_number_screen.dart';
 import '../english_poem_screen/english_poems_list_screen.dart';
 import '../puzzles_screen/puzzles_screen.dart';
@@ -178,7 +179,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   sliver: SliverGrid(
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      childAspectRatio: 1.3,
+                      childAspectRatio: 1.4,
                       crossAxisSpacing: 15,
                       mainAxisSpacing: 15,
                     ),
@@ -230,7 +231,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         Get.to(() => PuzzlesScreen());
         break;
       case 'drawing':
-        Get.to(() => HomeScreen());
+        Get.to(() => DrawingScreen());
         break;
       default:
         Get.to(() => HomeScreen());
