@@ -183,9 +183,16 @@ class ThemeSpecificCardWidget extends StatelessWidget {
           children: [
             GlobalText(
               str: letter.letter,
-              fontSize: 40,
+              fontSize: 34,
               fontWeight: FontWeight.w900,
               color: ColorRes.primaryColor,
+              isSelectable: false,
+            ),
+            GlobalText(
+              str: letter.pronunciation,
+              fontSize: 8,
+              fontWeight: FontWeight.w600,
+              color: ColorRes.deep200,
               isSelectable: false,
             ),
           ],
@@ -216,9 +223,15 @@ class ThemeSpecificCardWidget extends StatelessWidget {
           children: [
             GlobalText(
               str: letter.letter,
-              fontSize: 40,
+              fontSize: 34,
               fontWeight: FontWeight.w900,
               color: const Color(0xFF00FFFF),
+              isSelectable: false,
+            ),
+            GlobalText(
+              str: letter.pronunciation.toLowerCase(),
+              fontSize: 8,
+              color: const Color(0xFF00FFFF).withOpacity(0.6),
               isSelectable: false,
             ),
           ],
@@ -258,9 +271,16 @@ class ThemeSpecificCardWidget extends StatelessWidget {
             children: [
               GlobalText(
                 str: letter.letter,
-                fontSize: 40,
+                fontSize: 34,
                 fontWeight: FontWeight.w900,
                 color: const Color(0xFF90EE90),
+                isSelectable: false,
+              ),
+              GlobalText(
+                str: letter.pronunciation.toLowerCase(),
+                fontSize: 8,
+                color: const Color(0xFF90EE90).withOpacity(0.7),
+                fontStyle: FontStyle.italic,
                 isSelectable: false,
               ),
             ],
@@ -307,9 +327,16 @@ class ThemeSpecificCardWidget extends StatelessWidget {
             children: [
               GlobalText(
                 str: letter.letter,
-                fontSize: 40,
+                fontSize: 34,
                 fontWeight: FontWeight.w900,
                 color: const Color(0xFF00FFFF),
+                isSelectable: false,
+              ),
+              GlobalText(
+                str: letter.pronunciation.toLowerCase(),
+                fontSize: 8,
+                color: const Color(0xFF00FFFF).withOpacity(0.7),
+                fontWeight: FontWeight.bold,
                 isSelectable: false,
               ),
             ],
@@ -381,6 +408,13 @@ class ReadingOverlayWidget extends StatelessWidget {
                             ),
                           );
                         },
+                      ),
+                      sizedBoxH(10),
+                      GlobalText(
+                        str: '/${selectedLetter.pronunciation}/',
+                        fontSize: 18,
+                        color: Colors.white.withOpacity(0.8),
+                        isSelectable: false,
                       ),
                       sizedBoxH(30),
                       GestureDetector(

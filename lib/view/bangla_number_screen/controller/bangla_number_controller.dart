@@ -4,7 +4,6 @@ import 'dart:async';
 import 'dart:math' as math;
 import '../components/bangla_number_enmu.dart';
 import '../model/bangla_number_model.dart';
-import '../model/bangla_number_model.dart' as model;
 
 class BanglaNumberController {
   BanglaNumberTheme currentTheme = BanglaNumberTheme.storybook;
@@ -19,8 +18,7 @@ class BanglaNumberController {
   late AnimationController ambientController;
   Timer? _particleTimer;
 
-  /// এখন letters হার্ডকোড নয়, model থেকে আসছে
-  late final List<model.BanglaNumberModel> letters = model.letters;
+  late final List<BanglaNumberModel> letters = BanglaNumberModel.letters;
 
   final TickerProvider vsync;
   final Function(BanglaNumberModel, Offset) onLetterTap;
@@ -42,7 +40,7 @@ class BanglaNumberController {
 
   void _initializeTts() {
     flutterTts = FlutterTts();
-    flutterTts.setLanguage("bd-BD"); // বাংলা
+    flutterTts.setLanguage("bn-BD");
     flutterTts.setSpeechRate(0.7);
     flutterTts.setVolume(0.9);
     flutterTts.setPitch(1.0);
@@ -99,8 +97,17 @@ class BanglaNumberController {
   }
 
   void _createAmbientParticle() {
-    // Ambient effect add করতে চাইলে context লাগবে
-    // আপাতত ফাঁকা রাখা হলো
+    final random = math.Random();
+    particles.add(ParticleEffect(
+      x: random.nextDouble() * 400,
+      y: random.nextDouble() * 800,
+      vx: (random.nextDouble() - 0.5) * 4,
+      vy: (random.nextDouble() - 0.5) * 4,
+      size: random.nextDouble() * 6 + 3,
+      color: _getThemeAccentColor(),
+      maxLife: 80.0 + random.nextDouble() * 40,
+      emoji: _getThemeParticleEmoji(),
+    ));
   }
 
   void createLetterParticles(Offset position) {
@@ -165,7 +172,7 @@ class BanglaNumberController {
   }
 
   void speakLetter(BanglaNumberModel letter) async {
-    await flutterTts.speak(letter.letter); // সংখ্যা বাংলায় পড়বে
+    await flutterTts.speak(letter.pronunciation);
 
     Future.delayed(const Duration(seconds: 2), () {
       if (isReading) {

@@ -94,7 +94,7 @@ class _BanglaNumberScreenState extends State<BanglaNumberScreen> with TickerProv
         iconTheme: const IconThemeData(color: Colors.white),
         title: const GlobalText(
           str: "বাংলা সংখ্যা",
-          fontSize: 20,
+          fontSize: 18,
           fontWeight: FontWeight.w700,
           color: ColorRes.white,
           isSelectable: false,

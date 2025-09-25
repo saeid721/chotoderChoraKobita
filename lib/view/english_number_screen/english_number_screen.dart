@@ -94,7 +94,7 @@ class _EnglishNumberScreenState extends State<EnglishNumberScreen> with TickerPr
         iconTheme: const IconThemeData(color: Colors.white),
         title: const GlobalText(
           str: "English Numbers",
-          fontSize: 20,
+          fontSize: 18,
           fontWeight: FontWeight.w700,
           color: ColorRes.white,
           isSelectable: false,

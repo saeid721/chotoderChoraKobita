@@ -25,8 +25,8 @@ class ThemeSelectorWidget extends StatelessWidget {
       onTap: () => onSwitchTheme(theme),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
-        width: 40,
-        height: 40,
+        width: 36,
+        height: 36,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           gradient: isActive ? LinearGradient(
