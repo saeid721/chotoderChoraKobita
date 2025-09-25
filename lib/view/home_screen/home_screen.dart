@@ -9,6 +9,7 @@ import '../alphabet_screen/alphabet_screen.dart';
 import '../bangla_alphabet_screen/bangla_alphabet_screen.dart';
 import '../category_screen/bangla_kobita/bangla_kobita_list_screen.dart';
 import '../category_screen/english_kobita/english_poems_list_screen.dart';
+import '../puzzles_screen/puzzles_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -18,7 +19,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
-  // Only keep controllers we actually use in the UI
   late final AnimationController _floatingController;
   late final AnimationController _pulseController;
   late final AnimationController _shimmerController;
@@ -41,15 +41,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     Color(0xFF06B6D4), // Cyan
   ];
 
-  final List<CategoryItem> _categories = [
-    CategoryItem(title: 'ছড়া', subtitle: 'বাংলা ছড়া', icon: '📜', gradient: [Color(0xFF6366F1), Color(0xFF8B5CF6)], emoji: '🎵'),
-    CategoryItem(title: 'Poems', subtitle: 'English Poems', icon: '📝', gradient: [Color(0xFFEC4899), Color(0xFFF97316)], emoji: '✨'),
-    CategoryItem(title: 'সংখ্যা', subtitle: 'বাংলা সংখ্যা', icon: '🔢', gradient: [Color(0xFF10B981), Color(0xFF06B6D4)], emoji: '🎯'),
-    CategoryItem(title: 'Numbers', subtitle: 'English Numbers', icon: '🔟', gradient: [Color(0xFFF59E0B), Color(0xFFEF4444)], emoji: '🌟'),
-    CategoryItem(title: 'অক্ষর', subtitle: 'বাংলা অক্ষর', icon: '🅱️', gradient: [Color(0xFF8B5CF6), Color(0xFFEC4899)], emoji: '🎨'),
-    CategoryItem(title: 'Alphabet', subtitle: 'English Alphabet', icon: '🔤', gradient: [Color(0xFF06B6D4), Color(0xFF6366F1)], emoji: '🚀'),
-    CategoryItem(title: 'Puzzles', subtitle: 'Brain Games', icon: '🧩', gradient: [Color(0xFFF97316), Color(0xFF10B981)], emoji: '🧠'),
-    CategoryItem(title: 'Drawing', subtitle: 'Creative Art', icon: '🎨', gradient: [Color(0xFFEF4444), Color(0xFF8B5CF6)], emoji: '🎪'),
+  final List<HomeCategoryModel> _categories = [
+    HomeCategoryModel(title: 'ছড়া', subtitle: 'বাংলা ছড়া', slug: 'banglaKobita', icon: '📜', gradient: [Color(0xFF6366F1), Color(0xFF8B5CF6)], emoji: '🎵'),
+    HomeCategoryModel(title: 'Poems', subtitle: 'English Poems', slug: 'englishPoems', icon: '📝', gradient: [Color(0xFFEC4899), Color(0xFFF97316)], emoji: '✨'),
+    HomeCategoryModel(title: 'সংখ্যা', subtitle: 'বাংলা সংখ্যা', slug: 'banglaNumbers', icon: '🔢', gradient: [Color(0xFF10B981), Color(0xFF06B6D4)], emoji: '🎯'),
+    HomeCategoryModel(title: 'Numbers', subtitle: 'English Numbers', slug: 'englishNumbers', icon: '🔟', gradient: [Color(0xFFF59E0B), Color(0xFFEF4444)], emoji: '🌟'),
+    HomeCategoryModel(title: 'অক্ষর', subtitle: 'বাংলা অক্ষর', slug: 'banglaAlphabet', icon: '🅱️', gradient: [Color(0xFF8B5CF6), Color(0xFFEC4899)], emoji: '🎨'),
+    HomeCategoryModel(title: 'Alphabet', subtitle: 'English Alphabet', slug: 'englishAlphabet', icon: '🔤', gradient: [Color(0xFF06B6D4), Color(0xFF6366F1)], emoji: '🚀'),
+    HomeCategoryModel(title: 'Puzzles', subtitle: 'Brain Games', slug: 'puzzles', icon: '🧩', gradient: [Color(0xFFF97316), Color(0xFF10B981)], emoji: '🧠'),
+    HomeCategoryModel(title: 'Drawing', subtitle: 'Creative Art', slug: 'drawing', icon: '🎨', gradient: [Color(0xFFEF4444), Color(0xFF8B5CF6)], emoji: '🎪'),
   ];
 
   @override
@@ -484,31 +484,31 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     );
   }
 
-  void _handleCategoryTap(CategoryItem category) {
+  void _handleCategoryTap(HomeCategoryModel category) {
     HapticFeedback.mediumImpact();
-    switch (category.title) {
-      case 'ছড়া':
+    switch (category.slug) {
+      case 'banglaKobita':
         Get.to(() => BanglaKobitaListScreen());
         break;
-      case 'Poems':
+      case 'englishPoems':
         Get.to(() => EnglishPoemsListScreen());
         break;
-      case 'সংখ্যা':
+      case 'banglaNumbers':
         Get.to(() => HomeScreen());
         break;
-      case 'Numbers':
+      case 'englishNumbers':
         Get.to(() => HomeScreen());
         break;
-      case 'অক্ষর':
+      case 'banglaAlphabet':
         Get.to(() => BanglaAlphabetScreen());
         break;
-      case 'Alphabet':
+      case 'englishAlphabet':
         Get.to(() => AlphabetScreen());
         break;
-      case 'Puzzles':
-        Get.to(() => HomeScreen());
+      case 'puzzles':
+        Get.to(() => PuzzlesScreen());
         break;
-      case 'Drawing':
+      case 'drawing':
         Get.to(() => HomeScreen());
         break;
       default:
@@ -518,16 +518,18 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 }
 
 // Data models and helper classes
-class CategoryItem {
+class HomeCategoryModel {
   final String title;
   final String subtitle;
+  final String slug;
   final String icon;
   final List<Color> gradient;
   final String emoji;
 
-  CategoryItem({
+  HomeCategoryModel({
     required this.title,
     required this.subtitle,
+    required this.slug,
     required this.icon,
     required this.gradient,
     required this.emoji,
